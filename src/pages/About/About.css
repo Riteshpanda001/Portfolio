@@ -1,0 +1,99 @@
+.about-page__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-2xl);
+  align-items: start;
+  margin-bottom: var(--space-3xl);
+}
+
+/* ── Image ────────────────────────────────────────────────── */
+.about-page__image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.about-page__image-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,0.35) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.about-page__image-placeholder {
+  width: 260px;
+  height: 260px;
+  border-radius: 30px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: 4rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.9);
+  box-shadow: 0 20px 60px rgba(108,99,255,0.4);
+  position: relative;
+  z-index: 1;
+  border: 3px solid rgba(255,255,255,0.1);
+}
+
+/* ── Content ──────────────────────────────────────────────── */
+.about-page__greeting {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+}
+
+.about-page__content p {
+  margin-bottom: var(--space-md);
+}
+
+.about-page__actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+/* ── Stats ────────────────────────────────────────────────── */
+.about-page__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.about-page__stat {
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.about-page__stat-value {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-xs);
+}
+
+.about-page__stat-label {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about-page__grid  { grid-template-columns: 1fr; }
+  .about-page__image-wrap { margin-bottom: var(--space-xl); }
+  .about-page__stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .about-page__stats { grid-template-columns: 1fr 1fr; }
+}

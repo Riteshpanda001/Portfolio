@@ -1,0 +1,96 @@
+.experience-page__timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+/* Vertical line */
+.experience-page__timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.25rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-accent), rgba(108,99,255,0.1));
+}
+
+.experience-card {
+  margin-left: 3.5rem;
+  position: relative;
+}
+
+.experience-card__dot {
+  position: absolute;
+  left: -2.9rem;
+  top: 1.5rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  box-shadow: 0 0 0 4px rgba(108,99,255,0.2);
+  transition: box-shadow var(--transition-base);
+}
+
+.experience-card:hover .experience-card__dot {
+  box-shadow: 0 0 0 6px rgba(108,99,255,0.3);
+}
+
+.experience-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.experience-card__role {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.experience-card__company {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.experience-card__dates {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.825rem;
+  color: var(--color-muted);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.experience-card__duration {
+  color: var(--color-accent-mint);
+}
+
+.experience-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.experience-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+@media (max-width: 600px) {
+  .experience-page__timeline::before { left: 0; }
+  .experience-card { margin-left: 1.5rem; }
+  .experience-card__dot { left: -1.25rem; }
+  .experience-card__header { flex-direction: column; }
+}

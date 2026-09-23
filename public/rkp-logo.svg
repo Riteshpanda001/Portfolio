@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480">
+  <defs>
+    <!-- Main Futuristic Blue-Purple-Pink Gradient -->
+    <linearGradient id="rkp-grad-main" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0052FF" />
+      <stop offset="20%" stop-color="#007DFF" />
+      <stop offset="45%" stop-color="#7B2CBF" />
+      <stop offset="70%" stop-color="#C77DFF" />
+      <stop offset="85%" stop-color="#E024C3" />
+      <stop offset="100%" stop-color="#FF2A85" />
+    </linearGradient>
+
+    <!-- Outer Glow -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur1" />
+      <feGaussianBlur stdDeviation="24" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Edge Highlight -->
+    <linearGradient id="edge-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#FF61D2" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background for standalone viewing (transparent in use if needed, dark backdrop matches image) -->
+  <rect width="1000" height="480" rx="24" fill="#070913" />
+
+  <!-- Ambient Light Reflection -->
+  <circle cx="200" cy="180" r="160" fill="#0052FF" opacity="0.15" filter="blur(60px)" />
+  <circle cx="500" cy="180" r="160" fill="#7B2CBF" opacity="0.15" filter="blur(60px)" />
+  <circle cx="800" cy="180" r="160" fill="#FF2A85" opacity="0.15" filter="blur(60px)" />
+
+  <g transform="translate(40, 40)">
+    <!-- RKP Futuristic Monogram Symbol -->
+    <g filter="url(#glow)">
+      <!-- Letter R -->
+      <path d="M 110 50 L 360 50 C 430 50 440 130 370 160 L 440 280 L 360 280 L 300 170 L 210 170 L 150 280 L 80 280 L 175 110 L 110 50 Z M 235 115 L 340 115 C 365 115 365 95 340 95 L 210 95 L 235 115 Z" fill="url(#rkp-grad-main)" />
+      
+      <!-- Letter K -->
+      <path d="M 410 50 L 480 50 L 410 170 L 480 280 L 410 280 L 375 220 L 450 110 L 410 50 Z M 490 50 L 620 50 L 515 160 L 625 280 L 545 280 L 460 180 L 490 50 Z" fill="url(#rkp-grad-main)" />
+
+      <!-- Letter P -->
+      <path d="M 570 50 L 810 50 C 890 50 890 175 800 175 L 670 175 L 670 280 L 595 280 L 595 165 L 570 50 Z M 670 115 L 790 115 C 815 115 815 95 790 95 L 670 95 L 670 115 Z" fill="url(#rkp-grad-main)" />
+    </g>
+
+    <!-- Sleek Top Edge Highlight Line -->
+    <path d="M 120 52 L 360 52 M 495 52 L 615 52 M 575 52 L 805 52" stroke="url(#edge-light)" stroke-width="3" stroke-linecap="round" opacity="0.9" />
+
+    <!-- Subtitle / Tagline Divider Section -->
+    <!-- R Column -->
+    <g transform="translate(250, 340)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="36" font-weight="900" fill="#007DFF">R</text>
+      <text x="0" y="28" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="16" font-weight="700" fill="#E6EAF2" letter-spacing="4">RISE</text>
+      <text x="0" y="48" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#718096" letter-spacing="3">WITH PURPOSE</text>
+    </g>
+
+    <!-- Vertical Separator 1 -->
+    <line x1="390" y1="335" x2="390" y2="395" stroke="#7B2CBF" stroke-width="2" opacity="0.8" />
+
+    <!-- K Column -->
+    <g transform="translate(500, 340)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="36" font-weight="900" fill="#C77DFF">K</text>
+      <text x="0" y="28" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="16" font-weight="700" fill="#E6EAF2" letter-spacing="4">KEEP</text>
+      <text x="0" y="48" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#718096" letter-spacing="3">LEARNING</text>
+    </g>
+
+    <!-- Vertical Separator 2 -->
+    <line x1="610" y1="335" x2="610" y2="395" stroke="#E024C3" stroke-width="2" opacity="0.8" />
+
+    <!-- P Column -->
+    <g transform="translate(720, 340)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="36" font-weight="900" fill="#FF2A85">P</text>
+      <text x="0" y="28" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="16" font-weight="700" fill="#E6EAF2" letter-spacing="4">PURSUE</text>
+      <text x="0" y="48" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#718096" letter-spacing="3">EXCELLENCE</text>
+    </g>
+  </g>
+</svg>

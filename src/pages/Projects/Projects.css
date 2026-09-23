@@ -1,0 +1,104 @@
+.projects-page__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+  justify-content: center;
+}
+
+.projects-page__filter-btn {
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-primary);
+}
+.projects-page__filter-btn:hover {
+  color: var(--color-text);
+  background: rgba(108,99,255,0.1);
+  border-color: rgba(108,99,255,0.25);
+}
+.projects-page__filter-btn--active {
+  background: var(--gradient-primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(108,99,255,0.4);
+}
+
+.projects-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+
+/* ── Project card ─────────────────────────────────────────── */
+.project-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card__img-placeholder {
+  height: 180px;
+  background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(0,229,195,0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border-bottom: 1px solid rgba(108,99,255,0.1);
+  transition: background var(--transition-base);
+}
+
+.project-card:hover .project-card__img-placeholder {
+  background: linear-gradient(135deg, rgba(108,99,255,0.25), rgba(0,229,195,0.15));
+}
+
+.project-card__body {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.project-card__title {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.project-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: var(--space-lg);
+}
+
+.project-card__actions {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.project-card__detail-link {
+  margin-left: auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.project-card__detail-link:hover { color: var(--color-accent-mint); }

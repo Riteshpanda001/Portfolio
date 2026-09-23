@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" width="760" height="260">
+  <defs>
+    <!-- Main Futuristic Blue-Purple-Pink Gradient -->
+    <linearGradient id="rkp-icon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0052FF" />
+      <stop offset="25%" stop-color="#2D5BFF" />
+      <stop offset="50%" stop-color="#7B2CBF" />
+      <stop offset="75%" stop-color="#E024C3" />
+      <stop offset="100%" stop-color="#FF2A85" />
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="rkp-icon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Top Highlight Flare -->
+    <linearGradient id="rkp-icon-edge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#FF61D2" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(10, 10)" filter="url(#rkp-icon-glow)">
+    <!-- Letter R -->
+    <path d="M 60 20 L 290 20 C 355 20 365 95 300 120 L 365 220 L 290 220 L 235 130 L 150 130 L 95 220 L 30 220 L 118 78 L 60 20 Z M 172 78 L 270 78 C 290 78 290 60 270 60 L 150 60 L 172 78 Z" fill="url(#rkp-icon-grad)" />
+
+    <!-- Letter K -->
+    <path d="M 330 20 L 395 20 L 330 120 L 395 220 L 330 220 L 298 170 L 368 78 L 330 20 Z M 405 20 L 525 20 L 428 110 L 530 220 L 455 220 L 378 140 L 405 20 Z" fill="url(#rkp-icon-grad)" />
+
+    <!-- Letter P -->
+    <path d="M 480 20 L 700 20 C 775 20 775 135 690 135 L 575 135 L 575 220 L 505 220 L 505 130 L 480 20 Z M 575 78 L 685 78 C 708 78 708 60 685 60 L 575 60 L 575 78 Z" fill="url(#rkp-icon-grad)" />
+
+    <!-- Top Highlight stroke -->
+    <path d="M 70 22 L 290 22 M 410 22 L 520 22 M 485 22 L 695 22" stroke="url(#rkp-icon-edge)" stroke-width="3" stroke-linecap="round" />
+  </g>
+</svg>

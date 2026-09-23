@@ -1,0 +1,38 @@
+.about-preview__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.about-preview__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.about-preview__card {
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.about-preview__card-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.about-preview__card h4 {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
+}
+
+.about-preview__card p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .about-preview__grid { grid-template-columns: 1fr; }
+}

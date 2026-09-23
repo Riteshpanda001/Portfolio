@@ -1,0 +1,40 @@
+.resume-page__actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.resume-page__viewer {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resume-page__viewer-placeholder {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.resume-page__viewer-icon {
+  font-size: 5rem;
+  display: block;
+}
+
+.resume-page__viewer-placeholder h3 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.resume-page__viewer-placeholder code {
+  background: rgba(108,99,255,0.12);
+  color: var(--color-accent);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
