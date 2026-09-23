@@ -23,23 +23,6 @@ export default function Hero() {
       <div className="hero__orb hero__orb--3" aria-hidden="true" />
 
       <div className="container hero__content">
-        {/* Social sidebar */}
-        <div className="hero__socials" role="list" aria-label="Social links">
-          {SOCIAL_LINKS.map((s) => (
-            <a
-              key={s.label}
-              href={s.url}
-              className="hero__social-link"
-              role="listitem"
-              aria-label={s.label}
-              target={s.url.startsWith('mailto') ? undefined : '_blank'}
-              rel="noopener noreferrer"
-            >
-              {SOCIAL_ICONS[s.icon]}
-            </a>
-          ))}
-        </div>
-
         {/* Main text */}
         <div className="hero__text">
           <span className="hero__badge badge animate-fadeInUp">Available for work ✨</span>
@@ -62,15 +45,25 @@ export default function Hero() {
             <Link to="/projects" className="btn btn--primary btn--lg">
               View My Work →
             </Link>
-            <Link to="/contact" className="btn btn--secondary btn--lg">
-              Let's Talk
+            <Link to="/resume" className="btn btn--secondary btn--lg">
+              Resume
             </Link>
           </div>
 
-          {/* Tech marquee */}
-          <div className="hero__tech-scroll animate-fadeInUp" style={{ animationDelay: '0.5s' }} aria-hidden="true">
-            {['React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS', 'GraphQL'].map((t) => (
-              <span key={t} className="hero__tech-item">{t}</span>
+          {/* Social links horizontal row */}
+          <div className="hero__socials animate-fadeInUp" style={{ animationDelay: '0.5s' }} role="list" aria-label="Social links">
+            {SOCIAL_LINKS.map((s) => (
+              <a
+                key={s.label}
+                href={s.url}
+                className="hero__social-link"
+                role="listitem"
+                aria-label={s.label}
+                target={s.url.startsWith('mailto') ? undefined : '_blank'}
+                rel="noopener noreferrer"
+              >
+                {SOCIAL_ICONS[s.icon]}
+              </a>
             ))}
           </div>
         </div>

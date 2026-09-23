@@ -55,7 +55,7 @@ export default function Navbar() {
           {/* CTA + Hamburger */}
           <div className="navbar__actions">
             <Link to="/contact" className="btn btn--primary btn--sm navbar__cta">
-              Hire Me
+              Connect
             </Link>
 
             <button

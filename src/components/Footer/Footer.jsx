@@ -11,11 +11,13 @@ const currentYear = new Date().getFullYear();
 const FOOTER_LINKS = [
   {
     heading: 'Navigation',
-    links: NAV_LINKS.slice(0, 5),
+    links: NAV_LINKS,
   },
   {
-    heading: 'More',
-    links: NAV_LINKS.slice(5),
+    heading: 'Quick Links',
+    links: [
+      { label: 'Resume', path: '/resume' },
+    ],
   },
 ];
 
