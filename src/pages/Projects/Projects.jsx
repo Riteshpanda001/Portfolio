@@ -17,12 +17,12 @@ export default function Projects() {
   const { projects, loading, error, refetch } = useProjects({ category: activeFilter === 'All' ? '' : activeFilter });
 
   const DEMO_PROJECTS = [
-    { _id: '1', title: 'E-Commerce Platform', description: 'Full-stack e-commerce solution with React, Node.js & MongoDB.', tags: ['React','Node.js','MongoDB'], category: 'Web', github: '#', live: '#' },
-    { _id: '2', title: 'Chat Application',    description: 'Real-time chat app using Socket.io and JWT authentication.',   tags: ['Socket.io','React','Express'], category: 'Web', github: '#', live: '#' },
-    { _id: '3', title: 'Task Manager API',    description: 'RESTful API with authentication, roles and PostgreSQL.',        tags: ['Node.js','PostgreSQL','JWT'],  category: 'Backend', github: '#', live: '#' },
-    { _id: '4', title: 'Portfolio Website',   description: 'Personal portfolio with dark theme, animations & CMS admin.',   tags: ['React','CSS','Vite'],         category: 'Web', github: '#', live: '#' },
-    { _id: '5', title: 'Weather Dashboard',   description: 'Live weather app using OpenWeather API with charts.',            tags: ['React','Chart.js','API'],      category: 'Web', github: '#', live: '#' },
-    { _id: '6', title: 'Blog CMS',            description: 'Markdown-based blog with admin panel and NextJS SSG.',          tags: ['Next.js','MDX','PostgreSQL'], category: 'Web', github: '#', live: '#' },
+    { _id: '1', title: 'AI Predictive Analytics Engine', description: 'Machine learning pipeline for automated predictive analysis & data insights.', tags: ['Python','PyTorch','Data Analytics','FastAPI'], category: 'AI / ML', github: '#', live: '#' },
+    { _id: '2', title: 'Enterprise Web ERP Platform', description: 'Scalable web application built with modern architecture & React.', tags: ['React','Node.js','PostgreSQL','Docker'], category: 'Web Development', github: '#', live: '#' },
+    { _id: '3', title: 'Interactive BI & Data Analytics Dashboard', description: 'Real-time statistical data analytics and BI metrics dashboard platform.', tags: ['Data Analytics','Python','React','SQL'], category: 'Data Analytics', github: '#', live: '#' },
+    { _id: '4', title: 'Smart NLP Text Summarizer & Classifier', description: 'Deep learning model for automatic text summarization and sentiment analysis.', tags: ['Python','Transformers','NLP','PyTorch'], category: 'AI / ML', github: '#', live: '#' },
+    { _id: '5', title: 'Financial Management Web Portal', description: 'Secure web portal with JWT authentication, role management, and audit logging.', tags: ['React','Express','Security','MySQL'], category: 'Web Development', github: '#', live: '#' },
+    { _id: '6', title: 'Automated Data ETL Pipeline', description: 'Scalable data pipeline for extracting, transforming, and visualizing large datasets.', tags: ['Python','Pandas','SQL','Power BI'], category: 'Data Analytics', github: '#', live: '#' },
   ];
 
   const displayProjects = (loading || error || !projects.length) ? DEMO_PROJECTS : projects;

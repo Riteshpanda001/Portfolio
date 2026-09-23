@@ -5,16 +5,25 @@ import './AboutPreview.css';
 
 export default function AboutPreview() {
   return (
-    <section id="about-preview" className="section">
+    <section id="about" className="section">
       <div className="container">
         <div className="about-preview__grid">
           <div className="about-preview__text animate-fadeInUp">
-            <SectionTitle badge="About" title="Who Am I?" subtitle="" align="left" divider />
-            <p>I'm a full-stack developer passionate about building elegant, high-performance web applications that solve real-world problems.</p>
-            <p style={{ marginTop: '1rem' }}>With 3+ years of professional experience, I've worked across the entire stack — from pixel-perfect UIs to scalable backend architectures.</p>
+            <SectionTitle badge="Get To Know Me" title="About Me" subtitle="More than just code — here's my story and what drives me" align="left" divider />
+            <h3 className="about-preview__subheading" style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--color-text)' }}>
+              Building Ideas Into Intelligent Solutions
+            </h3>
+            <p>
+              I'm Ritesh Kumar Panda, a Computer Science Engineering student and aspiring software engineer passionate about building modern web applications and intelligent systems that solve real-world problems.
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              My journey into software development started with curiosity about how technology can transform ideas into useful products. Today, I work across frontend development, backend engineering, AI/ML, and data-driven applications, continuously exploring new technologies and better ways to build.
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              I enjoy breaking complex problems into simple, reliable solutions. From designing responsive interfaces and developing REST APIs to experimenting with machine learning and building full-stack applications, I approach every project with curiosity, attention to detail, and a mindset of continuous improvement.
+            </p>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Button variant="primary" href="/about">Learn More →</Button>
-              <Button variant="ghost" href="/resume">My Resume</Button>
             </div>
           </div>
           <div className="about-preview__cards stagger">

@@ -5,9 +5,9 @@ import { useProjects } from '../../hooks/useProjects';
 import './FeaturedProjects.css';
 
 const DEMO = [
-  { _id: '1', title: 'E-Commerce Platform', description: 'Full-stack e-commerce with React & Node.js.', tags: ['React','Node.js','MongoDB'], github: '#', live: '#', emoji: '🛒' },
-  { _id: '2', title: 'Chat Application',    description: 'Real-time messaging with Socket.io.',         tags: ['Socket.io','React'],         github: '#', live: '#', emoji: '💬' },
-  { _id: '3', title: 'Portfolio CMS',       description: 'This very site — built with Vite + React.',   tags: ['Vite','React','CSS'],         github: '#', live: '#', emoji: '✨' },
+  { _id: '1', title: 'AI Predictive Analytics Engine', description: 'Machine learning pipeline for automated predictive analysis & data insights.', tags: ['Python', 'PyTorch', 'Data Analytics', 'FastAPI'], github: '#', live: '#', emoji: '🤖' },
+  { _id: '2', title: 'Enterprise Java ERP System', description: 'Scalable enterprise application built with Spring Boot microservices & React.', tags: ['Java', 'Spring Boot', 'React', 'PostgreSQL'], github: '#', live: '#', emoji: '☕' },
+  { _id: '3', title: 'Interactive Data Visualization Dashboard', description: 'Real-time statistical data analytics and BI metrics dashboard platform.', tags: ['Data Analytics', 'Python', 'React', 'SQL'], github: '#', live: '#', emoji: '📊' },
 ];
 
 export default function FeaturedProjects() {
@@ -17,7 +17,7 @@ export default function FeaturedProjects() {
   return (
     <section id="featured-projects" className="section">
       <div className="container">
-        <SectionTitle badge="Featured Work" title="Projects I'm Proud Of" subtitle="A curated selection of my best work." />
+        <SectionTitle badge="Portfolio" title="Featured Projects" subtitle="Turning complex ideas into real-world, high-impact applications." />
         <div className="featured-projects__grid stagger">
           {data.slice(0,3).map((p, i) => (
             <article key={p._id} className={`feat-card card animate-fadeInUp ${i === 0 ? 'feat-card--wide' : ''}`}>

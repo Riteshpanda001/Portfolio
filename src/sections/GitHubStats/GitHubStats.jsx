@@ -12,7 +12,7 @@ export default function GitHubStats() {
   return (
     <section id="github-stats" className="section" style={{ background: 'rgba(20,27,45,0.4)' }}>
       <div className="container">
-        <SectionTitle badge="GitHub" title="Open Source Activity" subtitle="My contributions and open source presence on GitHub." />
+        <SectionTitle badge="Open Source" title="GitHub & Activity" subtitle="Building in the open — code contributions, side projects, and repository statistics." />
         <div className="github-stats__grid stagger">
           {STATS.map((s, i) => (
             <div key={s.label} className="github-stat card animate-fadeInUp" style={{ animationDelay: `${i*0.1}s` }}>

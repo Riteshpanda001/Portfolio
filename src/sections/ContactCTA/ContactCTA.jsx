@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
+import { SITE_EMAIL } from '../../utils/constants';
+import { usePortfolio } from '../../context/PortfolioContext';
 import './ContactCTA.css';
 
 export default function ContactCTA() {
+  const { openGmailModal } = usePortfolio();
+
   return (
     <section id="contact-cta" className="contact-cta section">
       <div className="container">
@@ -22,9 +26,13 @@ export default function ContactCTA() {
               <Link to="/contact" className="btn btn--primary btn--lg animate-pulse-glow">
                 Start a Conversation →
               </Link>
-              <a href="mailto:ritesh@example.com" className="btn btn--ghost btn--lg">
-                ritesh@example.com
-              </a>
+              <button
+                type="button"
+                onClick={openGmailModal}
+                className="btn btn--ghost btn--lg"
+              >
+                {SITE_EMAIL}
+              </button>
             </div>
           </div>
         </div>

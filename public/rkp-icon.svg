@@ -40,11 +40,7 @@
     </filter>
   </defs>
 
-  <!-- Outer Glass Badge Background -->
-  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg-grad)" stroke="url(#border-grad)" stroke-width="7" />
 
-  <!-- Subtle Geometric Tech Accent Grid in Background -->
-  <path d="M 140 24 V 488 M 256 24 V 488 M 372 24 V 488 M 24 140 H 488 M 24 256 H 488 M 24 372 H 488" stroke="#ffffff" stroke-opacity="0.04" stroke-width="2" stroke-dasharray="8 8" />
 
   <!-- Monogram R-K-P Graphic -->
   <g filter="url(#neon-glow)">

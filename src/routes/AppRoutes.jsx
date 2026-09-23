@@ -10,6 +10,8 @@ const Skills         = lazy(() => import('../pages/Skills/Skills'));
 const Projects       = lazy(() => import('../pages/Projects/Projects'));
 const ProjectDetails = lazy(() => import('../pages/Projects/ProjectDetails'));
 const Experience     = lazy(() => import('../pages/Experience/Experience'));
+const Education      = lazy(() => import('../pages/Education/Education'));
+const Certifications = lazy(() => import('../pages/Certifications/Certifications'));
 const Contact        = lazy(() => import('../pages/Contact/Contact'));
 const Resume         = lazy(() => import('../pages/Resume/Resume'));
 
@@ -39,6 +41,8 @@ export default function AppRoutes() {
         <Route path="/projects"              element={<Projects />} />
         <Route path="/projects/:id"          element={<ProjectDetails />} />
         <Route path="/experience"            element={<Experience />} />
+        <Route path="/education"             element={<Education />} />
+        <Route path="/certifications"        element={<Certifications />} />
         <Route path="/contact"               element={<Contact />} />
         <Route path="/resume"                element={<Resume />} />
 

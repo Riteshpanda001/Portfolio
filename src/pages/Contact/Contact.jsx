@@ -4,6 +4,7 @@ import Button                from '../../components/Button/Button';
 import { validateContactForm } from '../../utils/validators';
 import { sendContactMessage } from '../../services/contactService';
 import { SITE_EMAIL, SOCIAL_LINKS } from '../../utils/constants';
+import { usePortfolio } from '../../context/PortfolioContext';
 import './Contact.css';
 
 // ============================================================
@@ -13,6 +14,7 @@ import './Contact.css';
 const INITIAL = { name: '', email: '', subject: '', message: '' };
 
 export default function Contact() {
+  const { openGmailModal }    = usePortfolio();
   const [form, setForm]       = useState(INITIAL);
   const [errors, setErrors]   = useState({});
   const [loading, setLoading] = useState(false);
@@ -55,7 +57,13 @@ export default function Contact() {
               <span>📧</span>
               <div>
                 <h4>Email</h4>
-                <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
+                <button
+                  type="button"
+                  onClick={openGmailModal}
+                  style={{ background: 'none', border: 'none', color: 'var(--color-accent-mint)', cursor: 'pointer', fontSize: 'inherit', padding: 0, textAlign: 'left' }}
+                >
+                  {SITE_EMAIL}
+                </button>
               </div>
             </div>
             <div className="contact-page__info-item card">
@@ -73,11 +81,27 @@ export default function Contact() {
               </div>
             </div>
             <div className="contact-page__socials">
-              {SOCIAL_LINKS.map((s) => (
-                <a key={s.label} href={s.url} className="badge badge-mint contact-page__social" target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              ))}
+              {SOCIAL_LINKS.map((s) => {
+                const isMail = s.icon === 'mail' || s.url.startsWith('mailto');
+                if (isMail) {
+                  return (
+                    <button
+                      key={s.label}
+                      type="button"
+                      onClick={openGmailModal}
+                      className="badge badge-mint contact-page__social"
+                      style={{ border: 'none', cursor: 'pointer' }}
+                    >
+                      {s.label}
+                    </button>
+                  );
+                }
+                return (
+                  <a key={s.label} href={s.url} className="badge badge-mint contact-page__social" target="_blank" rel="noopener noreferrer">
+                    {s.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

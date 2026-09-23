@@ -36,6 +36,12 @@ export function PortfolioProvider({ children }) {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
+  // Gmail Modal state
+  const [gmailModalOpen, setGmailModalOpen] = useState(false);
+
+  const openGmailModal = useCallback(() => setGmailModalOpen(true), []);
+  const closeGmailModal = useCallback(() => setGmailModalOpen(false), []);
+
   const value = {
     activeFilter,
     setActiveFilter,
@@ -45,6 +51,9 @@ export function PortfolioProvider({ children }) {
     openNav,
     closeNav,
     toggleNav,
+    gmailModalOpen,
+    openGmailModal,
+    closeGmailModal,
     toasts,
     addToast,
     removeToast,

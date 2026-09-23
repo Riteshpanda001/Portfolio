@@ -15,7 +15,7 @@ export default function SkillsPreview() {
   return (
     <section id="skills-preview" className="section" style={{ background: 'rgba(20,27,45,0.4)' }}>
       <div className="container">
-        <SectionTitle badge="Skills" title="My Expertise" subtitle="Technologies I work with to bring ideas to life." />
+        <SectionTitle badge="Tech Stack" title="Skills & Technologies" subtitle="From intelligent algorithms to modern web interfaces — the tools behind my solutions." />
         <div className="skills-preview__grid stagger">
           {SKILLS.map((skill) => (
             <div key={skill.name} className="skills-preview__item animate-fadeInUp">

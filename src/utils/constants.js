@@ -3,8 +3,8 @@
 // ============================================================
 
 export const SITE_NAME = 'Ritesh Kumar Panda';
-export const SITE_ROLE = 'Full-Stack Developer';
-export const SITE_EMAIL = 'ritesh@example.com';
+export const SITE_ROLE = 'AI/ML Engineer | Data Analyst | Web Developer';
+export const SITE_EMAIL = 'riteshkumar001@gmail.com';
 export const SITE_GITHUB = 'https://github.com/Riteshpanda001';
 export const SITE_LINKEDIN = 'https://www.linkedin.com/in/ritesh-kumar-panda-9b55b135a';
 export const SITE_TWITTER = 'https://twitter.com/riteshpanda';
@@ -17,6 +17,7 @@ export const NAV_LINKS = [
   { label: 'Skills',     path: '/skills' },
   { label: 'Projects',   path: '/projects' },
   { label: 'Experience', path: '/experience' },
+  { label: 'Contact',    path: '/contact' },
 ];
 
 export const SOCIAL_LINKS = [
@@ -26,20 +27,21 @@ export const SOCIAL_LINKS = [
 ];
 
 export const SKILL_CATEGORIES = [
+  'AI / ML',
+  'Data Analytics',
+  'Web Development',
   'Frontend',
-  'Backend',
-  'Database',
-  'DevOps',
-  'Tools',
+  'DevOps & Tools',
   'Other',
 ];
 
 export const PROJECT_FILTERS = [
   'All',
+  'AI / ML',
+  'Data Analytics',
+  'Web Development',
   'Web',
-  'Mobile',
   'Backend',
-  'Open Source',
 ];
 
 export const PAGINATION_LIMIT = 6;

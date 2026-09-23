@@ -10,7 +10,7 @@ import './Navbar.css';
 // ============================================================
 
 export default function Navbar() {
-  const { scrollY, isAtTop }    = useScroll();
+  const { scrollY, isAtTop } = useScroll();
   const { navOpen, toggleNav, closeNav } = usePortfolio();
   const scrolled = scrollY > 20;
 
@@ -31,7 +31,7 @@ export default function Navbar() {
             <div className="navbar__logo-content">
               <img src="/rkp-icon.svg" alt="RKP Logo" className="navbar__logo-badge" />
               <span className="navbar__logo-text">
-                Ritesh Kumar Panda<span className="navbar__logo-dot">.</span>
+                Ritesh Kumar Panda<span className="navbar__logo-dot"></span>
               </span>
             </div>
           </Link>

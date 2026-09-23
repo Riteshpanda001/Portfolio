@@ -41,8 +41,8 @@ public class DataInitializer implements CommandLineRunner {
             log.info("Initializing profile...");
             Profile profile = Profile.builder()
                     .name("Ritesh Panda")
-                    .title("Full Stack & AI Engineer")
-                    .bio("Specialized in building high-performance web applications and AI-integrated systems using React, Spring Boot, and Python.")
+                    .title("AI/ML Engineer | Data Analyst | Web Developer")
+                    .bio("Specializing in AI/ML model development, Data Analytics, and Web Development using React, Node.js, and Python.")
                     .location("India")
                     .email("ritesh@example.com")
                     .githubUrl("https://github.com/riteshpanda")

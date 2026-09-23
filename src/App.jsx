@@ -4,6 +4,7 @@ import { PortfolioProvider } from './context/PortfolioContext';
 import Navbar      from './components/Navbar/Navbar';
 import Footer      from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import GmailModal  from './components/common/GmailModal/GmailModal';
 import AppRoutes   from './routes/AppRoutes';
 import './index.css';
 
@@ -24,6 +25,7 @@ export default function App() {
 
           <Footer />
           <ScrollToTop />
+          <GmailModal />
         </PortfolioProvider>
       </AuthProvider>
     </BrowserRouter>

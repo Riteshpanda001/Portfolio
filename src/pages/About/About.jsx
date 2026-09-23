@@ -18,9 +18,9 @@ export default function About() {
     <section id="about-page" className="section about-page">
       <div className="container">
         <SectionTitle
-          badge="About Me"
-          title="Who I Am"
-          subtitle="A passionate full-stack developer building scalable, elegant web applications."
+          badge="Get To Know Me"
+          title="About Me"
+          subtitle="More than just code — here's my story and what drives me"
         />
 
         <div className="about-page__grid">
@@ -34,22 +34,17 @@ export default function About() {
 
           {/* Content side */}
           <div className="about-page__content animate-fadeInUp" style={{ animationDelay: '0.15s' }}>
-            <h3 className="about-page__greeting">Hello! I'm Ritesh Kumar Panda 👋</h3>
+            <h3 className="about-page__greeting" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--color-text)' }}>
+              Building Ideas Into Intelligent Solutions
+            </h3>
             <p>
-              I'm a full-stack developer with a strong passion for creating intuitive and
-              high-performance web applications. I love solving complex problems with clean,
-              maintainable code and modern technology stacks.
+              I'm Ritesh Kumar Panda, a Computer Science Engineering student and aspiring software engineer passionate about building modern web applications and intelligent systems that solve real-world problems.
             </p>
-            <p>
-              When I'm not coding, you'll find me exploring open-source projects, writing
-              technical articles, or levelling up my skills through side projects. I believe
-              in continuous learning and sharing knowledge with the community.
+            <p style={{ marginTop: '1rem' }}>
+              My journey into software development started with curiosity about how technology can transform ideas into useful products. Today, I work across frontend development, backend engineering, AI/ML, and data-driven applications, continuously exploring new technologies and better ways to build.
             </p>
-            <p>
-              I have experience working with modern frontend frameworks like React, as well
-              as backend technologies like Node.js, Express, and databases like MongoDB and
-              PostgreSQL. I'm comfortable with the full software development lifecycle — from
-              ideation and architecture to deployment and monitoring.
+            <p style={{ marginTop: '1rem' }}>
+              I enjoy breaking complex problems into simple, reliable solutions. From designing responsive interfaces and developing REST APIs to experimenting with machine learning and building full-stack applications, I approach every project with curiosity, attention to detail, and a mindset of continuous improvement.
             </p>
 
             <div className="about-page__actions">

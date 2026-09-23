@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { SITE_NAME, SITE_ROLE, SOCIAL_LINKS, NAV_LINKS } from '../../utils/constants';
+import { SITE_NAME, SITE_ROLE, SITE_EMAIL, SOCIAL_LINKS, NAV_LINKS } from '../../utils/constants';
+import { usePortfolio } from '../../context/PortfolioContext';
 import './Footer.css';
 
 // ============================================================
@@ -29,7 +30,7 @@ const SOCIAL_ICONS = {
   ),
   linkedin: (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 012.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
     </svg>
   ),
   twitter: (
@@ -46,6 +47,8 @@ const SOCIAL_ICONS = {
 };
 
 export default function Footer() {
+  const { openGmailModal } = usePortfolio();
+
   return (
     <footer id="main-footer" className="footer" role="contentinfo">
       <div className="container">
@@ -62,18 +65,35 @@ export default function Footer() {
               {SITE_ROLE} crafting elegant, high-performance digital experiences.
             </p>
             <div className="footer__socials">
-              {SOCIAL_LINKS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.url}
-                  className="footer__social-link"
-                  aria-label={s.label}
-                  target={s.url.startsWith('mailto') ? undefined : '_blank'}
-                  rel="noopener noreferrer"
-                >
-                  {SOCIAL_ICONS[s.icon]}
-                </a>
-              ))}
+              {SOCIAL_LINKS.map((s) => {
+                const isMail = s.icon === 'mail' || s.url.startsWith('mailto');
+                if (isMail) {
+                  return (
+                    <button
+                      key={s.label}
+                      type="button"
+                      onClick={openGmailModal}
+                      className="footer__social-link"
+                      aria-label={s.label}
+                      title="Open Gmail Box"
+                    >
+                      {SOCIAL_ICONS[s.icon]}
+                    </button>
+                  );
+                }
+                return (
+                  <a
+                    key={s.label}
+                    href={s.url}
+                    className="footer__social-link"
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {SOCIAL_ICONS[s.icon]}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -97,7 +117,16 @@ export default function Footer() {
           <div className="footer__col">
             <h3 className="footer__col-heading">Contact</h3>
             <ul>
-              <li><a href="mailto:ritesh@example.com" className="footer__link">ritesh@example.com</a></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={openGmailModal}
+                  className="footer__link"
+                  style={{ textAlign: 'left' }}
+                >
+                  {SITE_EMAIL}
+                </button>
+              </li>
               <li><span className="footer__link footer__link--static">Available for freelance</span></li>
             </ul>
           </div>

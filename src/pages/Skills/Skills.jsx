@@ -16,11 +16,11 @@ export default function Skills() {
 
   // Demo static data when API is unavailable
   const DEMO_SKILLS = {
-    Frontend:  ['React', 'Next.js', 'TypeScript', 'CSS / SASS', 'Tailwind CSS', 'Redux'],
-    Backend:   ['Node.js', 'Express', 'Python', 'REST APIs', 'GraphQL', 'JWT Auth'],
-    Database:  ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Prisma', 'Mongoose'],
-    DevOps:    ['Docker', 'AWS', 'CI/CD', 'Nginx', 'Linux', 'Git'],
-    Tools:     ['Figma', 'Postman', 'VS Code', 'Jira', 'Webpack', 'Vite'],
+    'AI / ML':         ['Python', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'NumPy', 'OpenCV', 'LLMs / RAG'],
+    'Data Analytics':  ['SQL', 'Power BI', 'Tableau', 'Data Visualization', 'Exploratory Data Analysis (EDA)', 'Statistical Modeling'],
+    'Java & Backend':  ['Java (Core & Advanced)', 'Spring Boot', 'Spring Security', 'REST APIs', 'Microservices', 'Hibernate / JPA'],
+    'Frontend':        ['React', 'Next.js', 'JavaScript (ES6+)', 'HTML5 / CSS3', 'Tailwind CSS', 'Redux'],
+    'DevOps & Tools':  ['Docker', 'Git / GitHub', 'AWS', 'Linux', 'Postman', 'Maven', 'Vite'],
   };
 
   const displaySkills = (loading || error || !Object.keys(skills).length)
