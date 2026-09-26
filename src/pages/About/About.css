@@ -1,9 +1,15 @@
 .about-page__grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: var(--space-2xl);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
   align-items: start;
   margin-bottom: var(--space-3xl);
+}
+
+.about-page__left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
 }
 
 /* ── Image ────────────────────────────────────────────────── */

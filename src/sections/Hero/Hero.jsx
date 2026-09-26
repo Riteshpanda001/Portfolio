@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Button    from '../../components/Button/Button';
 import { SITE_NAME, SOCIAL_LINKS } from '../../utils/constants';
 import { usePortfolio } from '../../context/PortfolioContext';
 import './Hero.css';
@@ -10,10 +9,9 @@ import './Hero.css';
 // ============================================================
 
 const ROLES = [
-  'AI/ML Engineer',
-  'Frontend Engineer',
+  'AI/ML Engineering',
   'Full-Stack Developer',
-  'Software Developer',
+  'Data Science',
   'Data Analyst',
 ];
 
@@ -86,8 +84,8 @@ export default function Hero() {
           </p>
 
           <p className="hero__subtitle animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-            Specializing in AI/ML Engineering, Data Analytics, and Java Full-Stack Development.
-            Building intelligent algorithms, data insights, and enterprise-grade web applications.
+            Specialising in AI/ML Engineering, Data Science, Full-Stack Development, and Data Analysis.
+            Building intelligent algorithms, data-driven solutions, and real-world applications.
           </p>
 
           <div className="hero__actions animate-fadeInUp" style={{ animationDelay: '0.4s' }}>

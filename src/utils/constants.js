@@ -3,7 +3,7 @@
 // ============================================================
 
 export const SITE_NAME = 'Ritesh Kumar Panda';
-export const SITE_ROLE = 'AI/ML Engineer | Data Analyst | Web Developer';
+export const SITE_ROLE = 'Machine Learning Engineer | Data Analyst | Web Developer';
 export const SITE_EMAIL = 'riteshkumar001@gmail.com';
 export const SITE_GITHUB = 'https://github.com/Riteshpanda001';
 export const SITE_LINKEDIN = 'https://www.linkedin.com/in/ritesh-kumar-panda-9b55b135a';
@@ -27,7 +27,7 @@ export const SOCIAL_LINKS = [
 ];
 
 export const SKILL_CATEGORIES = [
-  'AI / ML',
+  'Machine Learning',
   'Data Analytics',
   'Web Development',
   'Frontend',
@@ -37,7 +37,7 @@ export const SKILL_CATEGORIES = [
 
 export const PROJECT_FILTERS = [
   'All',
-  'AI / ML',
+  'Machine Learning',
   'Data Analytics',
   'Web Development',
   'Web',

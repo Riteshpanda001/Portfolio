@@ -1,6 +1,5 @@
 import { Link }       from 'react-router-dom';
 import SectionTitle   from '../../components/SectionTitle/SectionTitle';
-import Button         from '../../components/Button/Button';
 import { useProjects } from '../../hooks/useProjects';
 import './FeaturedProjects.css';
 

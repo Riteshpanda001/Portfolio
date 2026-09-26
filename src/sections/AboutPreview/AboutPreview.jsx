@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Button       from '../../components/Button/Button';
 import './AboutPreview.css';
@@ -26,19 +25,67 @@ export default function AboutPreview() {
               <Button variant="primary" href="/about">Learn More →</Button>
             </div>
           </div>
-          <div className="about-preview__cards stagger">
-            {[
-              { icon: '🚀', label: 'Fast & Performant', desc: 'Optimized builds and lazy loading' },
-              { icon: '🎨', label: 'Beautiful UI',      desc: 'Pixel-perfect, responsive designs' },
-              { icon: '🔒', label: 'Secure',            desc: 'Best practices for auth & data' },
-              { icon: '♿', label: 'Accessible',        desc: 'WCAG-compliant interfaces' },
-            ].map((item) => (
-              <div key={item.label} className="about-preview__card card animate-fadeInUp">
-                <span className="about-preview__card-icon">{item.icon}</span>
-                <h4>{item.label}</h4>
-                <p>{item.desc}</p>
+
+          <div className="about-preview__right-col animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+            <div className="about-preview__frame-wrap">
+              <div className="about-preview__circle-frame">
+                <div className="about-preview__circle-ring" aria-hidden="true" />
+                <div className="about-preview__circle-content">
+                  <img src="/rkp-icon.svg" alt="Ritesh Kumar Panda" className="about-preview__circle-img" />
+                </div>
+                <div className="about-preview__circle-glow" aria-hidden="true" />
               </div>
-            ))}
+            </div>
+
+            {/* Education Card */}
+            <div className="about-preview__edu-card card">
+              <div className="about-preview__edu-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div className="about-preview__edu-info">
+                <h4>B.Tech in Computer Science & Engineering</h4>
+                <p className="about-preview__edu-school">NIST University, Berhampur</p>
+                <p className="about-preview__edu-meta">2023 - 2027 &bull; CGPA: 8.0 &bull; Berhampur, Odisha</p>
+              </div>
+            </div>
+
+            {/* What I Do Best */}
+            <div className="about-preview__do-best">
+              <h4 className="about-preview__do-best-heading">What I Do Best</h4>
+              <div className="about-preview__do-best-grid">
+                <div className="about-preview__do-best-card card">
+                  <div className="do-best-icon-wrap do-best-icon--ml">🤖</div>
+                  <div>
+                    <h5>AI/ML Engineering</h5>
+                    <p>Building models that learn from data and make intelligent predictions</p>
+                  </div>
+                </div>
+                <div className="about-preview__do-best-card card">
+                  <div className="do-best-icon-wrap do-best-icon--ds">🧬</div>
+                  <div>
+                    <h5>Data Science</h5>
+                    <p>Extracting insights, statistical patterns, and value from complex data</p>
+                  </div>
+                </div>
+                <div className="about-preview__do-best-card card">
+                  <div className="do-best-icon-wrap do-best-icon--web">🌐</div>
+                  <div>
+                    <h5>Web Development</h5>
+                    <p>Creating responsive, performant web applications with modern tech</p>
+                  </div>
+                </div>
+                <div className="about-preview__do-best-card card">
+                  <div className="do-best-icon-wrap do-best-icon--da">📈</div>
+                  <div>
+                    <h5>Data Analytics</h5>
+                    <p>Transforming raw data into actionable insights and business intelligence</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

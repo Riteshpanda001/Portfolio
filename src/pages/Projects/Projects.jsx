@@ -17,10 +17,10 @@ export default function Projects() {
   const { projects, loading, error, refetch } = useProjects({ category: activeFilter === 'All' ? '' : activeFilter });
 
   const DEMO_PROJECTS = [
-    { _id: '1', title: 'AI Predictive Analytics Engine', description: 'Machine learning pipeline for automated predictive analysis & data insights.', tags: ['Python','PyTorch','Data Analytics','FastAPI'], category: 'AI / ML', github: '#', live: '#' },
+    { _id: '1', title: 'AI Predictive Analytics Engine', description: 'Machine learning pipeline for automated predictive analysis & data insights.', tags: ['Python','PyTorch','Data Analytics','FastAPI'], category: 'Machine Learning', github: '#', live: '#' },
     { _id: '2', title: 'Enterprise Web ERP Platform', description: 'Scalable web application built with modern architecture & React.', tags: ['React','Node.js','PostgreSQL','Docker'], category: 'Web Development', github: '#', live: '#' },
     { _id: '3', title: 'Interactive BI & Data Analytics Dashboard', description: 'Real-time statistical data analytics and BI metrics dashboard platform.', tags: ['Data Analytics','Python','React','SQL'], category: 'Data Analytics', github: '#', live: '#' },
-    { _id: '4', title: 'Smart NLP Text Summarizer & Classifier', description: 'Deep learning model for automatic text summarization and sentiment analysis.', tags: ['Python','Transformers','NLP','PyTorch'], category: 'AI / ML', github: '#', live: '#' },
+    { _id: '4', title: 'Smart NLP Text Summarizer & Classifier', description: 'Deep learning model for automatic text summarization and sentiment analysis.', tags: ['Python','Transformers','NLP','PyTorch'], category: 'Machine Learning', github: '#', live: '#' },
     { _id: '5', title: 'Financial Management Web Portal', description: 'Secure web portal with JWT authentication, role management, and audit logging.', tags: ['React','Express','Security','MySQL'], category: 'Web Development', github: '#', live: '#' },
     { _id: '6', title: 'Automated Data ETL Pipeline', description: 'Scalable data pipeline for extracting, transforming, and visualizing large datasets.', tags: ['Python','Pandas','SQL','Power BI'], category: 'Data Analytics', github: '#', live: '#' },
   ];

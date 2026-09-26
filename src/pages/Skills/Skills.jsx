@@ -3,7 +3,6 @@ import SectionTitle  from '../../components/SectionTitle/SectionTitle';
 import Loading       from '../../components/Loading/Loading';
 import ErrorMessage  from '../../components/ErrorMessage/ErrorMessage';
 import { useSkills } from '../../hooks/useSkills';
-import { SKILL_CATEGORIES } from '../../utils/constants';
 import './Skills.css';
 
 // ============================================================
@@ -16,7 +15,7 @@ export default function Skills() {
 
   // Demo static data when API is unavailable
   const DEMO_SKILLS = {
-    'AI / ML':         ['Python', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'NumPy', 'OpenCV', 'LLMs / RAG'],
+    'Machine Learning': ['Python', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'NumPy', 'OpenCV', 'LLMs / RAG'],
     'Data Analytics':  ['SQL', 'Power BI', 'Tableau', 'Data Visualization', 'Exploratory Data Analysis (EDA)', 'Statistical Modeling'],
     'Java & Backend':  ['Java (Core & Advanced)', 'Spring Boot', 'Spring Security', 'REST APIs', 'Microservices', 'Hibernate / JPA'],
     'Frontend':        ['React', 'Next.js', 'JavaScript (ES6+)', 'HTML5 / CSS3', 'Tailwind CSS', 'Redux'],

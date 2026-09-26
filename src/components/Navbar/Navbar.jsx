@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { NAV_LINKS } from '../../utils/constants';
 import { useScroll } from '../../hooks/useScroll';
@@ -10,7 +10,7 @@ import './Navbar.css';
 // ============================================================
 
 export default function Navbar() {
-  const { scrollY, isAtTop } = useScroll();
+  const { scrollY } = useScroll();
   const { navOpen, toggleNav, closeNav } = usePortfolio();
   const scrolled = scrollY > 20;
 
