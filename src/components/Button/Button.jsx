@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Button.css';
 
 // ============================================================
@@ -42,6 +43,14 @@ export default function Button({
       {!loading && icon && iconPosition === 'right' && <span className="btn__icon">{icon}</span>}
     </>
   );
+
+  if (to) {
+    return (
+      <Link to={to} className={cls} {...props}>
+        {content}
+      </Link>
+    );
+  }
 
   if (href) {
     return (

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SITE_NAME, SOCIAL_LINKS } from '../../utils/constants';
 import { usePortfolio } from '../../context/PortfolioContext';
+import heroImg from '../../assets/hero.png';
 import './Hero.css';
 
 // ============================================================
@@ -11,8 +12,7 @@ import './Hero.css';
 const ROLES = [
   'AI/ML Engineering',
   'Full-Stack Developer',
-  'Data Science',
-  'Data Analyst',
+  'Data Analysis',
 ];
 
 const SOCIAL_ICONS = {
@@ -137,7 +137,7 @@ export default function Hero() {
         <div className="hero__avatar-wrap animate-fadeInUp" style={{ animationDelay: '0.2s' }} aria-hidden="true">
           <div className="hero__avatar-ring" />
           <div className="hero__avatar animate-float">
-            <img src="/rkp-icon.svg" alt="RKP Logo" style={{ width: '75%', height: 'auto', filter: 'drop-shadow(0 0 12px rgba(123, 44, 191, 0.6))' }} />
+            <img src={heroImg} alt={SITE_NAME} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '26px' }} />
           </div>
           <div className="hero__avatar-glow" />
         </div>

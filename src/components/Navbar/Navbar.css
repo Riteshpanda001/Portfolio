@@ -49,7 +49,7 @@
 .navbar__logo-text {
   font-family: var(--font-primary);
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--color-text);
   letter-spacing: -0.02em;
   transition: color var(--transition-fast);

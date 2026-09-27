@@ -29,8 +29,27 @@ export function useProjects({ featured = false, category = '' } = {}) {
   }, [featured, category]);
 
   useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
+    let isSubscribed = true;
+    const fetcher = featured
+      ? getFeaturedProjects()
+      : getAllProjects(category ? { category } : {});
+
+    fetcher
+      .then((data) => {
+        if (isSubscribed) {
+          setProjects(data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isSubscribed) {
+          setError(err.response?.data?.message || 'Failed to load projects.');
+          setLoading(false);
+        }
+      });
+
+    return () => { isSubscribed = false; };
+  }, [featured, category]);
 
   return { projects, loading, error, refetch: fetchProjects };
 }
@@ -46,15 +65,23 @@ export function useProject(id) {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
-    setError(null);
+    let isSubscribed = true;
 
     getProjectById(id)
-      .then(setProject)
-      .catch((err) =>
-        setError(err.response?.data?.message || 'Failed to load project.')
-      )
-      .finally(() => setLoading(false));
+      .then((data) => {
+        if (isSubscribed) {
+          setProject(data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isSubscribed) {
+          setError(err.response?.data?.message || 'Failed to load project.');
+          setLoading(false);
+        }
+      });
+
+    return () => { isSubscribed = false; };
   }, [id]);
 
   return { project, loading, error };

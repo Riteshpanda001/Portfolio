@@ -29,7 +29,6 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="navbar__logo" onClick={closeNav} aria-label="Ritesh Kumar Panda — Home">
             <div className="navbar__logo-content">
-              <img src="/rkp-icon.svg" alt="RKP Logo" className="navbar__logo-badge" />
               <span className="navbar__logo-text">
                 Ritesh Kumar Panda<span className="navbar__logo-dot"></span>
               </span>

@@ -20,8 +20,22 @@ export const useExperience = () => {
   }, []);
 
   useEffect(() => {
-    fetchExperiences();
-  }, [fetchExperiences]);
+    let isSubscribed = true;
+    experienceService.getAll()
+      .then((data) => {
+        if (isSubscribed) {
+          setExperiences(data || []);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isSubscribed) {
+          setError(err.message || 'Failed to fetch experiences');
+          setLoading(false);
+        }
+      });
+    return () => { isSubscribed = false; };
+  }, []);
 
   return { experiences, loading, error, refetch: fetchExperiences };
 };

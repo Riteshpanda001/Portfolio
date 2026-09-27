@@ -57,7 +57,6 @@ export default function Footer() {
           <div className="footer__brand">
             <Link to="/" className="footer__logo">
               <div className="footer__logo-content">
-                <img src="/rkp-icon.svg" alt="RKP Logo" className="footer__logo-badge" />
                 <span>{SITE_NAME}<span className="footer__logo-dot">.</span></span>
               </div>
             </Link>

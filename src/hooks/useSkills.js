@@ -29,8 +29,27 @@ export function useSkills({ grouped = false, category = '' } = {}) {
   }, [grouped, category]);
 
   useEffect(() => {
-    fetchSkills();
-  }, [fetchSkills]);
+    let isSubscribed = true;
+    const fetcher = grouped
+      ? getSkillsByCategory()
+      : getAllSkills(category ? { category } : {});
+
+    fetcher
+      .then((data) => {
+        if (isSubscribed) {
+          setSkills(data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isSubscribed) {
+          setError(err.response?.data?.message || 'Failed to load skills.');
+          setLoading(false);
+        }
+      });
+
+    return () => { isSubscribed = false; };
+  }, [grouped, category]);
 
   return { skills, loading, error, refetch: fetchSkills };
 }

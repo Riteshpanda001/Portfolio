@@ -1,40 +1,232 @@
-.skills-preview__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-xl) var(--space-3xl);
-  max-width: 900px;
-  margin-inline: auto;
+.skills-section {
+  padding: 5rem 0;
+  background-color: transparent;
+  color: #ffffff;
 }
 
-.skills-preview__label {
+.skills-section__header {
+  margin-bottom: 3.5rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-text);
 }
 
-.skills-preview__pct {
-  color: var(--color-accent);
-  font-size: 0.8rem;
+.skills-section__badge-pill {
+  display: inline-block;
+  padding: 0.45rem 1.35rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.06);
+  color: #818cf8;
+  font-size: 0.725rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
 }
 
-.skills-preview__bar-track {
-  height: 6px;
-  background: rgba(255,255,255,0.06);
-  border-radius: var(--radius-full);
+.skills-section__title {
+  font-size: 2.5rem;
+  font-weight: 550;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.skills-section__subtitle {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 3 Cards Grid */
+.skills-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1150px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Single Card — flex column, fills full row height */
+.skills-card {
+  background: rgba(15, 20, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.skills-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 25px rgba(99, 102, 241, 0.15);
+}
+
+/* Header inside Card — fixed height so all card titles align */
+.skills-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
+  min-height: 60px;
+}
+
+.skills-card__icon-box {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.skills-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Description — fixed height so badges grid starts at same position */
+.skills-card__description {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  height: 4.5rem;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
-.skills-preview__bar-fill {
+/* Skills Badges Grid — 3 columns grid, 85px badge cell height */
+.skills-card__badges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 85px;
+  min-height: 267px;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  align-content: start;
+}
+
+/* Each badge box — fixed square size */
+.skill-badge-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  width: 100%;
   height: 100%;
-  border-radius: var(--radius-full);
-  transition: width 1s cubic-bezier(0.4,0,0.2,1);
-  box-shadow: 0 0 10px rgba(108,99,255,0.5);
+}
+
+.skill-badge-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.skill-badge-item__icon-wrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.skill-badge-item__name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tag Pill — fixed height so checklist starts at same position */
+.skills-card__tag-wrapper {
+  margin-bottom: 1.25rem;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.skills-card__tag {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Checklist — pushed to bottom, grows to fill remaining height */
+.skills-card__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: auto;
+}
+
+.skills-card__check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.83rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.skills-card__check-icon {
+  color: #34d399;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .skills-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 680px) {
-  .skills-preview__grid { grid-template-columns: 1fr; }
+  .skills-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-section__title {
+    font-size: 1.75rem;
+  }
+
+  .skills-card__badges-grid {
+    grid-template-rows: repeat(3, 76px);
+  }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useScroll } from '../../hooks/useScroll';
 import './ScrollToTop.css';
@@ -12,17 +12,12 @@ import './ScrollToTop.css';
 export default function ScrollToTop() {
   const { pathname } = useLocation();
   const { scrollY, scrollToTop } = useScroll();
-  const [visible, setVisible] = useState(false);
+  const visible = scrollY > 400;
 
   // Scroll to top on every route change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
-
-  // Show FAB after 400px of scroll
-  useEffect(() => {
-    setVisible(scrollY > 400);
-  }, [scrollY]);
 
   return (
     <button

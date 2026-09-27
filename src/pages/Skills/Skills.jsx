@@ -15,11 +15,11 @@ export default function Skills() {
 
   // Demo static data when API is unavailable
   const DEMO_SKILLS = {
-    'Machine Learning': ['Python', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'NumPy', 'OpenCV', 'LLMs / RAG'],
+    'Machine Learning': ['Python', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'NumPy','LLMs / RAG'],
     'Data Analytics':  ['SQL', 'Power BI', 'Tableau', 'Data Visualization', 'Exploratory Data Analysis (EDA)', 'Statistical Modeling'],
     'Java & Backend':  ['Java (Core & Advanced)', 'Spring Boot', 'Spring Security', 'REST APIs', 'Microservices', 'Hibernate / JPA'],
-    'Frontend':        ['React', 'Next.js', 'JavaScript (ES6+)', 'HTML5 / CSS3', 'Tailwind CSS', 'Redux'],
-    'DevOps & Tools':  ['Docker', 'Git / GitHub', 'AWS', 'Linux', 'Postman', 'Maven', 'Vite'],
+    'Frontend':        ['React', 'Next.js', 'JavaScript (ES6+)', 'HTML5', 'CSS',],
+    'DevOps & Tools':  ['Docker', 'Git / GitHub', 'Maven', 'Canva'],
   };
 
   const displaySkills = (loading || error || !Object.keys(skills).length)
