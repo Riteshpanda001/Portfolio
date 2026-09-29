@@ -7,13 +7,16 @@ import customerChurnImg from '../assets/images/projects/customer-churn-analytics
 import jobMarketIntelligenceImg from '../assets/images/projects/job-market-intelligence.jpg';
 
 // ============================================================
-// Real Projects Data (7 Featured Projects)
+// Real Projects Data
+// featured: true  → shown on homepage (max 3)
+// featured: false → shown only on /projects page
 // ============================================================
 
 export const PROJECTS = [
   {
     id: 'ai-recruitment',
     displayOrder: 1,
+    featured: true,
     title: 'AI HR & Recruitment Platform',
     status: 'In Development',
     statusType: 'in-development',
@@ -30,6 +33,7 @@ export const PROJECTS = [
   {
     id: 'ai-risk-manager',
     displayOrder: 2,
+    featured: true,
     title: 'AI Risk Manager',
     status: 'In Development',
     statusType: 'in-development',
@@ -46,6 +50,7 @@ export const PROJECTS = [
   {
     id: 'college-ai-assistant',
     displayOrder: 3,
+    featured: true,
     title: 'College AI Assistant',
     status: 'In Development',
     statusType: 'in-development',
@@ -62,6 +67,7 @@ export const PROJECTS = [
   {
     id: 'ecommerce-bi-analytics',
     displayOrder: 4,
+    featured: false,
     title: 'E-Commerce Business Intelligence & Customer Analytics',
     status: 'Completed',
     statusType: 'completed',
@@ -78,6 +84,7 @@ export const PROJECTS = [
   {
     id: 'customer-churn-analytics',
     displayOrder: 5,
+    featured: false,
     title: 'Customer Churn Prediction & Retention Analytics',
     status: 'Completed',
     statusType: 'completed',
@@ -94,6 +101,7 @@ export const PROJECTS = [
   {
     id: 'job-market-intelligence',
     displayOrder: 6,
+    featured: false,
     title: 'Data Analyst Job Market Intelligence',
     status: 'Completed',
     statusType: 'completed',
@@ -110,6 +118,7 @@ export const PROJECTS = [
   {
     id: 'myshope',
     displayOrder: 7,
+    featured: false,
     title: 'Myshope E-Commerce Website',
     status: 'Completed',
     statusType: 'completed',

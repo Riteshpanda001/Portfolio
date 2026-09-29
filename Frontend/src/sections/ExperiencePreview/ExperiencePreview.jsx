@@ -4,9 +4,10 @@ import { formatShortDate } from '../../utils/formatDate';
 import './ExperiencePreview.css';
 
 const EXP = [
-  { _id:'1', role:'AI/ML & Data Analytics Specialist', company:'Tech Analytics Solutions', startDate:'2023-01-01', endDate: null,          type:'Full-time' },
-  { _id:'2', role:'Web Developer',                   company:'Enterprise Software',      startDate:'2021-06-01', endDate:'2022-12-31',   type:'Full-time' },
-  { _id:'3', role:'Data & Software Intern',           company:'Innovate Labs',            startDate:'2021-01-01', endDate:'2021-05-31',  type:'Internship' },
+  { _id:'1', role:'Generative AI Internship',   company:'Asirudh Software Private Limited', startDate:'2026-05-20', endDate:'2026-07-04',   type:'Internship' },
+  { _id:'2', role:'Web Development Intern',     company:'Metacraq',             startDate:'2025-01-01', endDate:'2025-03-31',   type:'Internship' },
+  { _id:'3', role:'Machine Learning Intern',    company:'CTTC, Bhubaneswar',    startDate:'2024-06-01', endDate:'2024-07-31',   type:'Internship' },
+  { _id:'4', role:'Social Media Handler',       company:'NRC, NIT Rourkela',    startDate:'2025-03-01', endDate: null,          type:'Current' },
 ];
 
 export default function ExperiencePreview() {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Loading from '../../components/Loading/Loading';
 import ProjectCard from '../../sections/FeaturedProjects/ProjectCard';
@@ -17,7 +18,8 @@ export default function Projects() {
     ? apiProjects
     : PROJECTS;
 
-  const displayProjects = rawProjects
+  // All projects — no featured filter, sort by displayOrder
+  const allProjects = rawProjects
     .filter((proj) => {
       const title = (proj.title || '').toLowerCase();
       const id = (proj.id || proj._id || '').toLowerCase();
@@ -29,8 +31,8 @@ export default function Projects() {
     .sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99));
 
   const filteredProjects = activeFilter === 'All'
-    ? displayProjects
-    : displayProjects.filter((p) => {
+    ? allProjects
+    : allProjects.filter((p) => {
         const cat = (p.category || '').toLowerCase();
         const techs = (p.technologies || []).map(t => t.toLowerCase());
         const f = activeFilter.toLowerCase();
@@ -59,10 +61,33 @@ export default function Projects() {
   return (
     <section id="projects-page" className="section">
       <div className="container">
+
+        {/* Back to Home */}
+        <div className="projects-page__back-row">
+          <Link to="/" className="projects-page__back-btn" id="back-to-home-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </Link>
+        </div>
+
+        {/* Page Header */}
         <SectionTitle
-          badge="Projects"
-          title="My Work"
-          subtitle="A collection of real-world projects showcasing machine learning, full-stack, and web development skills."
+          badge="Portfolio"
+          title="All Projects"
+          subtitle="Explore all the projects I've built across AI, Data Science, Full-Stack Development, and Web Development."
         />
 
         {/* Filters */}
@@ -80,12 +105,13 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="featured-projects__grid">
+        {/* Grid — all 7 projects, 3 columns desktop */}
+        <div className="featured-projects__grid projects-page__all-grid">
           {filteredProjects.map((p) => (
             <ProjectCard key={p.id || p._id} project={p} />
           ))}
         </div>
+
       </div>
     </section>
   );
