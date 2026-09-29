@@ -3,7 +3,7 @@
 // ============================================================
 
 export const SITE_NAME = 'Ritesh Kumar Panda';
-export const SITE_ROLE = 'Machine Learning Engineer | Data Analyst | Web Developer';
+export const SITE_ROLE = 'AI/ML Engineer & Full-Stack Developer';
 export const SITE_EMAIL = 'riteshkumarpanda001@gmail.com';
 export const SITE_GITHUB = 'https://github.com/Riteshpanda001';
 export const SITE_LINKEDIN = 'https://www.linkedin.com/in/ritesh-kumar-panda-9b55b135a';

@@ -36,6 +36,9 @@ public class Profile {
     @Column(name = "phone_number", length = 30)
     private String phoneNumber;
 
+    public String getPhone() { return phoneNumber; }
+    public void setPhone(String phone) { this.phoneNumber = phone; }
+
     @Column(name = "avatar_url")
     private String avatarUrl;
 

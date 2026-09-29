@@ -32,4 +32,7 @@ public record ProfileResponse(
                 p.getHighlights(), p.getIsAvailableForHire()
         );
     }
+    public static ProfileResponse fromEntity(Profile p) {
+        return from(p);
+    }
 }

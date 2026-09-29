@@ -5,8 +5,8 @@ import './ExperiencePreview.css';
 
 const EXP = [
   { _id:'1', role:'Generative AI Internship',   company:'Asirudh Software Private Limited', startDate:'2026-05-20', endDate:'2026-07-04',   type:'Internship' },
-  { _id:'2', role:'Web Development Intern',     company:'Metacraq',             startDate:'2025-01-01', endDate:'2025-03-31',   type:'Internship' },
-  { _id:'3', role:'Machine Learning Intern',    company:'CTTC, Bhubaneswar',    startDate:'2024-06-01', endDate:'2024-07-31',   type:'Internship' },
+  { _id:'2', role:'Data Science & Data Analysis Using Python', company:'NIST University', startDate:'2025-05-20', endDate:'2025-06-11', type:'Summer Course' },
+  { _id:'3', role:'Agentic AI Certified Foundations Associate', company:'Oracle University', startDate:'2026-08-11', endDate:'2028-08-11', type:'Certification' },
   { _id:'4', role:'Social Media Handler',       company:'NRC, NIT Rourkela',    startDate:'2025-03-01', endDate: null,          type:'Current' },
 ];
 

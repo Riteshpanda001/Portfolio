@@ -33,6 +33,9 @@ public class ContactMessage {
     @Builder.Default
     private Boolean isRead = false;
 
+    public Boolean getRead() { return isRead; }
+    public void setRead(Boolean read) { this.isRead = read; }
+
     @Column(name = "ip_address", length = 50)
     private String ipAddress;
 

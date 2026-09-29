@@ -31,9 +31,31 @@ public class Skill {
     @Column(name = "icon_url")
     private String iconUrl;
 
+    @Column(name = "is_featured")
+    @Builder.Default
+    private Boolean featured = false;
+
     @Column(name = "display_order")
     @Builder.Default
     private Integer displayOrder = 0;
+
+    public Integer getProficiencyLevel() { return level; }
+    public void setProficiencyLevel(Integer l) { this.level = l; }
+
+    public String getIcon() { return iconUrl; }
+    public void setIcon(String icon) { this.iconUrl = icon; }
+
+    public Boolean getFeatured() { return featured; }
+    public void setFeatured(Boolean f) { this.featured = f; }
+
+    public static class SkillBuilder {
+        public SkillBuilder proficiencyLevel(Integer proficiencyLevel) {
+            return this.level(proficiencyLevel);
+        }
+        public SkillBuilder icon(String icon) {
+            return this.iconUrl(icon);
+        }
+    }
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

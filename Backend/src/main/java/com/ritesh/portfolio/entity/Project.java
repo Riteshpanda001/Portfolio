@@ -29,6 +29,21 @@ public class Project {
     @Column(nullable = false, length = 1000)
     private String description;
 
+    public String getSummary() { return description; }
+    public void setSummary(String s) { this.description = s; }
+
+    public static class ProjectBuilder {
+        public ProjectBuilder summary(String summary) {
+            return this.description(summary);
+        }
+        public ProjectBuilder technologies(List<String> technologies) {
+            return this.tags(technologies);
+        }
+        public ProjectBuilder featured(Boolean featured) {
+            return this.isFeatured(featured);
+        }
+    }
+
     @Column(name = "long_description", columnDefinition = "TEXT")
     private String longDescription;
 

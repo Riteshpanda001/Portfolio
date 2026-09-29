@@ -24,8 +24,15 @@ public class Education {
     @Column(nullable = false, length = 200)
     private String institution;
 
+    @Column(name = "field_of_study", length = 150)
+    private String fieldOfStudy;
+
     @Column(length = 150)
     private String location;
+
+    @Column(name = "is_current")
+    @Builder.Default
+    private Boolean current = false;
 
     @Column(length = 100)
     private String grade;              // e.g. CGPA: 8.6 / 10

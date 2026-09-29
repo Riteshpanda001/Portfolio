@@ -44,6 +44,27 @@ public class Certification {
     @Builder.Default
     private Integer displayOrder = 0;
 
+    public String getTitle() { return name; }
+    public void setTitle(String title) { this.name = title; }
+
+    public String getIssuingOrganization() { return issuer; }
+    public void setIssuingOrganization(String org) { this.issuer = org; }
+
+    public LocalDate getExpirationDate() { return expiryDate; }
+    public void setExpirationDate(LocalDate date) { this.expiryDate = date; }
+
+    public static class CertificationBuilder {
+        public CertificationBuilder title(String title) {
+            return this.name(title);
+        }
+        public CertificationBuilder issuingOrganization(String org) {
+            return this.issuer(org);
+        }
+        public CertificationBuilder expirationDate(LocalDate date) {
+            return this.expiryDate(date);
+        }
+    }
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

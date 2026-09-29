@@ -1,45 +1,206 @@
-.certs-grid {
+/* ============================================================
+   Training & Learning Page — Midnight Aurora Theme
+   Extends .exp-card styles from Experience.css
+   ============================================================ */
+
+/* ── Two-column card body ──────────────────────────────────── */
+.tr-card__body {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: var(--space-xl);
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: start;
 }
 
-.cert-card {
-  text-align: center;
-  padding: var(--space-2xl) var(--space-xl);
+/* ── Course info column ────────────────────────────────────── */
+.tr-card__info {
+  min-width: 0;
 }
 
-.cert-card__badge {
-  font-size: 3rem;
-  margin-bottom: var(--space-md);
+/* ── "WHAT I LEARNED" label ───────────────────────────────── */
+.tr-card__learned-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6C63FF;
+  margin-bottom: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Status pill (Completed) ───────────────────────────────── */
+.tr-card__status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #00E5C3;
+  background: rgba(0, 229, 195, 0.08);
+  border: 1px solid rgba(0, 229, 195, 0.25);
+  white-space: nowrap;
+}
+
+/* ── Certificate preview column ────────────────────────────── */
+.tr-card__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.tr-card__img-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tr-card__img-btn:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(108, 99, 255, 0.18);
+}
+
+.tr-card__cert-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(108, 99, 255, 0.18);
+  background: rgba(20, 27, 45, 0.6);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* ── "View Certificate" button ─────────────────────────────── */
+.tr-card__view-btn {
+  width: 100%;
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #E6EAF2;
+  background: rgba(108, 99, 255, 0.12);
+  border: 1px solid rgba(108, 99, 255, 0.35);
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+.tr-card__view-btn:hover {
+  background: rgba(108, 99, 255, 0.22);
+  border-color: rgba(108, 99, 255, 0.6);
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   Certificate Modal
+   ============================================================ */
+
+.cert-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 18, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: certFadeIn 0.2s ease;
+}
+
+@keyframes certFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.cert-modal-box {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  background: rgba(14, 19, 35, 0.98);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(108, 99, 255, 0.12);
+  animation: certScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes certScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.cert-modal-close {
+  position: absolute;
+  top: -0.75rem;
+  right: -0.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(108, 99, 255, 0.85);
+  border: 2px solid rgba(108, 99, 255, 0.4);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.cert-modal-close:hover {
+  background: rgba(108, 99, 255, 1);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.cert-modal-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
   display: block;
 }
 
-.cert-card__name {
-  font-size: 1rem;
-  color: var(--color-text);
-  margin-bottom: var(--space-sm);
-  line-height: 1.4;
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .tr-card__body {
+    grid-template-columns: 1fr;
+  }
+
+  .tr-card__preview {
+    position: static;
+  }
+
+  .tr-card__cert-img {
+    aspect-ratio: 16 / 9;
+  }
 }
 
-.cert-card__issuer {
-  font-size: 0.875rem;
-  color: var(--color-accent);
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
+@media (max-width: 480px) {
+  .tr-card__body {
+    gap: 1.25rem;
+  }
 }
 
-.cert-card__date {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  margin-bottom: var(--space-lg);
-}
-
-.cert-card__link {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-accent-mint);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-.cert-card__link:hover { color: var(--color-text); }

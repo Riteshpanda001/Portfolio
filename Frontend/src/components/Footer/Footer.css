@@ -42,10 +42,10 @@
 .footer__logo:hover { color: var(--color-accent); }
 
 .footer__tagline {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--color-muted);
-  line-height: 1.7;
-  max-width: 260px;
+  line-height: 1.6;
+  max-width: 320px;
   margin-bottom: var(--space-lg);
 }
 

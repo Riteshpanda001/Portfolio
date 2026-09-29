@@ -1,5 +1,7 @@
 package com.ritesh.portfolio.service;
 
+import com.ritesh.portfolio.dto.SkillRequest;
+import com.ritesh.portfolio.dto.SkillResponse;
 import com.ritesh.portfolio.entity.Skill;
 import com.ritesh.portfolio.exception.ResourceNotFoundException;
 import com.ritesh.portfolio.repository.SkillRepository;
@@ -21,49 +23,65 @@ public class SkillService {
     private final SkillRepository skillRepository;
 
     @Transactional(readOnly = true)
-    public List<Skill> getAllSkills(String category) {
-        return (category != null && !category.isBlank())
+    public List<SkillResponse> getAllSkills() {
+        return skillRepository.findAllByOrderByDisplayOrderAscLevelDesc().stream()
+                .map(SkillResponse::fromEntity)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SkillResponse> getAllSkills(String category) {
+        List<Skill> list = (category != null && !category.isBlank())
                 ? skillRepository.findByCategoryIgnoreCaseOrderByDisplayOrderAscLevelDesc(category)
                 : skillRepository.findAllByOrderByDisplayOrderAscLevelDesc();
+        return list.stream().map(SkillResponse::fromEntity).toList();
     }
 
     /**
      * Return skills grouped by category: {@code { "Frontend": [...], "Backend": [...] }}.
      */
     @Transactional(readOnly = true)
-    public Map<String, List<Skill>> getSkillsGroupedByCategory() {
+    public Map<String, List<SkillResponse>> getSkillsGroupedByCategory() {
         return skillRepository
                 .findAllByOrderByDisplayOrderAscLevelDesc()
                 .stream()
                 .collect(Collectors.groupingBy(
                         Skill::getCategory,
                         LinkedHashMap::new,
-                        Collectors.toList()
+                        Collectors.mapping(SkillResponse::fromEntity, Collectors.toList())
                 ));
     }
 
     @Transactional(readOnly = true)
-    public Skill getSkillById(Long id) {
-        return findOrThrow(id);
+    public SkillResponse getSkillById(Long id) {
+        return SkillResponse.fromEntity(findOrThrow(id));
     }
 
     @Transactional
-    public Skill createSkill(Skill skill) {
-        ValidationUtil.requireNonBlank(skill.getName(), "name");
-        ValidationUtil.requireNonBlank(skill.getCategory(), "category");
-        ValidationUtil.requireValidSkillLevel(skill.getLevel());
-        return skillRepository.save(skill);
+    public SkillResponse createSkill(SkillRequest request) {
+        ValidationUtil.requireNonBlank(request.name(), "name");
+        ValidationUtil.requireNonBlank(request.category(), "category");
+        Skill skill = Skill.builder()
+                .name(request.name())
+                .category(request.category())
+                .level(request.proficiencyLevel() != null ? request.proficiencyLevel() : 80)
+                .iconUrl(request.icon())
+                .featured(request.featured() != null ? request.featured() : false)
+                .displayOrder(request.displayOrder() != null ? request.displayOrder() : 0)
+                .build();
+        return SkillResponse.fromEntity(skillRepository.save(skill));
     }
 
     @Transactional
-    public Skill updateSkill(Long id, Skill incoming) {
+    public SkillResponse updateSkill(Long id, SkillRequest request) {
         Skill skill = findOrThrow(id);
-        skill.setName(incoming.getName());
-        skill.setCategory(incoming.getCategory());
-        skill.setLevel(incoming.getLevel());
-        skill.setIconUrl(incoming.getIconUrl());
-        skill.setDisplayOrder(incoming.getDisplayOrder());
-        return skillRepository.save(skill);
+        skill.setName(request.name());
+        skill.setCategory(request.category());
+        if (request.proficiencyLevel() != null) skill.setLevel(request.proficiencyLevel());
+        if (request.icon() != null) skill.setIconUrl(request.icon());
+        if (request.featured() != null) skill.setFeatured(request.featured());
+        if (request.displayOrder() != null) skill.setDisplayOrder(request.displayOrder());
+        return SkillResponse.fromEntity(skillRepository.save(skill));
     }
 
     @Transactional

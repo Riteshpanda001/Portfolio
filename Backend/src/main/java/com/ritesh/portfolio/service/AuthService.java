@@ -68,6 +68,10 @@ public class AuthService {
                                 user.getEmail(), user.getRole().name());
     }
 
+    public LoginResponse refreshToken(String refreshToken) {
+        return refresh(refreshToken);
+    }
+
     /**
      * Change the authenticated user's password.
      */

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SITE_NAME, SITE_ROLE, SITE_EMAIL, SOCIAL_LINKS, NAV_LINKS } from '../../utils/constants';
+import { SITE_NAME, SITE_ROLE, SITE_EMAIL, SOCIAL_LINKS, NAV_LINKS, SITE_GITHUB, SITE_LINKEDIN } from '../../utils/constants';
 import { usePortfolio } from '../../context/PortfolioContext';
 import './Footer.css';
 
@@ -18,6 +18,9 @@ const FOOTER_LINKS = [
     heading: 'Quick Links',
     links: [
       { label: 'Resume', path: '/resume' },
+      { label: 'Training & Learning', path: '/certifications' },
+      { label: 'GitHub', path: SITE_GITHUB, isExternal: true },
+      { label: 'LinkedIn', path: SITE_LINKEDIN, isExternal: true },
     ],
   },
 ];
@@ -61,7 +64,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="footer__tagline">
-              {SITE_ROLE} crafting elegant, high-performance digital experiences.
+              {SITE_ROLE} — crafting elegant, high-performance digital experiences.
             </p>
             <div className="footer__socials">
               {SOCIAL_LINKS.map((s) => {
@@ -102,10 +105,21 @@ export default function Footer() {
               <h3 className="footer__col-heading">{col.heading}</h3>
               <ul>
                 {col.links.map((link) => (
-                  <li key={link.path}>
-                    <Link to={link.path} className="footer__link">
-                      {link.label}
-                    </Link>
+                  <li key={link.label}>
+                    {link.isExternal ? (
+                      <a
+                        href={link.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer__link"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link to={link.path} className="footer__link">
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -126,7 +140,6 @@ export default function Footer() {
                   {SITE_EMAIL}
                 </button>
               </li>
-              <li><span className="footer__link footer__link--static">Available for freelance</span></li>
             </ul>
           </div>
         </div>

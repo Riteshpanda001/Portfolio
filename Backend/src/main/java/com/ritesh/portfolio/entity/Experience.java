@@ -31,8 +31,18 @@ public class Experience {
     @Column(name = "employment_type", length = 50)
     private String employmentType;     // Full-time, Part-time, Internship, Contract
 
+    @Column(name = "is_current")
+    @Builder.Default
+    private Boolean current = false;
+
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @ElementCollection
+    @CollectionTable(name = "experience_highlights",
+                     joinColumns = @JoinColumn(name = "experience_id"))
+    @Column(name = "highlight", length = 300)
+    private List<String> highlights;
 
     @Column(name = "company_url")
     private String companyUrl;
@@ -45,6 +55,23 @@ public class Experience {
                      joinColumns = @JoinColumn(name = "experience_id"))
     @Column(name = "technology", length = 60)
     private List<String> technologies;
+
+    public List<String> getTechnologiesUsed() { return technologies; }
+    public void setTechnologiesUsed(List<String> t) { this.technologies = t; }
+
+    public String getCompanyLogo() { return companyLogoUrl; }
+    public void setCompanyLogo(String c) { this.companyLogoUrl = c; }
+
+    public static class ExperienceBuilder {
+        public ExperienceBuilder technologiesUsed(List<String> technologiesUsed) {
+            this.technologies = technologiesUsed;
+            return this;
+        }
+        public ExperienceBuilder companyLogo(String companyLogo) {
+            this.companyLogoUrl = companyLogo;
+            return this;
+        }
+    }
 
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
