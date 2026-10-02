@@ -29,15 +29,7 @@
 
 /* ── All Projects grid override ────────────────────────────── */
 .projects-page__all-grid {
-  /* Inherits featured-projects__grid (3-col) — override for last-child centering on 7 items */
   margin-bottom: 0;
-}
-
-/* Center the lone card in the last row when 7 items fill a 3-col grid */
-@media (min-width: 1025px) {
-  .projects-page__all-grid > :last-child:nth-child(3n+1) {
-    grid-column: 2;
-  }
 }
 
 .projects-page__filters {

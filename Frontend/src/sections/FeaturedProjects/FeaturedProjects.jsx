@@ -8,27 +8,15 @@ import './FeaturedProjects.css';
 export default function FeaturedProjects() {
   const { projects: apiProjects, loading } = useProjects({ featured: true });
 
-  // Fallback to local PROJECTS data if API is unavailable or empty
-  const rawProjects = (!loading && apiProjects && apiProjects.length > 0)
-    ? apiProjects
-    : PROJECTS;
-
-  // Filter to featured only, sort by displayOrder, take first 3
-  const featuredProjects = rawProjects
-    .filter((proj) => {
-      const title = (proj.title || '').toLowerCase();
-      const id = (proj.id || proj._id || '').toLowerCase();
-      // Strip removed projects
-      const isRemoved =
-        title.includes('prepnova') ||
-        title.includes('handwritten digit classification') ||
-        id.includes('prepnova') ||
-        id.includes('digit-classification');
-      if (isRemoved) return false;
-      // For local static data: respect featured flag
-      // For API data: include all (API already filters by featured: true)
-      if (apiProjects && apiProjects.length > 0) return true;
-      return proj.featured === true;
+  // Map API projects onto local PROJECTS baseline so rich fields (problem, solution, learnings) are preserved
+  const featuredProjects = PROJECTS.filter((p) => p.featured === true)
+    .map((localProj) => {
+      if (!apiProjects || apiProjects.length === 0) return localProj;
+      const match = apiProjects.find((ap) =>
+        ap.title?.toLowerCase() === localProj.title?.toLowerCase() ||
+        String(ap.id) === String(localProj.id)
+      );
+      return match ? { ...localProj, ...match } : localProj;
     })
     .sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99))
     .slice(0, 3);

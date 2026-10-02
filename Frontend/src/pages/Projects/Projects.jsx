@@ -14,27 +14,20 @@ export default function Projects() {
     category: activeFilter === 'All' ? '' : activeFilter,
   });
 
-  const rawProjects = (!loading && apiProjects && apiProjects.length > 0)
-    ? apiProjects
-    : PROJECTS;
-
-  // All projects — no featured filter, sort by displayOrder
-  const allProjects = rawProjects
-    .filter((proj) => {
-      const title = (proj.title || '').toLowerCase();
-      const id = (proj.id || proj._id || '').toLowerCase();
-      return !title.includes('prepnova') &&
-             !title.includes('handwritten digit classification') &&
-             !id.includes('prepnova') &&
-             !id.includes('digit-classification');
-    })
-    .sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99));
+  const allProjects = PROJECTS.map((localProj) => {
+    if (!apiProjects || apiProjects.length === 0) return localProj;
+    const match = apiProjects.find((ap) =>
+      ap.title?.toLowerCase() === localProj.title?.toLowerCase() ||
+      String(ap.id) === String(localProj.id)
+    );
+    return match ? { ...localProj, ...match } : localProj;
+  }).sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99));
 
   const filteredProjects = activeFilter === 'All'
     ? allProjects
     : allProjects.filter((p) => {
         const cat = (p.category || '').toLowerCase();
-        const techs = (p.technologies || []).map(t => t.toLowerCase());
+        const techs = (p.technologies || p.tags || []).map(t => String(t).toLowerCase());
         const f = activeFilter.toLowerCase();
 
         if (f === 'ai/ml') {

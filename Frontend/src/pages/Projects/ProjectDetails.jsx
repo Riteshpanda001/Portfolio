@@ -12,8 +12,8 @@ export default function ProjectDetails() {
   // Fallback to local PROJECTS matching id or slug
   const localProject = PROJECTS.find(
     (p) =>
-      (p.id || '').toLowerCase() === (id || '').toLowerCase() ||
-      (p._id || '').toLowerCase() === (id || '').toLowerCase()
+      String(p.id || '').toLowerCase() === String(id || '').toLowerCase() ||
+      String(p._id || '').toLowerCase() === String(id || '').toLowerCase()
   );
 
   const data = apiProject || localProject || PROJECTS[0];

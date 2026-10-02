@@ -37,21 +37,27 @@ public class SecurityConfig {
 
     // ── Public endpoints ─────────────────────────────────────
     private static final String[] PUBLIC_GET = {
-            "/projects/**",
-            "/skills/**",
-            "/experience/**",
-            "/education/**",
-            "/certifications/**",
-            "/profile/**",
+            "/api/projects",
+            "/api/projects/**",
+            "/api/skills",
+            "/api/skills/**",
+            "/api/experience",
+            "/api/experience/**",
+            "/api/education",
+            "/api/education/**",
+            "/api/certifications",
+            "/api/certifications/**",
+            "/api/profile",
+            "/api/profile/**",
             "/actuator/health",
             "/actuator/info"
     };
 
     private static final String[] PUBLIC_POST = {
-            "/auth/login",
-            "/auth/refresh",
-            "/contact",
-            "/newsletter/subscribe"
+            "/api/auth/login",
+            "/api/auth/refresh",
+            "/api/contact",
+            "/api/newsletter/subscribe"
     };
 
     @Bean

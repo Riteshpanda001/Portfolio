@@ -56,12 +56,12 @@ public class Project {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "project_tags", joinColumns = @JoinColumn(name = "project_id"))
     @Column(name = "tag", length = 50)
     private List<String> tags;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "project_features", joinColumns = @JoinColumn(name = "project_id"))
     @Column(name = "feature", length = 200)
     private List<String> features;

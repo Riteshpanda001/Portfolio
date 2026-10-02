@@ -38,7 +38,7 @@ public class Experience {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "experience_highlights",
                      joinColumns = @JoinColumn(name = "experience_id"))
     @Column(name = "highlight", length = 300)
@@ -50,7 +50,7 @@ public class Experience {
     @Column(name = "company_logo_url")
     private String companyLogoUrl;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "experience_technologies",
                      joinColumns = @JoinColumn(name = "experience_id"))
     @Column(name = "technology", length = 60)

@@ -85,6 +85,14 @@ export function ProjectIcon({ iconType }) {
 }
 
 export default function ProjectCard({ project }) {
+  const technologies = project.technologies || project.tags || [];
+  const problem = project.problem || project.description || 'Solving key technical challenges with modern tools.';
+  const solution = project.solution || project.longDescription || project.description || 'Implemented scalable architecture and optimized algorithms.';
+  const keyLearnings = project.keyLearnings || (project.features && project.features.length > 0 ? project.features.join(', ') : 'Applied industry best practices and clean code patterns.');
+  const status = project.status || 'Active';
+  const statusType = project.statusType || 'live';
+  const iconType = project.iconType || 'brain';
+
   return (
     <article className="project-card">
       {/* 1. Project Image & 2. Status Badge */}
@@ -95,9 +103,9 @@ export default function ProjectCard({ project }) {
           className="project-card__image"
           loading="lazy"
         />
-        <span className={`project-card__status project-card__status--${project.statusType}`}>
+        <span className={`project-card__status project-card__status--${statusType}`}>
           <span className="project-card__status-dot" />
-          {project.status}
+          {status}
         </span>
       </div>
 
@@ -106,7 +114,7 @@ export default function ProjectCard({ project }) {
         {/* 3. Project Icon & 4. Title & 5. Category */}
         <div className="project-card__header-box">
           <div className="project-card__icon-box" aria-hidden="true">
-            <ProjectIcon iconType={project.iconType} />
+            <ProjectIcon iconType={iconType} />
           </div>
           <div>
             <h3 className="project-card__title">
@@ -119,24 +127,24 @@ export default function ProjectCard({ project }) {
         {/* 6 & 7. PROBLEM */}
         <div className="project-card__section">
           <span className="project-card__section-label">PROBLEM</span>
-          <p className="project-card__section-text">{project.problem}</p>
+          <p className="project-card__section-text">{problem}</p>
         </div>
 
         {/* 8 & 9. SOLUTION */}
         <div className="project-card__section">
           <span className="project-card__section-label">SOLUTION</span>
-          <p className="project-card__section-text">{project.solution}</p>
+          <p className="project-card__section-text">{solution}</p>
         </div>
 
         {/* 10 & 11. KEY LEARNINGS */}
         <div className="project-card__section">
           <span className="project-card__section-label">KEY LEARNINGS</span>
-          <p className="project-card__section-text">{project.keyLearnings}</p>
+          <p className="project-card__section-text">{keyLearnings}</p>
         </div>
 
         {/* 12. Technology Tags */}
         <div className="project-card__tech-tags">
-          {project.technologies.map((tech) => (
+          {technologies.map((tech) => (
             <span key={tech} className="project-card__tech-tag">
               {tech}
             </span>

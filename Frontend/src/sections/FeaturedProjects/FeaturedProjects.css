@@ -11,8 +11,9 @@
 /* 3-Column Grid */
 .featured-projects__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto 3rem auto;
   align-items: stretch;
@@ -28,6 +29,8 @@
   flex-direction: column;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(12px);
+  width: 100%;
+  min-width: 0;
   height: 100%;
 }
 
@@ -41,7 +44,7 @@
 .project-card__image-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 180px;
   overflow: hidden;
   background: #0B0F1A;
 }
@@ -327,19 +330,9 @@
 }
 
 /* ── Responsive Grid Breakpoints ────────────────────────────── */
-@media (min-width: 1025px) {
-  .featured-projects__grid > :last-child:nth-child(3n+1) {
-    grid-column: 2;
-  }
-}
-
 @media (max-width: 1024px) {
   .featured-projects__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .featured-projects__grid > * {
-    grid-column: auto !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

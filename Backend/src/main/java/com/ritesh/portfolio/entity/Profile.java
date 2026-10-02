@@ -57,7 +57,7 @@ public class Profile {
     @Column(name = "website_url")
     private String websiteUrl;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "profile_highlights",
                      joinColumns = @JoinColumn(name = "profile_id"))
     @Column(name = "highlight", length = 200)
