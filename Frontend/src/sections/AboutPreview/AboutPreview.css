@@ -1,3 +1,7 @@
+#about {
+  scroll-margin-top: 90px;
+}
+
 .about-preview__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

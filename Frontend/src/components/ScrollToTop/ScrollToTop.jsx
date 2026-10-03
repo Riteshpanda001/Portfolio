@@ -14,9 +14,11 @@ export default function ScrollToTop() {
   const { scrollY, scrollToTop } = useScroll();
   const visible = scrollY > 400;
 
-  // Scroll to top on every route change
+  // Scroll to top on every route change (unless navigating to a hash link)
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [pathname]);
 
   return (

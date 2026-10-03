@@ -22,7 +22,7 @@ export default function AboutPreview() {
               I enjoy breaking complex problems into simple, reliable solutions. From designing responsive interfaces and developing REST APIs to experimenting with machine learning and building full-stack applications, I approach every project with curiosity, attention to detail, and a mindset of continuous improvement.
             </p>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Button variant="primary" href="/about">Learn More →</Button>
+              <Button variant="primary" to="/skills">Explore Skills →</Button>
             </div>
           </div>
 

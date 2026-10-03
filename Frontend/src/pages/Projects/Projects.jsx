@@ -58,21 +58,7 @@ export default function Projects() {
         {/* Back to Home */}
         <div className="projects-page__back-row">
           <Link to="/" className="projects-page__back-btn" id="back-to-home-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-            Back to Home
+            ← Back to Home
           </Link>
         </div>
 
@@ -80,7 +66,7 @@ export default function Projects() {
         <SectionTitle
           badge="Portfolio"
           title="All Projects"
-          subtitle="Explore all the projects I've built across AI, Data Science, Full-Stack Development, and Web Development."
+          subtitle="Explore all the projects I've built across AI, Data Science, Data Analytics, Full-Stack Development, and Web Development."
         />
 
         {/* Filters */}

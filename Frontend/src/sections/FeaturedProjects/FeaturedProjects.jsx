@@ -22,11 +22,11 @@ export default function FeaturedProjects() {
     .slice(0, 3);
 
   return (
-    <section id="featured-projects" className="featured-projects section">
+    <section id="projects" className="featured-projects section">
       <div className="container">
         {/* Section Header */}
         <SectionTitle
-          badge="Projects"
+          badge="PORTFOLIO"
           title="Featured Projects"
           subtitle="Turning complex ideas into real-world, high-impact applications."
         />

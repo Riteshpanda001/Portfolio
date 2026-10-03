@@ -67,23 +67,6 @@ const EXPERIENCE = [
     ],
     technologies: ['Agentic AI', 'Oracle Cloud (OCI)', 'LLMs', 'Autonomous Agents', 'AI Infrastructure'],
   },
-  {
-    id: 'social-media',
-    role: 'Social Media Handler',
-    company: 'NRC, NIT Rourkela',
-    type: 'Current',
-    duration: 'Ongoing',
-    dateRange: 'Mar 2025 – Present',
-    description:
-      'Managing digital presence and content strategy for the NIIT Robotics Club (NRC). Creating engaging content for major robotics events to increase student engagement and event participation.',
-    responsibilities: [
-      'Managing social media engagement and strategy through consistent content planning.',
-      'Created promotional graphics, videos, and copy for robotics competitions.',
-      'Managed Instagram, Facebook, and LinkedIn presence for 1000+ followers.',
-      'Coordinated with event teams for real-time updates and live coverage.',
-    ],
-    technologies: ['Content Strategy', 'Social Media', 'Graphic Design', 'Community Management'],
-  },
 ];
 
 // ============================================================
