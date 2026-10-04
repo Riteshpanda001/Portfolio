@@ -5,6 +5,7 @@
 /* ── Page wrapper ─────────────────────────────────────────── */
 .exp-page {
   padding: var(--space-3xl) 0;
+  position: relative;
 }
 
 /* ── Timeline container ───────────────────────────────────── */
@@ -12,32 +13,49 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-  max-width: 860px;
+  gap: 2.5rem;
+  max-width: 900px;
   margin-inline: auto;
+  padding-left: 48px;
 }
 
-/* Vertical accent line */
+/* Continuous vertical gradient line */
 .exp-timeline::before {
   content: '';
   position: absolute;
-  left: 1.1rem;
-  top: 1.5rem;
-  bottom: 1.5rem;
+  top: 28px;
+  bottom: 28px;
+  left: 17px;
   width: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(108, 99, 255, 0.9) 0%,
-    rgba(0, 229, 195, 0.5) 60%,
-    rgba(108, 99, 255, 0.05) 100%
-  );
-  border-radius: 9999px;
+  background: linear-gradient(to bottom, #6C63FF, #00E5C3);
+  opacity: 0.7;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Individual Journey Item Wrapper */
+.exp-journey-item {
+  position: relative;
+  width: 100%;
+}
+
+/* Timeline Marker (Glowing Violet Circle on the Line) */
+.exp-journey-marker {
+  position: absolute;
+  left: -35px;
+  top: 28px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0B0F1A;
+  border: 2px solid #6C63FF;
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.6), 0 0 4px rgba(0, 229, 195, 0.4);
+  z-index: 2;
 }
 
 /* ── Experience Card ──────────────────────────────────────── */
 .exp-card {
   position: relative;
-  margin-left: 3.25rem;
   background: rgba(20, 27, 45, 0.92);
   border: 1px solid rgba(108, 99, 255, 0.12);
   border-radius: 18px;
@@ -48,6 +66,7 @@
     box-shadow 0.3s ease,
     transform 0.3s ease;
   box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
+  width: 100%;
 }
 
 .exp-card:hover {
@@ -56,25 +75,6 @@
     0 8px 40px rgba(0, 0, 0, 0.45),
     0 0 30px rgba(108, 99, 255, 0.14);
   transform: translateY(-3px);
-}
-
-/* Timeline dot */
-.exp-card__dot {
-  position: absolute;
-  left: -2.6rem;
-  top: 1.75rem;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6C63FF, #00E5C3);
-  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  flex-shrink: 0;
-}
-
-.exp-card:hover .exp-card__dot {
-  box-shadow: 0 0 0 7px rgba(108, 99, 255, 0.25);
-  transform: scale(1.15);
 }
 
 /* ── Card Header ──────────────────────────────────────────── */
@@ -98,7 +98,7 @@
 .exp-card__role {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #E6EAF2;
   line-height: 1.3;
   margin: 0;
 }
@@ -234,21 +234,26 @@
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 768px) {
   .exp-timeline {
-    gap: 1.25rem;
+    padding-left: 32px;
+    gap: 1.75rem;
   }
 
   .exp-timeline::before {
-    left: 0.75rem;
+    left: 10px;
+    top: 22px;
+    bottom: 22px;
+  }
+
+  .exp-journey-marker {
+    left: -26px;
+    top: 22px;
+    width: 8px;
+    height: 8px;
   }
 
   .exp-card {
-    margin-left: 2.5rem;
     padding: 1.35rem 1.25rem 1.25rem;
     border-radius: 14px;
-  }
-
-  .exp-card__dot {
-    left: -2rem;
   }
 
   .exp-card__header {
@@ -265,16 +270,3 @@
   }
 }
 
-@media (max-width: 480px) {
-  .exp-timeline::before {
-    display: none;
-  }
-
-  .exp-card {
-    margin-left: 0;
-  }
-
-  .exp-card__dot {
-    display: none;
-  }
-}

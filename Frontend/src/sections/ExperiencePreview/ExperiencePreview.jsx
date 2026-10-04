@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import './ExperiencePreview.css';
 
@@ -80,56 +81,72 @@ export default function ExperiencePreview() {
           subtitle="Building real-world experience through software development, AI engineering, and continuous learning."
         />
 
-        {/* Stack of Experience Cards */}
-        <div className="exp-stack">
+        {/* Stack of Experience Cards with Vertical Timeline */}
+        <div className="exp-stack exp-timeline">
           {EXPERIENCES.map((exp, i) => (
-            <article
-              key={exp.id}
-              className="exp-card animate-fadeInUp"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              {/* Card Header */}
-              <div className="exp-card__header">
-                <div className="exp-card__left">
-                  <h3 className="exp-card__role">{exp.role}</h3>
-                  <div className="exp-card__meta">
-                    <span className="exp-card__company">{exp.company}</span>
-                    <span className="exp-card__badge">{exp.type}</span>
+            <div key={exp.id} className="exp-journey-item">
+              {/* Timeline Marker */}
+              <motion.div
+                className="exp-journey-marker"
+                aria-hidden="true"
+                initial={{ opacity: 0, scale: 0.7 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: i * 0.15 + 0.1, ease: 'easeOut' }}
+              />
+
+              {/* Journey Card */}
+              <motion.article
+                className="exp-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.15, ease: 'easeOut' }}
+              >
+                {/* Card Header */}
+                <div className="exp-card__header">
+                  <div className="exp-card__left">
+                    <h3 className="exp-card__role">{exp.role}</h3>
+                    <div className="exp-card__meta">
+                      <span className="exp-card__company">{exp.company}</span>
+                      <span className="exp-card__badge">{exp.type}</span>
+                    </div>
+                    <span className="exp-card__date">{exp.dateRange}</span>
                   </div>
-                  <span className="exp-card__date">{exp.dateRange}</span>
+
+                  <div className="exp-card__right">
+                    <span className="exp-card__duration-pill">{exp.duration}</span>
+                  </div>
                 </div>
 
-                <div className="exp-card__right">
-                  <span className="exp-card__duration-pill">{exp.duration}</span>
+                {/* Top Divider */}
+                <div className="exp-card__divider" />
+
+                {/* Description */}
+                <p className="exp-card__desc">{exp.description}</p>
+
+                {/* Bullet Points */}
+                <ul className="exp-card__bullets">
+                  {exp.responsibilities.map((item, idx) => (
+                    <li key={idx} className="exp-card__bullet">
+                      <span className="exp-card__bullet-arrow" aria-hidden="true">▸</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Bottom Divider & Tech Tags */}
+                <div className="exp-card__tags">
+                  {exp.technologies.map((tech) => (
+                    <span key={tech} className="exp-card__tag">{tech}</span>
+                  ))}
                 </div>
-              </div>
-
-              {/* Top Divider */}
-              <div className="exp-card__divider" />
-
-              {/* Description */}
-              <p className="exp-card__desc">{exp.description}</p>
-
-              {/* Bullet Points */}
-              <ul className="exp-card__bullets">
-                {exp.responsibilities.map((item, idx) => (
-                  <li key={idx} className="exp-card__bullet">
-                    <span className="exp-card__bullet-arrow" aria-hidden="true">▸</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Bottom Divider & Tech Tags */}
-              <div className="exp-card__tags">
-                {exp.technologies.map((tech) => (
-                  <span key={tech} className="exp-card__tag">{tech}</span>
-                ))}
-              </div>
-            </article>
+              </motion.article>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
+

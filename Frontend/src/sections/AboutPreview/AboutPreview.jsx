@@ -27,16 +27,6 @@ export default function AboutPreview() {
           </div>
 
           <div className="about-preview__right-col animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-            <div className="about-preview__frame-wrap">
-              <div className="about-preview__circle-frame">
-                <div className="about-preview__circle-ring" aria-hidden="true" />
-                <div className="about-preview__circle-content">
-                  <img src="/rkp-icon.svg" alt="Ritesh Kumar Panda" className="about-preview__circle-img" />
-                </div>
-                <div className="about-preview__circle-glow" aria-hidden="true" />
-              </div>
-            </div>
-
             {/* Education Card */}
             <div className="about-preview__edu-card card">
               <div className="about-preview__edu-icon">

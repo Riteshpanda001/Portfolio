@@ -24,18 +24,31 @@ export default function About() {
         />
 
         <div className="about-page__grid">
-          {/* Left Column - Image & Profile details */}
-          <div className="about-page__left-col animate-fadeInUp">
-            <div className="about-preview__frame-wrap">
-              <div className="about-preview__circle-frame">
-                <div className="about-preview__circle-ring" aria-hidden="true" />
-                <div className="about-preview__circle-content">
-                  <img src="/rkp-icon.svg" alt="Ritesh Kumar Panda" className="about-preview__circle-img" />
-                </div>
-                <div className="about-preview__circle-glow" aria-hidden="true" />
-              </div>
-            </div>
+          {/* Left Column - About Content */}
+          <div className="about-page__content animate-fadeInUp">
+            <h3 className="about-page__greeting" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--color-text)' }}>
+              Building Ideas Into Intelligent Solutions
+            </h3>
+            <p>
+              I'm Ritesh Kumar Panda, a Computer Science Engineering student and aspiring software engineer passionate about building modern web applications and intelligent systems that solve real-world problems.
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              My journey into software development started with curiosity about how technology can transform ideas into useful products. Today, I work across frontend development, backend engineering, AI/ML, and data-driven applications, continuously exploring new technologies and better ways to build.
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              I enjoy breaking complex problems into simple, reliable solutions. From designing responsive interfaces and developing REST APIs to experimenting with machine learning and building full-stack applications, I approach every project with curiosity, attention to detail, and a mindset of continuous improvement.
+            </p>
 
+            <div className="about-page__actions">
+              <Button href="/resume/Ritesh_Panda_Resume.pdf" icon="↓" iconPosition="right">
+                Download Resume
+              </Button>
+              <Button variant="secondary" href="#contact">Get in Touch</Button>
+            </div>
+          </div>
+
+          {/* Right Column - Education & What I Do Best */}
+          <div className="about-page__right-col animate-fadeInUp" style={{ animationDelay: '0.15s' }}>
             {/* Education Card */}
             <div className="about-preview__edu-card card">
               <div className="about-preview__edu-icon">
@@ -47,7 +60,7 @@ export default function About() {
               <div className="about-preview__edu-info">
                 <h4>B.Tech in Computer Science & Engineering</h4>
                 <p className="about-preview__edu-school">NIST University, Berhampur</p>
-                <p className="about-preview__edu-meta">2023 - 2027 &bull; CGPA: 7.5 &bull; Berhampur, Odisha</p>
+                <p className="about-preview__edu-meta">2023 - 2027 &bull; CGPA: 8.0 &bull; Berhampur, Odisha</p>
               </div>
             </div>
 
@@ -58,7 +71,7 @@ export default function About() {
                 <div className="about-preview__do-best-card card">
                   <div className="do-best-icon-wrap do-best-icon--ml">🤖</div>
                   <div>
-                    <h5>AI/ML Enginnering</h5>
+                    <h5>AI/ML Engineering</h5>
                     <p>Building models that learn from data and make intelligent predictions</p>
                   </div>
                 </div>
@@ -84,29 +97,6 @@ export default function About() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Content side */}
-          <div className="about-page__content animate-fadeInUp" style={{ animationDelay: '0.15s' }}>
-            <h3 className="about-page__greeting" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--color-text)' }}>
-              Building Ideas Into Intelligent Solutions
-            </h3>
-            <p>
-              I'm Ritesh Kumar Panda, a Computer Science Engineering student and aspiring software engineer passionate about building modern web applications and intelligent systems that solve real-world problems.
-            </p>
-            <p style={{ marginTop: '1rem' }}>
-              My journey into software development started with curiosity about how technology can transform ideas into useful products. Today, I work across frontend development, backend engineering, AI/ML, and data-driven applications, continuously exploring new technologies and better ways to build.
-            </p>
-            <p style={{ marginTop: '1rem' }}>
-              I enjoy breaking complex problems into simple, reliable solutions. From designing responsive interfaces and developing REST APIs to experimenting with machine learning and building full-stack applications, I approach every project with curiosity, attention to detail, and a mindset of continuous improvement.
-            </p>
-
-            <div className="about-page__actions">
-              <Button href="/resume/Ritesh_Panda_Resume.pdf" icon="↓" iconPosition="right">
-                Download Resume
-              </Button>
-              <Button variant="secondary" href="#contact">Get in Touch</Button>
             </div>
           </div>
         </div>
