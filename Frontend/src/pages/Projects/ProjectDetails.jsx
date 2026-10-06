@@ -7,7 +7,7 @@ import './ProjectDetails.css';
 
 export default function ProjectDetails() {
   const { id } = useParams();
-  const { project: apiProject, loading, error } = useProject(id);
+  const { project: apiProject, loading } = useProject(id);
 
   // Fallback to local PROJECTS matching id or slug
   const localProject = PROJECTS.find(
@@ -48,12 +48,17 @@ export default function ProjectDetails() {
               <div className="project-details__status-row">
                 <span
                   className={`project-card__status project-card__status--${
-                    data.statusType || 'completed'
+                    data.statusType ||
+                    (data.status === 'Completed'
+                      ? 'completed'
+                      : data.status === 'In Development'
+                      ? 'in-development'
+                      : 'incomplete')
                   }`}
                   style={{ position: 'relative', top: 'auto', right: 'auto', display: 'inline-flex' }}
                 >
                   <span className="project-card__status-dot" />
-                  {data.status || 'Completed'}
+                  {data.status || 'Incomplete'}
                 </span>
               </div>
 

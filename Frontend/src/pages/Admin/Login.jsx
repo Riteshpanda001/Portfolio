@@ -38,29 +38,49 @@ export default function Login() {
     <div className="admin-login">
       <div className="admin-login__card card animate-fadeInUp">
         <div className="admin-login__logo">
-          <span>🔐</span>
+          <span className="admin-login__icon">🔐</span>
           <h1>Admin Panel</h1>
           <p>Sign in to manage your portfolio</p>
         </div>
 
-        <form id="admin-login-form" onSubmit={handleSubmit} noValidate>
-          <div className={`contact-form__field ${errors.email ? 'contact-form__field--error' : ''}`}>
-            <label htmlFor="admin-email">Email</label>
-            <input id="admin-email" type="email" name="email" value={form.email} onChange={handleChange} placeholder="admin@example.com" autoComplete="email" />
-            {errors.email && <span className="contact-form__error">{errors.email}</span>}
+        <form id="admin-login-form" className="admin-login__form" onSubmit={handleSubmit} noValidate>
+          <div className={`admin-login__field ${errors.email ? 'admin-login__field--error' : ''}`}>
+            <label htmlFor="admin-email" className="admin-login__label">Email Address</label>
+            <input
+              id="admin-email"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="riteshkumarpanda001@gmail.com"
+              autoComplete="email"
+              className="admin-login__input"
+            />
+            {errors.email && <span className="admin-login__error">{errors.email}</span>}
           </div>
 
-          <div className={`contact-form__field ${errors.password ? 'contact-form__field--error' : ''}`}>
-            <label htmlFor="admin-password">Password</label>
-            <input id="admin-password" type="password" name="password" value={form.password} onChange={handleChange} placeholder="••••••••" autoComplete="current-password" />
-            {errors.password && <span className="contact-form__error">{errors.password}</span>}
+          <div className={`admin-login__field ${errors.password ? 'admin-login__field--error' : ''}`}>
+            <label htmlFor="admin-password" className="admin-login__label">Password</label>
+            <input
+              id="admin-password"
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              placeholder="••••••••••••••••"
+              autoComplete="current-password"
+              className="admin-login__input"
+            />
+            {errors.password && <span className="admin-login__error">{errors.password}</span>}
           </div>
 
-          {error && <p className="contact-form__api-error">{error}</p>}
+          {error && <div className="admin-login__api-error">{error}</div>}
 
-          <Button type="submit" loading={loading} fullWidth size="lg">
-            {loading ? 'Signing in…' : 'Sign In →'}
-          </Button>
+          <div className="admin-login__submit-wrap">
+            <Button type="submit" loading={loading} fullWidth size="lg">
+              {loading ? 'Signing in…' : 'Sign In →'}
+            </Button>
+          </div>
         </form>
       </div>
     </div>

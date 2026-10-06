@@ -1,38 +1,56 @@
-import SectionTitle    from '../../components/SectionTitle/SectionTitle';
+import { useState, useEffect } from 'react';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import { getAllEducation } from '../../services/educationService';
 import { formatMonthYear } from '../../utils/formatDate';
 import './Education.css';
 
-const DEMO_EDUCATION = [
+const DEFAULT_EDUCATION = [
   {
     _id: '1',
-    degree: 'Bachelor of Technology — Computer Science',
-    institution: 'National Institute of Technology',
-    location: 'Rourkela, India',
-    startDate: '2018-07-01',
-    endDate: '2022-05-31',
-    grade: 'CGPA: 8.6 / 10',
-    description: 'Focused on Data Structures, Algorithms, Operating Systems, DBMS, and Full-Stack Web Development.',
+    degree: 'B.Tech in Computer Science & Engineering',
+    institution: 'NIST University',
+    location: 'Berhampur, Odisha, India',
+    startDate: '2023-08-01',
+    endDate: '2027-06-30',
+    current: true,
+    grade: 'CGPA: 8.0 / 10',
+    description: 'Pursuing Bachelor of Technology with focus on Data Structures & Algorithms, Artificial Intelligence, Machine Learning, Web Technologies, Database Systems, and Software Engineering.',
   },
   {
     _id: '2',
-    degree: 'Higher Secondary — Science (PCM)',
-    institution: 'DAV Public School',
-    location: 'Bhubaneswar, India',
-    startDate: '2016-04-01',
-    endDate: '2018-03-31',
-    grade: 'Percentage: 92.4%',
-    description: 'Physics, Chemistry and Mathematics. School topper in Computer Science.',
+    degree: 'Higher Secondary Education — Science (PCM)',
+    institution: 'Council of Higher Secondary Education',
+    location: 'Odisha, India',
+    startDate: '2021-06-01',
+    endDate: '2023-05-31',
+    current: false,
+    grade: 'First Division',
+    description: 'Coursework in Physics, Chemistry, Mathematics, and Computer Science fundamentals.',
   },
 ];
 
 export default function Education() {
+  const [educationList, setEducationList] = useState(DEFAULT_EDUCATION);
+
+  useEffect(() => {
+    getAllEducation()
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setEducationList(data);
+        }
+      })
+      .catch(() => {
+        // Fallback to default
+      });
+  }, []);
+
   return (
     <section id="education-page" className="section">
       <div className="container">
         <SectionTitle badge="Education" title="Academic Background" subtitle="My formal education and academic achievements." />
         <div className="education-page__list">
-          {DEMO_EDUCATION.map((edu, i) => (
-            <article key={edu._id} className="education-card card animate-fadeInUp" style={{ animationDelay: `${i*0.12}s` }}>
+          {educationList.map((edu, i) => (
+            <article key={edu._id || edu.id || i} className="education-card card animate-fadeInUp" style={{ animationDelay: `${i * 0.12}s` }}>
               <div className="education-card__icon" aria-hidden="true">🎓</div>
               <div className="education-card__body">
                 <div className="education-card__header">
@@ -44,7 +62,9 @@ export default function Education() {
                   <span>·</span>
                   <span>{edu.location}</span>
                   <span>·</span>
-                  <span>{formatMonthYear(edu.startDate)} – {formatMonthYear(edu.endDate)}</span>
+                  <span>
+                    {edu.startDate ? formatMonthYear(edu.startDate) : '2023'} – {edu.current ? 'Present (2027)' : (edu.endDate ? formatMonthYear(edu.endDate) : '2027')}
+                  </span>
                 </div>
                 <p className="education-card__desc">{edu.description}</p>
               </div>

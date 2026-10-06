@@ -78,6 +78,7 @@
   gap: 6px;
   z-index: 2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
 }
 
 .project-card__status-dot {
@@ -93,7 +94,8 @@
   border: 1px solid rgba(52, 211, 153, 0.4);
 }
 
-.project-card__status--in-development {
+.project-card__status--in-development,
+.project-card__status--incomplete {
   background: rgba(245, 158, 11, 0.2);
   color: #fbbf24;
   border: 1px solid rgba(251, 191, 36, 0.4);

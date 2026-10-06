@@ -147,7 +147,13 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="footer__bottom">
           <p>© {currentYear} {SITE_NAME}. All rights reserved.</p>
-          <p>Built with React &amp; ❤️</p>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <p>Built with React &amp; ❤️</p>
+            <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
+            <Link to="/admin" className="footer__admin-link" style={{ fontSize: '0.8rem', color: '#64748b', textDecoration: 'none' }}>
+              🔒 Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

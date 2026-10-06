@@ -46,7 +46,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact-page" className="section">
+    <section id="contact" className="section contact-page">
       <div className="container">
         <SectionTitle badge="Contact" title="Get In Touch" subtitle="Have a project in mind or just want to say hi? I'd love to hear from you." />
 

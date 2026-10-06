@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
       setUser(data.user);
       return data;
     } catch (err) {
-      const msg = err.response?.data?.message || 'Login failed. Please try again.';
+      const msg = err.response?.data?.message || err.message || 'Login failed. Please try again.';
       setError(msg);
       throw err;
     } finally {

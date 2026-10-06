@@ -28,6 +28,25 @@ const TRAININGS = [
     skills: ['Python', 'Data Science', 'Data Analysis', 'Data Processing'],
     certificate: nistCert,
   },
+  {
+    id:          'oracle-agentic-ai',
+    title:       'Agentic AI Certified Foundations Associate',
+    institution: 'Oracle University',
+    location:    'Oracle Cloud Infrastructure',
+    type:        'Official Certification',
+    dateRange:   'August 11, 2026 – August 11, 2028',
+    status:      'Certified',
+    description:
+      'Demonstrated foundational knowledge and practical skills in Agentic AI, Autonomous AI agents, LLM orchestration, and Oracle Cloud AI infrastructure.',
+    learnings: [
+      'Agentic AI architectures & autonomous decision-making',
+      'Multi-agent systems & reasoning loops',
+      'Oracle Cloud Infrastructure (OCI) AI Services',
+      'Tool-use and execution integration with LLMs',
+    ],
+    skills: ['Agentic AI', 'Oracle Cloud', 'Autonomous Agents', 'LLMs', 'Prompt Engineering'],
+    certificate: null,
+  },
 ];
 
 // ============================================================
@@ -115,29 +134,39 @@ function TrainingCard({ item, index }) {
 
           {/* RIGHT — certificate preview */}
           <div className="tr-card__preview">
-            <button
-              className="tr-card__img-btn"
-              onClick={() => setModalOpen(true)}
-              aria-label="Open certificate preview"
-            >
-              <img
-                src={item.certificate}
-                alt={`${item.institution} — ${item.title}`}
-                className="tr-card__cert-img"
-              />
-            </button>
-            <button
-              className="tr-card__view-btn"
-              onClick={() => setModalOpen(true)}
-            >
-              View Certificate →
-            </button>
+            {item.certificate ? (
+              <>
+                <button
+                  className="tr-card__img-btn"
+                  onClick={() => setModalOpen(true)}
+                  aria-label="Open certificate preview"
+                >
+                  <img
+                    src={item.certificate}
+                    alt={`${item.institution} — ${item.title}`}
+                    className="tr-card__cert-img"
+                  />
+                </button>
+                <button
+                  className="tr-card__view-btn"
+                  onClick={() => setModalOpen(true)}
+                >
+                  View Certificate →
+                </button>
+              </>
+            ) : (
+              <div className="tr-card__cert-badge-box">
+                <div className="tr-card__cert-badge-icon">🏆</div>
+                <span className="tr-card__cert-badge-title">Official Credential</span>
+                <span className="tr-card__cert-badge-sub">Oracle Certified</span>
+              </div>
+            )}
           </div>
 
         </div>
       </article>
 
-      {modalOpen && (
+      {modalOpen && item.certificate && (
         <CertModal
           src={item.certificate}
           alt={`${item.institution} certificate`}

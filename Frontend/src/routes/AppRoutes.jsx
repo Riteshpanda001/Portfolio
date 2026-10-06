@@ -36,11 +36,11 @@ export default function AppRoutes() {
       <Routes>
         {/* Public */}
         <Route path="/"                      element={<Home />} />
-        <Route path="/about"                 element={<Navigate to="/#about" replace />} />
-        <Route path="/skills"                element={<Navigate to="/#skills" replace />} />
+        <Route path="/about"                 element={<About />} />
+        <Route path="/skills"                element={<Skills />} />
         <Route path="/projects"              element={<Projects />} />
         <Route path="/projects/:id"          element={<ProjectDetails />} />
-        <Route path="/experience"            element={<Navigate to="/#experience" replace />} />
+        <Route path="/experience"            element={<Experience />} />
         <Route path="/education"             element={<Education />} />
         <Route path="/certifications"        element={<Certifications />} />
         <Route path="/contact"               element={<Contact />} />

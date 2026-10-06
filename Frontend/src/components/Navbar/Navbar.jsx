@@ -28,50 +28,27 @@ export default function Navbar() {
   // Handle active section tracking on the homepage
   useEffect(() => {
     if (location.pathname !== '/') {
-      setActiveSection('');
       return;
     }
 
     const handleScroll = () => {
-      const experienceEl = document.getElementById('experience');
-      if (experienceEl) {
-        const rect = experienceEl.getBoundingClientRect();
-        if (rect.top <= 250 && rect.bottom >= 150) {
-          setActiveSection('experience');
-          return;
-        }
-      }
-
-      const projectsEl = document.getElementById('projects');
-      if (projectsEl) {
-        const rect = projectsEl.getBoundingClientRect();
-        if (rect.top <= 250 && rect.bottom >= 150) {
-          setActiveSection('projects');
-          return;
-        }
-      }
-
-      const skillsEl = document.getElementById('skills');
-      if (skillsEl) {
-        const rect = skillsEl.getBoundingClientRect();
-        if (rect.top <= 250 && rect.bottom >= 150) {
-          setActiveSection('skills');
-          return;
-        }
-      }
-
-      const aboutEl = document.getElementById('about');
-      if (aboutEl) {
-        const rect = aboutEl.getBoundingClientRect();
-        if (rect.top <= 250 && rect.bottom >= 150) {
-          setActiveSection('about');
-          return;
-        }
-      }
-
-      if (window.scrollY < 300) {
+      if (window.scrollY < 200) {
         setActiveSection('home');
         return;
+      }
+
+      // Check sections from bottom to top to identify current section in view
+      const sectionIds = ['contact', 'experience', 'projects', 'skills', 'about'];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // Active when section top is near upper viewport and still visible
+          if (rect.top <= 260 && rect.bottom >= 140) {
+            setActiveSection(id);
+            return;
+          }
+        }
       }
     };
 
@@ -80,7 +57,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
-  // Handle hash scrolling when location has #about, #skills, #projects, or #experience
+  // Handle hash scrolling when location has hash
   useEffect(() => {
     if (location.pathname === '/' && location.hash) {
       const targetId = location.hash.replace('#', '');
@@ -88,6 +65,7 @@ export default function Navbar() {
         const targetEl = document.getElementById(targetId);
         if (targetEl) {
           targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setActiveSection(targetId);
         }
       }, 100);
       return () => clearTimeout(timer);
@@ -97,79 +75,54 @@ export default function Navbar() {
   const handleNavClick = (e, link) => {
     closeNav();
 
-    if (link.label === 'About') {
-      e.preventDefault();
+    if (link.label === 'Home') {
       if (location.pathname === '/') {
-        const aboutEl = document.getElementById('about');
-        if (aboutEl) {
-          aboutEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          window.history.pushState(null, '', '/#about');
-          setActiveSection('about');
-        }
-      } else {
-        navigate('/#about');
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+        setActiveSection('home');
       }
-    } else if (link.label === 'Skills') {
-      e.preventDefault();
-      if (location.pathname === '/') {
-        const skillsEl = document.getElementById('skills');
-        if (skillsEl) {
-          skillsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          window.history.pushState(null, '', '/#skills');
-          setActiveSection('skills');
-        }
-      } else {
-        navigate('/#skills');
+      return;
+    }
+
+    const sectionMap = {
+      About: 'about',
+      Skills: 'skills',
+      Projects: 'projects',
+      Experience: 'experience',
+      Contact: 'contact',
+    };
+
+    const sectionId = sectionMap[link.label];
+    if (sectionId && location.pathname === '/') {
+      const targetEl = document.getElementById(sectionId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.pushState(null, '', `/#${sectionId}`);
+        setActiveSection(sectionId);
       }
-    } else if (link.label === 'Projects') {
-      e.preventDefault();
-      if (location.pathname === '/') {
-        const projectsEl = document.getElementById('projects');
-        if (projectsEl) {
-          projectsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          window.history.pushState(null, '', '/#projects');
-          setActiveSection('projects');
-        }
-      } else {
-        navigate('/#projects');
-      }
-    } else if (link.label === 'Experience') {
-      e.preventDefault();
-      if (location.pathname === '/') {
-        const experienceEl = document.getElementById('experience');
-        if (experienceEl) {
-          experienceEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          window.history.pushState(null, '', '/#experience');
-          setActiveSection('experience');
-        }
-      } else {
-        navigate('/#experience');
-      }
-    } else if (link.label === 'Home' && location.pathname === '/') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState(null, '', '/');
-      setActiveSection('home');
     }
   };
 
   const isLinkActive = (link) => {
-    if (link.label === 'About') {
-      return location.pathname === '/' && (activeSection === 'about' || location.hash === '#about');
+    if (location.pathname === '/') {
+      const sectionMap = {
+        Home: 'home',
+        About: 'about',
+        Skills: 'skills',
+        Projects: 'projects',
+        Experience: 'experience',
+        Contact: 'contact',
+      };
+      return activeSection === sectionMap[link.label];
     }
-    if (link.label === 'Skills') {
-      return location.pathname === '/' && (activeSection === 'skills' || location.hash === '#skills');
+
+    if (link.path === '/') {
+      return false;
     }
-    if (link.label === 'Projects') {
-      return location.pathname === '/' && (activeSection === 'projects' || location.hash === '#projects');
-    }
-    if (link.label === 'Experience') {
-      return location.pathname === '/' && (activeSection === 'experience' || location.hash === '#experience');
-    }
-    if (link.label === 'Home') {
-      return location.pathname === '/' && activeSection === 'home' && !['#about', '#skills', '#projects', '#experience'].includes(location.hash);
-    }
-    return location.pathname === link.path;
+
+    return location.pathname === link.path || location.pathname.startsWith(link.path + '/');
   };
 
   return (
@@ -178,13 +131,35 @@ export default function Navbar() {
         <div className="container navbar__inner">
 
           {/* Logo */}
-          <Link to="/" className="navbar__logo" onClick={closeNav} aria-label="Ritesh Kumar Panda — Home">
+          <div
+            className="navbar__logo"
+            onDoubleClick={(e) => {
+              e.preventDefault();
+              closeNav();
+              navigate('/admin');
+            }}
+            aria-label="Ritesh Kumar Panda — Home"
+          >
             <div className="navbar__logo-content">
-              <span className="navbar__logo-text">
-                Ritesh Kumar Panda<span className="navbar__logo-dot"></span>
-              </span>
+              <Link to="/" onClick={closeNav} className="navbar__logo-text">
+                Ritesh Kumar Panda
+              </Link>
+              <button
+                type="button"
+                className="navbar__logo-dot"
+                title="Admin Panel"
+                aria-label="Admin Panel"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  closeNav();
+                  navigate('/admin');
+                }}
+              >
+                .
+              </button>
             </div>
-          </Link>
+          </div>
 
           {/* Desktop navigation */}
           <nav className="navbar__nav" aria-label="Primary navigation">

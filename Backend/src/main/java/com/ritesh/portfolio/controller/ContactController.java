@@ -23,7 +23,7 @@ public class ContactController {
         return ResponseEntity.status(HttpStatus.CREATED).body(contactService.submitContactMessage(request));
     }
 
-    @GetMapping
+    @GetMapping({"", "/messages"})
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<ContactResponse>> getMessages(
             @RequestParam(defaultValue = "0") int page,
@@ -33,13 +33,13 @@ public class ContactController {
         return ResponseEntity.ok(contactService.getMessages(page, size, unreadOnly));
     }
 
-    @PatchMapping("/{id}/read")
+    @PatchMapping({"/{id}/read", "/messages/{id}/read"})
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ContactResponse> markAsRead(@PathVariable Long id) {
         return ResponseEntity.ok(contactService.markAsRead(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping({"/{id}", "/messages/{id}"})
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteMessage(@PathVariable Long id) {
         contactService.deleteMessage(id);

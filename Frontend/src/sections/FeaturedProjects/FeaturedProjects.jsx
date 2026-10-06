@@ -6,7 +6,7 @@ import { useProjects } from '../../hooks/useProjects';
 import './FeaturedProjects.css';
 
 export default function FeaturedProjects() {
-  const { projects: apiProjects, loading } = useProjects({ featured: true });
+  const { projects: apiProjects } = useProjects({ featured: true });
 
   // Map API projects onto local PROJECTS baseline so rich fields (problem, solution, learnings) are preserved
   const featuredProjects = PROJECTS.filter((p) => p.featured === true)
