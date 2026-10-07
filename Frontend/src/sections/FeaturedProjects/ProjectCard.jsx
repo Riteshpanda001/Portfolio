@@ -88,6 +88,7 @@ export default function ProjectCard({ project }) {
   const technologies = project.technologies || project.tags || [];
   const problem = project.problem || project.description || 'Solving key technical challenges with modern tools.';
   const solution = project.solution || project.longDescription || project.description || 'Implemented scalable architecture and optimized algorithms.';
+  const keyLearnings = project.keyLearnings || project.learnings || 'Gained practical engineering insights and architectural problem-solving experience.';
   const status = project.status || 'Incomplete';
   const statusType =
     project.statusType ||
