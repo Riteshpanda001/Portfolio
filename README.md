@@ -75,27 +75,59 @@ This repository contains the complete full-stack codebase for the personal portf
 The application adopts a decoupled client-server architecture ensuring high scalability, maintainability, and clean separation of concerns.
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                    Client (React + Vite)                    │
-│   - Public Views (Home, Projects, Skills, Experience, etc.) │
-│   - Admin Dashboard (Profile, Projects, Messages, etc.)     │
-└──────────────┬───────────────────────────────▲──────────────┘
-               │ HTTPS / JSON                  │ JWT Response
-               ▼                               │
-┌─────────────────────────────────────────────────────────────┐
-│               Spring Boot 3 REST API (Port 5000)            │
-│   - Spring Security Filter Chain (JwtAuthenticationFilter)  │
-│   - Controllers (Project, Skill, Auth, Contact, Admin, etc.)│
-│   - Service Layer (Business Logic & DTO Mapping)            │
-│   - Repository Layer (Spring Data JPA Repositories)         │
-└──────────────┬───────────────────────────────▲──────────────┘
-               │ JPA / Hibernate               │
-               ▼                               │
-┌─────────────────────────────────────────────────────────────┐
-│              Database (PostgreSQL / H2 Memory)               │
-│   Tables: users, profiles, projects, skills,                │
-│           experiences, educations, certifications, messages  │
-└─────────────────────────────────────────────────────────────┘
+                         ┌──────────────────────────┐
+                         │        USER / VISITOR    │
+                         └────────────┬─────────────┘
+                                      │
+                                      ▼
+                         ┌──────────────────────────┐
+                         │      React Frontend       │
+                         │       React + Vite        │
+                         └────────────┬─────────────┘
+                                      │
+                    ┌─────────────────┴─────────────────┐
+                    │                                   │
+                    ▼                                   ▼
+          ┌───────────────────┐               ┌───────────────────┐
+          │ Public Pages      │               │ Admin Dashboard   │
+          │                   │               │                   │
+          │ Home              │               │ Login             │
+          │ About             │               │ Projects          │
+          │ Skills            │               │ Messages          │
+          │ Projects          │               │ Profile           │
+          │ Experience        │               │ Dashboard         │
+          │ Education         │               └─────────┬─────────┘
+          │ Training          │                         │
+          │ Contact           │                         │ JWT
+          │ Resume            │                         │
+          └─────────┬─────────┘                         │
+                    │                                   │
+                    └─────────────────┬─────────────────┘
+                                      │
+                                      ▼
+                         ┌──────────────────────────┐
+                         │      Axios API Layer     │
+                         │   /api/... REST calls    │
+                         └────────────┬─────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │         Spring Boot Backend         │
+                    │                                     │
+                    │  Controllers                         │
+                    │       ↓                             │
+                    │  Services                            │
+                    │       ↓                             │
+                    │  Repositories                        │
+                    │       ↓                             │
+                    │  JPA / Hibernate                      │
+                    └────────────────┬────────────────────┘
+                                     │
+                                     ▼
+                         ┌──────────────────────────┐
+                         │        Database          │
+                         │       PostgreSQL         │
+                         └──────────────────────────┘
 ```
 
 ### Architectural Layers
@@ -117,52 +149,278 @@ The application adopts a decoupled client-server architecture ensuring high scal
 ```text
 Portfolio/
 │
-├── .github/                # GitHub configurations & issue templates
+├── README.md
+├── .gitignore
 │
-├── Frontend/               # React 19 Client SPA
-│   ├── public/             # Static assets & public files
+├── .github/
+│   └── workflows/
+│       └── ...
+│
+├── Frontend/
+│   │
+│   ├── public/
+│   │   ├── images/
+│   │   │   ├── profile/
+│   │   │   │   └── profile.jpg
+│   │   │   │
+│   │   │   ├── projects/
+│   │   │   │   ├── ai-recruitment.png
+│   │   │   │   ├── ai-risk-manager.png
+│   │   │   │   ├── college-ai-assistant.png
+│   │   │   │   ├── ecommerce-bi.png
+│   │   │   │   ├── customer-churn.png
+│   │   │   │   ├── job-market.png
+│   │   │   │   └── myshope.png
+│   │   │   │
+│   │   │   ├── certificates/
+│   │   │   │   └── nist-certificate.png
+│   │   │   │
+│   │   │   ├── logos/
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   └── icons/
+│   │   │       └── ...
+│   │   │
+│   │   ├── resume/
+│   │   │   └── RiteshPanda.pdf
+│   │   │
+│   │   └── favicon.ico
+│   │
 │   ├── src/
-│   │   ├── assets/         # Images, certificates, and logos
-│   │   ├── components/     # Reusable UI components (Navbar, Footer, Loading)
-│   │   ├── config/         # API endpoints & environment constants
-│   │   ├── context/        # React Contexts (AuthContext)
-│   │   ├── data/           # Static fallback datasets
-│   │   ├── hooks/          # Custom hooks (useAuth, useFetch)
-│   │   ├── layouts/        # Layout wrappers
-│   │   ├── pages/          # Public and Admin route view components
-│   │   ├── routes/         # AppRoutes with lazy-loading & ProtectedRoute
-│   │   ├── sections/       # Modular homepage sections
-│   │   ├── services/       # Axios API client modules
-│   │   ├── utils/          # Helpers & icon mappings
-│   │   ├── App.jsx         # Root application component
-│   │   ├── index.css       # Midnight Aurora design tokens & core styling
-│   │   └── main.jsx        # React entry point
-│   ├── package.json        # Frontend scripts and dependencies
-│   └── vite.config.js      # Vite build configuration
+│   │   │
+│   │   ├── assets/
+│   │   │   ├── images/
+│   │   │   ├── icons/
+│   │   │   └── logos/
+│   │   │
+│   │   ├── components/
+│   │   │   │
+│   │   │   ├── common/
+│   │   │   │   ├── Button.jsx
+│   │   │   │   ├── Badge.jsx
+│   │   │   │   ├── Modal.jsx
+│   │   │   │   ├── Loader.jsx
+│   │   │   │   ├── SectionTitle.jsx
+│   │   │   │   └── ScrollToTop.jsx
+│   │   │   │
+│   │   │   ├── layout/
+│   │   │   │   ├── Navbar.jsx
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   └── BackToTop.jsx
+│   │   │   │
+│   │   │   ├── hero/
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   └── Hero.css
+│   │   │   │
+│   │   │   ├── about/
+│   │   │   │   ├── About.jsx
+│   │   │   │   ├── EducationCard.jsx
+│   │   │   │   └── About.css
+│   │   │   │
+│   │   │   ├── skills/
+│   │   │   │   ├── Skills.jsx
+│   │   │   │   ├── SkillCard.jsx
+│   │   │   │   └── Skills.css
+│   │   │   │
+│   │   │   ├── projects/
+│   │   │   │   ├── FeaturedProjects.jsx
+│   │   │   │   ├── ProjectCard.jsx
+│   │   │   │   ├── ProjectGrid.jsx
+│   │   │   │   ├── ProjectFilter.jsx
+│   │   │   │   └── ProjectModal.jsx
+│   │   │   │
+│   │   │   ├── experience/
+│   │   │   │   ├── ProfessionalJourney.jsx
+│   │   │   │   ├── ExperienceCard.jsx
+│   │   │   │   └── Timeline.jsx
+│   │   │   │
+│   │   │   ├── training/
+│   │   │   │   ├── TrainingSection.jsx
+│   │   │   │   ├── TrainingCard.jsx
+│   │   │   │   └── CertificateModal.jsx
+│   │   │   │
+│   │   │   └── contact/
+│   │   │       ├── Contact.jsx
+│   │   │       ├── ContactForm.jsx
+│   │   │       └── SocialLinks.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   │
+│   │   │   ├── Home.jsx
+│   │   │   ├── AboutPage.jsx
+│   │   │   ├── SkillsPage.jsx
+│   │   │   ├── ProjectsPage.jsx
+│   │   │   ├── ProjectDetailsPage.jsx
+│   │   │   ├── ExperiencePage.jsx
+│   │   │   ├── TrainingPage.jsx
+│   │   │   ├── ContactPage.jsx
+│   │   │   ├── ResumePage.jsx
+│   │   │   │
+│   │   │   ├── auth/
+│   │   │   │   ├── Login.jsx
+│   │   │   │   └── AdminLogin.jsx
+│   │   │   │
+│   │   │   └── admin/
+│   │   │       ├── AdminDashboard.jsx
+│   │   │       ├── ManageProjects.jsx
+│   │   │       ├── ManageSkills.jsx
+│   │   │       ├── ManageExperience.jsx
+│   │   │       ├── ManageTraining.jsx
+│   │   │       ├── ManageProfile.jsx
+│   │   │       └── Messages.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   ├── api.js
+│   │   │   ├── authService.js
+│   │   │   ├── projectService.js
+│   │   │   ├── skillService.js
+│   │   │   ├── experienceService.js
+│   │   │   ├── educationService.js
+│   │   │   ├── trainingService.js
+│   │   │   ├── profileService.js
+│   │   │   └── contactService.js
+│   │   │
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx
+│   │   │   └── PortfolioContext.jsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useAuth.js
+│   │   │   ├── useProjects.js
+│   │   │   └── useScroll.js
+│   │   │
+│   │   ├── routes/
+│   │   │   ├── AppRoutes.jsx
+│   │   │   └── ProtectedRoute.jsx
+│   │   │
+│   │   ├── data/
+│   │   │   ├── projects.js
+│   │   │   ├── skills.js
+│   │   │   ├── experience.js
+│   │   │   └── training.js
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── constants.js
+│   │   │   ├── validators.js
+│   │   │   └── formatters.js
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   │
+│   ├── .env
+│   ├── .env.example
+│   ├── package.json
+│   ├── vite.config.js
+│   └── eslint.config.js
 │
-├── Backend/                # Spring Boot 3 REST API
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/ritesh/portfolio/
-│   │   │   │   ├── config/       # Security, CORS, and Web MVC configs
-│   │   │   │   ├── controller/   # REST Controllers (Auth, Project, Contact, etc.)
-│   │   │   │   ├── dto/          # Data Transfer Objects
-│   │   │   │   ├── entity/       # JPA Entities
-│   │   │   │   ├── exception/    # Custom exceptions & GlobalExceptionHandler
-│   │   │   │   ├── repository/   # Spring Data JPA Repositories
-│   │   │   │   ├── security/     # JWT Token Provider & Filter Chain
-│   │   │   │   ├── seed/         # DataInitializer for database bootstrapping
-│   │   │   │   ├── service/      # Business logic services & interfaces
-│   │   │   │   └── PortfolioApplication.java
-│   │   │   └── resources/
-│   │   │       ├── application.properties
-│   │   │       └── application.yml
-│   │   └── test/                 # Unit and integration tests
-│   └── pom.xml             # Maven build configuration
 │
-├── .gitignore              # Git ignore rules
-└── README.md               # Main repository documentation
-```
+└── Backend/
+    │
+    ├── src/
+    │   │
+    │   ├── main/
+    │   │   │
+    │   │   ├── java/
+    │   │   │   └── com/
+    │   │   │       └── ritesh/
+    │   │   │           └── portfolio/
+    │   │   │               │
+    │   │   │               ├── PortfolioApplication.java
+    │   │   │               │
+    │   │   │               ├── config/
+    │   │   │               │   ├── CorsConfig.java
+    │   │   │               │   ├── SecurityConfig.java
+    │   │   │               │   └── AppConfig.java
+    │   │   │               │
+    │   │   │               ├── controller/
+    │   │   │               │   ├── AuthController.java
+    │   │   │               │   ├── ProfileController.java
+    │   │   │               │   ├── ProjectController.java
+    │   │   │               │   ├── SkillController.java
+    │   │   │               │   ├── ExperienceController.java
+    │   │   │               │   ├── EducationController.java
+    │   │   │               │   ├── TrainingController.java
+    │   │   │               │   ├── ContactController.java
+    │   │   │               │   └── AdminController.java
+    │   │   │               │
+    │   │   │               ├── service/
+    │   │   │               │   ├── AuthService.java
+    │   │   │               │   ├── ProfileService.java
+    │   │   │               │   ├── ProjectService.java
+    │   │   │               │   ├── SkillService.java
+    │   │   │               │   ├── ExperienceService.java
+    │   │   │               │   ├── EducationService.java
+    │   │   │               │   ├── TrainingService.java
+    │   │   │               │   └── ContactService.java
+    │   │   │               │
+    │   │   │               ├── repository/
+    │   │   │               │   ├── UserRepository.java
+    │   │   │               │   ├── ProfileRepository.java
+    │   │   │               │   ├── ProjectRepository.java
+    │   │   │               │   ├── SkillRepository.java
+    │   │   │               │   ├── ExperienceRepository.java
+    │   │   │               │   ├── EducationRepository.java
+    │   │   │               │   ├── TrainingRepository.java
+    │   │   │               │   └── ContactRepository.java
+    │   │   │               │
+    │   │   │               ├── entity/
+    │   │   │               │   ├── User.java
+    │   │   │               │   ├── Profile.java
+    │   │   │               │   ├── Project.java
+    │   │   │               │   ├── Skill.java
+    │   │   │               │   ├── Experience.java
+    │   │   │               │   ├── Education.java
+    │   │   │               │   ├── Training.java
+    │   │   │               │   └── ContactMessage.java
+    │   │   │               │
+    │   │   │               ├── dto/
+    │   │   │               │   ├── LoginRequest.java
+    │   │   │               │   ├── LoginResponse.java
+    │   │   │               │   ├── ProjectRequest.java
+    │   │   │               │   ├── ProjectResponse.java
+    │   │   │               │   ├── SkillRequest.java
+    │   │   │               │   ├── ExperienceRequest.java
+    │   │   │               │   ├── TrainingRequest.java
+    │   │   │               │   └── ContactRequest.java
+    │   │   │               │
+    │   │   │               ├── security/
+    │   │   │               │   ├── JwtService.java
+    │   │   │               │   ├── JwtAuthenticationFilter.java
+    │   │   │               │   └── CustomUserDetailsService.java
+    │   │   │               │
+    │   │   │               ├── exception/
+    │   │   │               │   ├── GlobalExceptionHandler.java
+    │   │   │               │   ├── ResourceNotFoundException.java
+    │   │   │               │   └── UnauthorizedException.java
+    │   │   │               │
+    │   │   │               ├── mapper/
+    │   │   │               │   ├── ProjectMapper.java
+    │   │   │               │   ├── SkillMapper.java
+    │   │   │               │   └── ExperienceMapper.java
+    │   │   │               │
+    │   │   │               └── util/
+    │   │   │                   ├── Constants.java
+    │   │   │                   └── ValidationUtil.java
+    │   │   │
+    │   │   └── resources/
+    │   │       ├── application.properties
+    │   │       ├── application-dev.properties
+    │   │       └── application-prod.properties
+    │   │
+    │   └── test/
+    │       └── java/
+    │           └── com/
+    │               └── ritesh/
+    │                   └── portfolio/
+    │                       ├── controller/
+    │                       ├── service/
+    │                       └── repository/
+    │
+    ├── pom.xml
+    ├── .env
+    ├── .env.example
+    └── README.md
 
 ---
 
