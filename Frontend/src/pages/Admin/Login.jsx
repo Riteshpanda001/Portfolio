@@ -52,7 +52,7 @@ export default function Login() {
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="riteshkumarpanda001@gmail.com"
+              placeholder="Enter the Gmail"
               autoComplete="email"
               className="admin-login__input"
             />
@@ -67,7 +67,7 @@ export default function Login() {
               name="password"
               value={form.password}
               onChange={handleChange}
-              placeholder="••••••••••••••••"
+              placeholder="Enter the password"
               autoComplete="current-password"
               className="admin-login__input"
             />

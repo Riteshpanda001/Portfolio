@@ -39,6 +39,13 @@ public class Profile {
     public String getPhone() { return phoneNumber; }
     public void setPhone(String phone) { this.phoneNumber = phone; }
 
+    public static class ProfileBuilder {
+        public ProfileBuilder phone(String phone) {
+            this.phoneNumber = phone;
+            return this;
+        }
+    }
+
     @Column(name = "avatar_url")
     private String avatarUrl;
 

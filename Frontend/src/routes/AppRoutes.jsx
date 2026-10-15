@@ -18,9 +18,6 @@ const Resume         = lazy(() => import('../pages/Resume/Resume'));
 // ── Admin pages (lazy loaded) ─────────────────────────────────
 const AdminLogin     = lazy(() => import('../pages/Admin/Login'));
 const AdminDashboard = lazy(() => import('../pages/Admin/Dashboard'));
-const AdminProjects  = lazy(() => import('../pages/Admin/Projects'));
-const AdminMessages  = lazy(() => import('../pages/Admin/Messages'));
-const AdminProfile   = lazy(() => import('../pages/Admin/Profile'));
 
 // ── Protected route wrapper ───────────────────────────────────
 function ProtectedRoute({ children }) {
@@ -34,7 +31,7 @@ export default function AppRoutes() {
   return (
     <Suspense fallback={<Loading variant="page" />}>
       <Routes>
-        {/* Public */}
+        {/* Public Routes */}
         <Route path="/"                      element={<Home />} />
         <Route path="/about"                 element={<About />} />
         <Route path="/skills"                element={<Skills />} />
@@ -46,20 +43,21 @@ export default function AppRoutes() {
         <Route path="/contact"               element={<Contact />} />
         <Route path="/resume"                element={<Resume />} />
 
-        {/* Admin */}
-        <Route path="/admin/login"           element={<AdminLogin />} />
-        <Route path="/admin" element={
-          <ProtectedRoute><AdminDashboard /></ProtectedRoute>
-        }/>
-        <Route path="/admin/projects" element={
-          <ProtectedRoute><AdminProjects /></ProtectedRoute>
-        }/>
-        <Route path="/admin/messages" element={
-          <ProtectedRoute><AdminMessages /></ProtectedRoute>
-        }/>
-        <Route path="/admin/profile" element={
-          <ProtectedRoute><AdminProfile /></ProtectedRoute>
-        }/>
+        {/* Admin Authentication */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Single Admin Route — in-page section switching */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Legacy admin sub-routes redirect to single admin route */}
+        <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
 
         {/* 404 fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

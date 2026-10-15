@@ -62,6 +62,8 @@ export const login = async (credentials) => {
 export const logout = async () => {
   try {
     await api.post('/auth/logout');
+  } catch {
+    // Ignore server error on logout
   } finally {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('auth_user');

@@ -54,7 +54,7 @@ public class DataInitializer implements CommandLineRunner {
                     .bio("Computer Science Engineering student and software engineer passionate about building modern web applications, intelligent AI/ML systems, and data-driven solutions.")
                     .location("Berhampur, Odisha, India")
                     .email("riteshkumarpanda001@gmail.com")
-                    .phone("+91 9692229676")
+                    .phoneNumber("+91 9692229676")
                     .githubUrl("https://github.com/Riteshpanda001")
                     .linkedinUrl("https://www.linkedin.com/in/ritesh-kumar-panda-9b55b135a")
                     .twitterUrl("https://twitter.com/riteshpanda")

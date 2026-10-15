@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Button from '../../components/Button/Button';
 import { SITE_EMAIL, SITE_GITHUB, SITE_LINKEDIN } from '../../utils/constants';
+import { usePortfolio } from '../../context/PortfolioContext';
 import './Resume.css';
 
 // ============================================================
@@ -9,7 +10,8 @@ import './Resume.css';
 // ============================================================
 
 export default function Resume() {
-  const resumeUrl = '/assets/resume/Ritesh_Panda_Resume.pdf';
+  const { profile } = usePortfolio();
+  const resumeUrl = profile?.resumeUrl || '/assets/resume/Ritesh_Panda_Resume.pdf';
   const [activeTab, setActiveTab] = useState('all');
 
   return (
@@ -57,16 +59,16 @@ export default function Resume() {
           {/* Header */}
           <header className="resume-header">
             <div className="resume-header__info">
-              <h2 className="resume-name text-gradient">Ritesh Kumar Panda</h2>
-              <p className="resume-title">AI/ML Engineer & Full-Stack Developer</p>
+              <h2 className="resume-name text-gradient">{profile?.name || 'Ritesh Kumar Panda'}</h2>
+              <p className="resume-title">{profile?.title || 'AI/ML Engineer & Full-Stack Developer'}</p>
               <div className="resume-contact-bar">
-                <span>📍 Berhampur, Odisha, India</span>
+                <span>📍 {profile?.location || 'Berhampur, Odisha, India'}</span>
                 <span>•</span>
-                <a href={`mailto:${SITE_EMAIL}`}>✉️ {SITE_EMAIL}</a>
+                <a href={profile?.email ? `mailto:${profile.email}` : `mailto:${SITE_EMAIL}`}>✉️ {profile?.email || SITE_EMAIL}</a>
                 <span>•</span>
-                <a href={SITE_GITHUB} target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+                <a href={profile?.githubUrl || SITE_GITHUB} target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
                 <span>•</span>
-                <a href={SITE_LINKEDIN} target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+                <a href={profile?.linkedinUrl || SITE_LINKEDIN} target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
               </div>
             </div>
           </header>
@@ -76,9 +78,7 @@ export default function Resume() {
             <div className="resume-section">
               <h3 className="resume-section-title">Professional Summary</h3>
               <p className="resume-text">
-                Computer Science Engineering student at NIST University and aspiring software engineer with hands-on expertise in
-                AI/ML engineering, LLM orchestration, Generative AI applications, Java/Spring Boot backend architecture, and modern
-                frontend development with React. Driven by building scalable, intelligent solutions to real-world problems.
+                {profile?.bio || 'Computer Science Engineering student at NIST University and aspiring software engineer with hands-on expertise in AI/ML engineering, LLM orchestration, Generative AI applications, Java/Spring Boot backend architecture, and modern frontend development with React. Driven by building scalable, intelligent solutions to real-world problems.'}
               </p>
             </div>
           )}

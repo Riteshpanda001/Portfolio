@@ -70,6 +70,7 @@ export const markMessageRead = async (id) => {
     return { success: true };
   }
 };
+export const markMessageAsRead = markMessageRead;
 
 /** Admin: Delete a message. */
 export const deleteMessage = async (id) => {

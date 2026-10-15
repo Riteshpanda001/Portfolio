@@ -23,7 +23,7 @@ const SOCIAL_ICONS = {
 };
 
 export default function Hero() {
-  const { openGmailModal } = usePortfolio();
+  const { openGmailModal, profile } = usePortfolio();
 
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -75,7 +75,7 @@ export default function Hero() {
 
           <h1 className="hero__heading animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
             Hi, I'm<br />
-            <span className="text-gradient">{SITE_NAME}</span>
+            <span className="text-gradient">{profile?.name || SITE_NAME}</span>
           </h1>
 
           <p className="hero__role animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
@@ -84,8 +84,7 @@ export default function Hero() {
           </p>
 
           <p className="hero__subtitle animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-            Specialising in AI/ML Engineering, Data Science, Full-Stack Development, and Data Analysis.
-            Building intelligent algorithms, data-driven solutions, and real-world applications.
+            {profile?.bio || 'Specialising in AI/ML Engineering, Data Science, Full-Stack Development, and Data Analysis. Building intelligent algorithms, data-driven solutions, and real-world applications.'}
           </p>
 
           <div className="hero__actions animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
@@ -116,10 +115,18 @@ export default function Hero() {
                   </button>
                 );
               }
+              const targetUrl =
+                s.icon === 'github' && profile?.githubUrl
+                  ? profile.githubUrl
+                  : s.icon === 'linkedin' && profile?.linkedinUrl
+                  ? profile.linkedinUrl
+                  : s.icon === 'twitter' && profile?.twitterUrl
+                  ? profile.twitterUrl
+                  : s.url;
               return (
                 <a
                   key={s.label}
-                  href={s.url}
+                  href={targetUrl}
                   className="hero__social-link"
                   role="listitem"
                   aria-label={s.label}
@@ -137,7 +144,7 @@ export default function Hero() {
         <div className="hero__avatar-wrap animate-fadeInUp" style={{ animationDelay: '0.2s' }} aria-hidden="true">
           <div className="hero__avatar-ring" />
           <div className="hero__avatar animate-float">
-            <img src={heroImg} alt={SITE_NAME} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '26px' }} />
+            <img src={profile?.avatarUrl || heroImg} alt={profile?.name || SITE_NAME} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '26px' }} />
           </div>
           <div className="hero__avatar-glow" />
         </div>

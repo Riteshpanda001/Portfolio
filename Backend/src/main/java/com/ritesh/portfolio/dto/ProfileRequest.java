@@ -17,8 +17,10 @@ public record ProfileRequest(
         String githubUrl,
         String linkedinUrl,
         String twitterUrl,
+        String websiteUrl,
         String avatarUrl,
         String resumeUrl,
-        List<String> highlights
+        List<String> highlights,
+        Boolean isAvailableForHire
 ) {
 }

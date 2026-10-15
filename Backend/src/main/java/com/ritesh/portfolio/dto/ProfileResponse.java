@@ -14,6 +14,7 @@ public record ProfileResponse(
         String bio,
         String location,
         String email,
+        String phone,
         String avatarUrl,
         String resumeUrl,
         String githubUrl,
@@ -26,7 +27,7 @@ public record ProfileResponse(
     public static ProfileResponse from(Profile p) {
         return new ProfileResponse(
                 p.getId(), p.getName(), p.getTitle(), p.getBio(),
-                p.getLocation(), p.getEmail(), p.getAvatarUrl(),
+                p.getLocation(), p.getEmail(), p.getPhone(), p.getAvatarUrl(),
                 p.getResumeUrl(), p.getGithubUrl(), p.getLinkedinUrl(),
                 p.getTwitterUrl(), p.getWebsiteUrl(),
                 p.getHighlights(), p.getIsAvailableForHire()

@@ -37,6 +37,7 @@ public class SecurityConfig {
 
     // ── Public endpoints ─────────────────────────────────────
     private static final String[] PUBLIC_GET = {
+            "/media/**",
             "/api/projects",
             "/api/projects/**",
             "/api/skills",

@@ -11,7 +11,7 @@ import './Navbar.css';
 
 export default function Navbar() {
   const { scrollY } = useScroll();
-  const { navOpen, toggleNav, closeNav } = usePortfolio();
+  const { navOpen, toggleNav, closeNav, profile } = usePortfolio();
   const location = useLocation();
   const navigate = useNavigate();
   const scrolled = scrollY > 20;
@@ -142,7 +142,7 @@ export default function Navbar() {
           >
             <div className="navbar__logo-content">
               <Link to="/" onClick={closeNav} className="navbar__logo-text">
-                Ritesh Kumar Panda
+                {profile?.name || 'Ritesh Kumar Panda'}
               </Link>
               <button
                 type="button"

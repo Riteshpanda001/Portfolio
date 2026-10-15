@@ -36,9 +36,11 @@ public class ProfileService {
         profile.setGithubUrl(request.githubUrl());
         profile.setLinkedinUrl(request.linkedinUrl());
         profile.setTwitterUrl(request.twitterUrl());
+        if (request.websiteUrl() != null) profile.setWebsiteUrl(request.websiteUrl());
         profile.setAvatarUrl(request.avatarUrl());
         profile.setResumeUrl(request.resumeUrl());
-        profile.setHighlights(request.highlights());
+        if (request.highlights() != null) profile.setHighlights(request.highlights());
+        if (request.isAvailableForHire() != null) profile.setIsAvailableForHire(request.isAvailableForHire());
 
         Profile saved = profileRepository.save(profile);
         return ProfileResponse.fromEntity(saved);
