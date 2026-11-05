@@ -26,7 +26,7 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
 
   const [form, setForm] = useState({
     title: '',
-    category: 'AI / Machine Learning',
+    category: 'AI/ML',
     status: 'Completed',
     description: '',
     problem: '',
@@ -42,7 +42,7 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
 
   const categories = [
     'All',
-    'AI / Machine Learning',
+    'AI/ML',
     'Full-Stack',
     'Data Science',
     'Business Intelligence',
@@ -66,10 +66,28 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
     fetchProjects();
   }, []);
 
+  const getProjectImage = (p) => {
+    if (
+      p.imageUrl &&
+      (p.imageUrl.startsWith('http') ||
+        p.imageUrl.startsWith('/assets') ||
+        p.imageUrl.startsWith('data:') ||
+        p.imageUrl.startsWith('/src'))
+    ) {
+      return p.imageUrl;
+    }
+    const match = DEFAULT_PROJECTS.find(
+      (dp) =>
+        dp.id === p.id ||
+        dp.title?.toLowerCase() === p.title?.toLowerCase()
+    );
+    return match?.imageUrl || p.imageUrl || null;
+  };
+
   const openNew = () => {
     setForm({
       title: '',
-      category: categoryFilter !== 'All' ? categoryFilter : 'AI / Machine Learning',
+      category: categoryFilter !== 'All' ? categoryFilter : 'AI/ML',
       status: 'Completed',
       description: '',
       problem: '',
@@ -95,7 +113,7 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
     setForm({
       id: proj.id || proj._id,
       title: proj.title || '',
-      category: proj.category || 'AI / Machine Learning',
+      category: proj.category || 'AI/ML',
       status: proj.status || 'Completed',
       description: proj.description || '',
       problem: proj.problem || proj.longDescription || '',
@@ -217,7 +235,7 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
     <div className="admin-tab-pane">
       <div className="admin-pane-header">
         <div>
-          <h2>📁 Projects & Case Studies</h2>
+          <h2>Projects & Case Studies</h2>
           <p>Create, update, or remove live applications, architectural case studies, and engineering prototypes.</p>
         </div>
         <button type="button" className="admin-btn admin-btn--primary" onClick={openNew}>
@@ -225,43 +243,7 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
         </button>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="admin-filter-bar">
-        <div className="admin-cat-pills">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              className={`admin-cat-pill ${categoryFilter === cat ? 'admin-cat-pill--active' : ''}`}
-              onClick={() => setCategoryFilter(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="admin-search-wrap">
-          <span className="admin-search-icon">🔍</span>
-          <input
-            type="text"
-            placeholder="Search projects by title or stack..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="admin-search-input"
-          />
-          {search && (
-            <button
-              type="button"
-              className="admin-search-clear"
-              onClick={() => setSearch('')}
-            >
-              ×
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Projects List */}
+      {/* Projects List — Premium Responsive Card Grid */}
       {loading ? (
         <div className="admin-loading-state">
           <div className="admin-spinner" />
@@ -269,7 +251,6 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
         </div>
       ) : filteredProjects.length === 0 ? (
         <div className="admin-empty-state">
-          <span className="admin-empty-icon">📁</span>
           <h3>No projects found</h3>
           <p>
             {search || categoryFilter !== 'All'
@@ -281,110 +262,117 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
           </button>
         </div>
       ) : (
-        <div className="admin-projects-table-wrap">
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>Category</th>
-                <th>Technologies</th>
-                <th>Status</th>
-                <th>Featured</th>
-                <th style={{ textAlign: 'right' }}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProjects.map((p) => {
-                const tags = Array.isArray(p.technologies)
-                  ? p.technologies
-                  : Array.isArray(p.tags)
-                  ? p.tags
-                  : (p.technologies || '').split(',').map((s) => s.trim()).filter(Boolean);
+        <div className="admin-projects-grid">
+          {filteredProjects.map((p) => {
+            const img = getProjectImage(p);
+            const tags = Array.isArray(p.technologies)
+              ? p.technologies
+              : Array.isArray(p.tags)
+              ? p.tags
+              : (p.technologies || '').split(',').map((s) => s.trim()).filter(Boolean);
 
-                return (
-                  <tr key={p.id || p.title}>
-                    <td>
-                      <div className="admin-proj-td">
-                        {p.imageUrl || p.image ? (
-                          <img
-                            src={p.imageUrl || p.image}
-                            alt=""
-                            className="admin-proj-thumb"
-                          />
-                        ) : (
-                          <div className="admin-proj-thumb admin-proj-thumb--fallback">📁</div>
-                        )}
-                        <div>
-                          <strong>{p.title}</strong>
-                          <p className="admin-proj-desc-clip">{p.description || p.problem}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span className="admin-pill admin-pill--blue">{p.category}</span>
-                    </td>
-                    <td>
-                      <div className="admin-tag-chips">
-                        {tags.slice(0, 3).map((t, i) => (
-                          <span key={i} className="admin-mini-chip">
-                            {t}
-                          </span>
-                        ))}
-                        {tags.length > 3 && (
-                          <span className="admin-mini-chip admin-mini-chip--more">
-                            +{tags.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td>
-                      <span className="admin-status-badge admin-status-badge--live">
-                        {p.status || 'Active'}
+            return (
+              <div
+                key={p.id || p.title}
+                className="admin-project-card"
+                onClick={() => openEdit(p)}
+                style={{ cursor: 'pointer' }}
+                title={`Click to edit ${p.title}`}
+              >
+                {/* Banner Image Preview */}
+                <div className="admin-project-card__img-wrap">
+                  {img ? (
+                    <img
+                      src={img}
+                      alt={p.title}
+                      className="admin-project-card__img"
+                    />
+                  ) : (
+                    <div className="admin-project-card__placeholder">
+                      <span>💻</span>
+                      <small>No preview image</small>
+                    </div>
+                  )}
+
+                  <div className="admin-project-card__badges">
+                    <span className="admin-pill admin-pill--blue">
+                      {p.category}
+                    </span>
+                    {(p.featured || p.isFeatured) && (
+                      <span className="admin-star-badge" title="Featured Project">
+                        ★ Featured
                       </span>
-                    </td>
-                    <td>
-                      {p.featured || p.isFeatured ? (
-                        <span className="admin-star-badge" title="Featured Project">★ Yes</span>
-                      ) : (
-                        <span className="text-muted">—</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className="admin-project-card__content">
+                  <div className="admin-project-card__title-row">
+                    <h4 className="admin-project-card__title">{p.title}</h4>
+                    <span
+                      className={`admin-status-badge ${
+                        (p.status || '').toLowerCase() === 'completed'
+                          ? 'admin-status-badge--live'
+                          : 'admin-status-badge--draft'
+                      }`}
+                    >
+                      {p.status || 'Active'}
+                    </span>
+                  </div>
+
+                  <p className="admin-project-card__desc">
+                    {p.description || p.problem}
+                  </p>
+
+                  {/* Clean, separated tech tags */}
+                  <div className="admin-project-card__tags">
+                    {tags.slice(0, 4).map((t, idx) => (
+                      <span key={idx} className="admin-tech-tag">
+                        {t}
+                      </span>
+                    ))}
+                    {tags.length > 4 && (
+                      <span
+                        className="admin-tech-tag"
+                        style={{ opacity: 0.75 }}
+                      >
+                        +{tags.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Card Footer Links */}
+                  <div className="admin-project-card__footer">
+                    <div className="admin-project-card__links">
+                      {p.githubUrl && (
+                        <a
+                          href={p.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          title="View GitHub Repository"
+                        >
+                          GitHub ↗
+                        </a>
                       )}
-                    </td>
-                    <td style={{ textAlign: 'right' }}>
-                      <div className="admin-table-actions">
-                        {p.githubUrl && (
-                          <a
-                            href={p.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="admin-icon-btn"
-                            title="View GitHub"
-                          >
-                            🔗
-                          </a>
-                        )}
-                        <button
-                          type="button"
-                          className="admin-icon-btn admin-icon-btn--edit"
-                          onClick={() => openEdit(p)}
-                          title="Edit Project"
+                      {p.liveUrl && (
+                        <a
+                          href={p.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          title="View Live Application"
                         >
-                          ✏️
-                        </button>
-                        <button
-                          type="button"
-                          className="admin-icon-btn admin-icon-btn--del"
-                          onClick={() => setDeleteConfirm(p)}
-                          title="Delete Project"
-                        >
-                          🗑️
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                          Live Demo ↗
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -395,8 +383,8 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
             <div className="admin-modal__header">
               <h3>
                 {modalState === 'new'
-                  ? '➕ Add New Project Showcase'
-                  : '✏️ Edit Project Showcase'}
+                  ? 'Add New Project Showcase'
+                  : `Edit Project: ${form.title}`}
               </h3>
               <button
                 type="button"
@@ -428,7 +416,7 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
                     onChange={(e) => setForm({ ...form, category: e.target.value })}
                     className="admin-select"
                   >
-                    <option value="AI / Machine Learning">AI / Machine Learning</option>
+                    <option value="AI/ML">AI/ML</option>
                     <option value="Full-Stack">Full-Stack</option>
                     <option value="Data Science">Data Science</option>
                     <option value="Business Intelligence">Business Intelligence</option>
@@ -494,19 +482,15 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
                   />
                 </div>
 
-                {/* Image Upload Area */}
                 <div className="admin-field" style={{ gridColumn: 'span 2' }}>
-                  <label className="admin-label">Showcase Image / Thumbnail</label>
-                  <div className="admin-img-upload-row">
-                    {form.imageUrl && (
-                      <img src={form.imageUrl} alt="Preview" className="admin-modal-img-preview" />
-                    )}
+                  <label className="admin-label">Cover / Thumbnail Image</label>
+                  <div className="admin-file-upload-row">
                     <input
                       type="file"
                       ref={fileInputRef}
-                      onChange={handleImageFile}
-                      accept="image/*"
                       style={{ display: 'none' }}
+                      accept="image/*"
+                      onChange={handleImageFile}
                     />
                     <button
                       type="button"
@@ -571,21 +555,45 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
                 </div>
               </div>
 
-              <div className="admin-modal__footer">
-                <button
-                  type="button"
-                  className="admin-btn admin-btn--ghost"
-                  onClick={() => setModalState(null)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="admin-btn admin-btn--primary"
-                >
-                  {saving ? 'Saving...' : modalState === 'new' ? 'Create Project' : 'Save Changes'}
-                </button>
+              <div
+                className="admin-modal__footer"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                {modalState !== 'new' ? (
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--danger"
+                    onClick={() => {
+                      setDeleteConfirm(modalState);
+                      setModalState(null);
+                    }}
+                  >
+                    🗑️ Delete Project
+                  </button>
+                ) : (
+                  <div />
+                )}
+
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--ghost"
+                    onClick={() => setModalState(null)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="admin-btn admin-btn--primary"
+                  >
+                    {saving ? 'Saving...' : modalState === 'new' ? 'Create Project' : 'Save Changes'}
+                  </button>
+                </div>
               </div>
             </form>
           </div>
@@ -608,11 +616,10 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
             </div>
             <div className="admin-modal__body">
               <p>
-                Are you sure you want to delete <strong>{deleteConfirm.title}</strong>?
+                Are you sure you want to permanently delete{' '}
+                <strong>{deleteConfirm.title}</strong>?
               </p>
-              <p className="admin-modal__warning">
-                This will remove the project from public portfolio views and database storage.
-              </p>
+              <p className="admin-modal__warning">This action cannot be undone.</p>
             </div>
             <div className="admin-modal__footer">
               <button

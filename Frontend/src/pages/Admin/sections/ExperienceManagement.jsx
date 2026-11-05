@@ -189,7 +189,13 @@ export default function ExperienceManagement({ onNotify, initialModalOpen }) {
               : (exp.technologies || '').split(',').map((s) => s.trim()).filter(Boolean);
 
             return (
-              <div key={exp.id || exp.role} className="admin-card admin-exp-item">
+              <div
+                key={exp.id || exp.role}
+                className="admin-card admin-exp-item"
+                onClick={() => openEdit(exp)}
+                style={{ cursor: 'pointer' }}
+                title={`Click to edit ${exp.role}`}
+              >
                 <div className="admin-exp-item__top">
                   <div>
                     <span className="admin-pill admin-pill--purple">{exp.type || 'Internship'}</span>
@@ -202,24 +208,6 @@ export default function ExperienceManagement({ onNotify, initialModalOpen }) {
                     <span className="admin-exp-item__dates">
                       {exp.dateRange || exp.duration}
                     </span>
-                    <div className="admin-table-actions">
-                      <button
-                        type="button"
-                        className="admin-icon-btn admin-icon-btn--edit"
-                        onClick={() => openEdit(exp)}
-                        title="Edit Experience"
-                      >
-                        ✏️
-                      </button>
-                      <button
-                        type="button"
-                        className="admin-icon-btn admin-icon-btn--del"
-                        onClick={() => setDeleteConfirm(exp)}
-                        title="Delete Experience"
-                      >
-                        🗑️
-                      </button>
-                    </div>
                   </div>
                 </div>
 
@@ -377,21 +365,49 @@ export default function ExperienceManagement({ onNotify, initialModalOpen }) {
                 </div>
               </div>
 
-              <div className="admin-modal__footer">
-                <button
-                  type="button"
-                  className="admin-btn admin-btn--ghost"
-                  onClick={() => setModalState(null)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="admin-btn admin-btn--primary"
-                >
-                  {saving ? 'Saving...' : modalState === 'new' ? 'Create Experience' : 'Save Changes'}
-                </button>
+              <div
+                className="admin-modal__footer"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                {modalState !== 'new' ? (
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--danger"
+                    onClick={() => {
+                      setDeleteConfirm(modalState);
+                      setModalState(null);
+                    }}
+                  >
+                    🗑️ Delete Experience
+                  </button>
+                ) : (
+                  <div />
+                )}
+
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--ghost"
+                    onClick={() => setModalState(null)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="admin-btn admin-btn--primary"
+                  >
+                    {saving
+                      ? 'Saving...'
+                      : modalState === 'new'
+                      ? 'Create Experience'
+                      : 'Save Changes'}
+                  </button>
+                </div>
               </div>
             </form>
           </div>

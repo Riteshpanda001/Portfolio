@@ -78,7 +78,6 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
   // Active modal: null | 'identity' | 'social' | 'resume'
   const [activeModal, setActiveModal] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [uploadingDirectPhoto, setUploadingDirectPhoto] = useState(false);
 
   // Modal 1 Form: Profile & Identity
   const [identityForm, setIdentityForm] = useState({
@@ -112,7 +111,6 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
   const [formErrorMsg, setFormErrorMsg] = useState('');
 
   // Input refs
-  const directPhotoInputRef = useRef(null);
   const modalAvatarInputRef = useRef(null);
   const modalResumeInputRef = useRef(null);
 
@@ -199,48 +197,6 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
     setActiveModal(null);
   };
 
-  // Direct Photo Select from Header Card
-  const handleDirectPhotoSelect = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!file.type.startsWith('image/')) {
-      onNotify?.('Please select a valid image file (JPG, PNG, WebP).', 'error');
-      return;
-    }
-
-    setUploadingDirectPhoto(true);
-    try {
-      const uploadRes = await uploadFile(file);
-      const newAvatarUrl = uploadRes?.url || '';
-
-      const updatedPayload = {
-        ...profile,
-        avatarUrl: newAvatarUrl,
-      };
-
-      const saved = await profileService.updateProfile(updatedPayload);
-      const finalized = {
-        ...profile,
-        ...(saved || {}),
-        avatarUrl: newAvatarUrl,
-      };
-
-      setProfile(finalized);
-      updateProfileState?.(finalized);
-      refreshProfile?.();
-      onProfileUpdated?.(finalized);
-      onNotify?.('Profile photo updated successfully!', 'success');
-    } catch (err) {
-      console.error('Direct photo upload error:', err);
-      onNotify?.('Failed to upload photo. Please try again.', 'error');
-    } finally {
-      setUploadingDirectPhoto(false);
-      if (directPhotoInputRef.current) {
-        directPhotoInputRef.current.value = '';
-      }
-    }
-  };
 
   // Modal 1 Avatar Select
   const handleModalAvatarFile = (e) => {
@@ -499,15 +455,6 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
 
   return (
     <div className="admin-profile-section">
-      {/* Hidden file input for header direct photo button */}
-      <input
-        type="file"
-        ref={directPhotoInputRef}
-        onChange={handleDirectPhotoSelect}
-        accept="image/*"
-        style={{ display: 'none' }}
-        aria-hidden="true"
-      />
 
       {/* ============================================================
           MAIN PROFILE HEADER CARD
@@ -613,19 +560,6 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
                 )}
               </div>
 
-              {/* Action Buttons: Change Photo */}
-              <div className="admin-profile-header__actions">
-                <button
-                  type="button"
-                  className="admin-btn admin-btn--secondary"
-                  onClick={() => directPhotoInputRef.current?.click()}
-                  disabled={uploadingDirectPhoto}
-                  title="Upload a new profile picture"
-                >
-                  <Camera size={15} style={{ marginRight: '6px' }} />
-                  {uploadingDirectPhoto ? 'Uploading...' : 'Change Photo'}
-                </button>
-              </div>
             </div>
           </div>
         </div>

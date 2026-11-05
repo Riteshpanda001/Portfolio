@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
 
-  const isAuth = isAuthenticated();
+  const isAuth = Boolean(user) || isAuthenticated();
 
   /** Attempt to log in with email + password. */
   const login = useCallback(async (credentials) => {

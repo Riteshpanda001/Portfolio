@@ -1,5 +1,4 @@
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import Button       from '../../components/Button/Button';
 import './AboutPreview.css';
 
 export default function AboutPreview() {
@@ -21,9 +20,6 @@ export default function AboutPreview() {
             <p style={{ marginTop: '1rem' }}>
               I enjoy breaking complex problems into simple, reliable solutions. From designing responsive interfaces and developing REST APIs to experimenting with machine learning and building full-stack applications, I approach every project with curiosity, attention to detail, and a mindset of continuous improvement.
             </p>
-            <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Button variant="primary" to="/skills">Explore Skills →</Button>
-            </div>
           </div>
 
           <div className="about-preview__right-col animate-fadeInUp" style={{ animationDelay: '0.2s' }}>

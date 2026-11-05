@@ -49,10 +49,58 @@ export const SKILL_ICONS = {
       <path fill="#FFF" d="M12 6l1.2 3.8L17 11l-3.8 1.2L12 16l-1.2-3.8L7 11l3.8-1.2L12 6zM6 4l.6 1.9L8.5 6.5 6.6 7.1 6 9l-.6-1.9L3.5 6.5l1.9-.6L6 4z"/>
     </svg>
   ),
-  'generative ai': (
+  'pandas & numpy': (
+    <svg width="32" height="32" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="4" fill="#150458"/>
+      <rect width="3.5" height="14" x="5" y="5" rx="1" fill="#FF4A00"/>
+      <path fill="#4DABF7" d="M11 6h2l3 6V6h2v12h-2l-3-6v6h-2z"/>
+    </svg>
+  ),
+  'llms / langchain / rag': (
     <svg width="32" height="32" viewBox="0 0 24 24">
       <rect width="20" height="20" x="2" y="2" rx="4" fill="#8B5CF6"/>
       <path fill="#FFF" d="M12 6l1.2 3.8L17 11l-3.8 1.2L12 16l-1.2-3.8L7 11l3.8-1.2L12 6zM6 4l.6 1.9L8.5 6.5 6.6 7.1 6 9l-.6-1.9L3.5 6.5l1.9-.6L6 4z"/>
+    </svg>
+  ),
+  'exploratory data analysis': (
+    <svg width="32" height="32" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="4" fill="#6366F1"/>
+      <circle cx="10" cy="10" r="4.5" stroke="#FFF" strokeWidth="2" fill="none"/>
+      <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="#FFF" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="10" cy="10" r="1.5" fill="#FFF"/>
+    </svg>
+  ),
+  'java (core & advanced)': (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="#EA2D2E">
+      <path d="M8.85 16.82s-.97.26-.43.82c.86.88 2.37.84 3.82.46 1.25-.33 2.87-.24 2.87-.24s-.42-.36-1.28-.42c-1.57-.1-3.69-.18-4.98-.62zm-.57 2.45s-1.12.35-.45.92c.98.84 2.67.75 4.67.3 1.94-.44 3.73-.13 3.73-.13s-.56-.47-1.63-.56c-1.92-.15-4.57-.15-6.32-.53zM12.98 2c-1.34 2.82-3.83 5.46-3.83 5.46s3.04-1.26 3.42-3.07c.3-1.42.41-2.39.41-2.39z"/>
+      <path d="M17.65 13.98c.55-.91.73-1.91.56-2.91-.25-.33-.63-.44-1.14-.23-1.07.44-1.89 1.4-2.28 2.51.98.54 2.12.87 2.86.63zm-4.73 3.52c-.67.4-1.87.65-2.9.5-1.51-.23-2.19-.78-2.19-.78s.32.32 1.39.53c1.7.33 3.93.18 5.12-.42.92-.47 1.4-.87 1.4-.87s-.76.47-2.82 1.04z"/>
+    </svg>
+  ),
+  'spring security & jwt': (
+    <svg width="32" height="32" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="4" fill="#6DB33F"/>
+      <path fill="#FFF" d="M12 4L6 7v5c0 4.5 3 7.5 6 8.5 3-1 6-4 6-8.5V7l-6-3zm0 5a2 2 0 012 2v1h.5a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-5a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5H10v-1a2 2 0 012-2zm0 1a1 1 0 00-1 1v1h2v-1a1 1 0 00-1-1z"/>
+    </svg>
+  ),
+  'git & github': (
+    <svg width="32" height="32" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="4" fill="#24292E"/>
+      <path fill="#F05032" d="M18 10.93L13.067 6c-.4-.4-1.05-.4-1.45 0l-1.46 1.45 1.84 1.84c.43-.14.92-.04 1.26.29.34.34.44.84.29 1.27l1.77 1.77c.43-.15.93-.05 1.27.29.48.48.48 1.26 0 1.74s-1.26.48-1.74 0c-.35-.35-.45-.87-.29-1.31l-1.65-1.66v4.27c.13.07.24.16.33.29.48.48.48 1.26 0 1.74s-1.26.48-1.74 0-1.26-.48-1.74 0c-.48-.48-.48-1.26 0-1.74.12-.12.26-.2.4-.26v-4.27c-.15-.06-.29-.15-.4-.26-.36-.36-.45-.88-.28-1.32L9.2 8.46 6.3 11.36c-.4.4-.4 1.05 0 1.46l6.98 6.98c.4.4 1.05.4 1.46 0l6.95-6.95c.4-.4.4-1.05 0-1.46z"/>
+    </svg>
+  ),
+  'html5 & css3': (
+    <svg width="32" height="32" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="4" fill="#E34F26"/>
+      <path fill="#FFF" d="M6 5h12l-1.2 12-4.8 1.5-4.8-1.5L6 5zm2.5 4h7l-.2 2.5h-4.6l.2 2.2 2.6.7 2.6-.7.2-1.2H18l-.4 2.8-5.6 1.6-5.6-1.6L7.2 9z"/>
+    </svg>
+  ),
+  'responsive web design': (
+    <svg width="32" height="32" viewBox="0 0 24 24">
+      <rect width="20" height="20" x="2" y="2" rx="4" fill="#0EA5E9"/>
+      <rect x="5" y="6" width="14" height="9" rx="1" fill="none" stroke="#FFF" strokeWidth="1.5"/>
+      <line x1="9" y1="18" x2="15" y2="18" stroke="#FFF" strokeWidth="1.5"/>
+      <line x1="12" y1="15" x2="12" y2="18" stroke="#FFF" strokeWidth="1.5"/>
+      <rect x="14" y="10" width="4" height="6" rx="0.5" fill="#0EA5E9" stroke="#FFF" strokeWidth="1"/>
     </svg>
   ),
 

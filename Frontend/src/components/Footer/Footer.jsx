@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SITE_NAME, SITE_ROLE, SITE_EMAIL, SOCIAL_LINKS, NAV_LINKS, SITE_GITHUB, SITE_LINKEDIN } from '../../utils/constants';
+import { SITE_NAME, SITE_ROLE, SITE_EMAIL, SITE_PHONE, SOCIAL_LINKS, NAV_LINKS, SITE_GITHUB, SITE_LINKEDIN } from '../../utils/constants';
 import { usePortfolio } from '../../context/PortfolioContext';
 import './Footer.css';
 
@@ -140,6 +140,14 @@ export default function Footer() {
                   {SITE_EMAIL}
                 </button>
               </li>
+              <li>
+                <a
+                  href={`tel:${SITE_PHONE.replace(/\s+/g, '')}`}
+                  className="footer__link"
+                >
+                  {SITE_PHONE}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -147,13 +155,6 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="footer__bottom">
           <p>© {currentYear} {SITE_NAME}. All rights reserved.</p>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <p>Built with React &amp; ❤️</p>
-            <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
-            <Link to="/admin" className="footer__admin-link" style={{ fontSize: '0.8rem', color: '#64748b', textDecoration: 'none' }}>
-              🔒 Admin
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

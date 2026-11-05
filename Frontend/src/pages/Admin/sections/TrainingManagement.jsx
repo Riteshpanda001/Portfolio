@@ -207,7 +207,13 @@ export default function TrainingManagement({ onNotify, initialModalOpen }) {
       ) : (
         <div className="admin-certs-grid">
           {certs.map((cert) => (
-            <div key={cert.id || cert.title} className="admin-card admin-cert-card">
+            <div
+              key={cert.id || cert.title}
+              className="admin-card admin-cert-card"
+              onClick={() => openEdit(cert)}
+              style={{ cursor: 'pointer' }}
+              title={`Click to edit ${cert.title}`}
+            >
               <div className="admin-cert-card__badge-wrap">
                 {cert.badgeUrl ? (
                   <img src={cert.badgeUrl} alt="" className="admin-cert-card__badge-img" />
@@ -247,31 +253,13 @@ export default function TrainingManagement({ onNotify, initialModalOpen }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="admin-btn admin-btn--ghost admin-btn--xs"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       Verify Credential ↗
                     </a>
                   ) : (
                     <span />
                   )}
-
-                  <div className="admin-table-actions">
-                    <button
-                      type="button"
-                      className="admin-icon-btn admin-icon-btn--edit"
-                      onClick={() => openEdit(cert)}
-                      title="Edit Certification"
-                    >
-                      ✏️
-                    </button>
-                    <button
-                      type="button"
-                      className="admin-icon-btn admin-icon-btn--del"
-                      onClick={() => setDeleteConfirm(cert)}
-                      title="Delete Certification"
-                    >
-                      🗑️
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -414,21 +402,45 @@ export default function TrainingManagement({ onNotify, initialModalOpen }) {
                 />
               </div>
 
-              <div className="admin-modal__footer">
-                <button
-                  type="button"
-                  className="admin-btn admin-btn--ghost"
-                  onClick={() => setModalState(null)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="admin-btn admin-btn--primary"
-                >
-                  {saving ? 'Saving...' : modalState === 'new' ? 'Add Certification' : 'Save Changes'}
-                </button>
+              <div
+                className="admin-modal__footer"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                {modalState !== 'new' ? (
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--danger"
+                    onClick={() => {
+                      setDeleteConfirm(modalState);
+                      setModalState(null);
+                    }}
+                  >
+                    🗑️ Delete Certification
+                  </button>
+                ) : (
+                  <div />
+                )}
+
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--ghost"
+                    onClick={() => setModalState(null)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="admin-btn admin-btn--primary"
+                  >
+                    {saving ? 'Saving...' : modalState === 'new' ? 'Add Certification' : 'Save Changes'}
+                  </button>
+                </div>
               </div>
             </form>
           </div>

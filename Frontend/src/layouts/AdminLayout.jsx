@@ -1,19 +1,27 @@
 import React from 'react';
+import AdminNavbar from '../components/Navbar/AdminNavbar';
 
 // ============================================================
-// AdminLayout — Single-Page Persistent Admin Shell
+// AdminLayout — Admin Shell with Top AdminNavbar
 // ============================================================
 export default function AdminLayout({
-  activeSection: _activeSection,
-  onSectionChange: _onSectionChange,
-  profile: _profile,
-  unreadCount: _unreadCount = 0,
-  onSignOut: _onSignOut,
+  activeSection,
+  onSectionChange,
+  profile,
+  onSignOut,
   toasts = [],
   children,
 }) {
   return (
-    <div className="admin-dashboard-container admin-dashboard-container--fullwidth">
+    <div className="admin-dashboard-container admin-dashboard-container--fullwidth" style={{ minHeight: '100vh' }}>
+      {/* Admin-only Top Navbar */}
+      <AdminNavbar
+        activeSection={activeSection}
+        onSectionChange={onSectionChange}
+        profile={profile}
+        onSignOut={onSignOut}
+      />
+
       {/* Toast Notification Stack */}
       {toasts && toasts.length > 0 && (
         <div className="admin-toast-stack" aria-live="polite">
@@ -31,7 +39,7 @@ export default function AdminLayout({
         </div>
       )}
 
-      {/* Full-Width Content Panel */}
+      {/* Main Content */}
       <div className="admin-main-panel admin-main-panel--fullwidth">
         {children}
       </div>

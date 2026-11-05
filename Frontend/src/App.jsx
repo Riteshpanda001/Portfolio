@@ -2,7 +2,7 @@ import { BrowserRouter, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { PortfolioProvider } from './context/PortfolioContext';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import Navbar from './components/Navbar/Navbar';
+import PublicNavbar from './components/Navbar/PublicNavbar';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import GmailModal from './components/common/GmailModal/GmailModal';
@@ -10,17 +10,26 @@ import AppRoutes from './routes/AppRoutes';
 import './index.css';
 
 // ============================================================
-// AppShell — Top Navbar rendered for all pages (Image 2)
+// AppShell — Layout differs between public and admin routes
 // ============================================================
 function AppShell() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
 
+  if (isAdmin) {
+    // Admin routes: render ONLY the routes, no public nav/footer
+    return (
+      <>
+        <AppRoutes />
+        <GmailModal />
+      </>
+    );
+  }
+
+  // Public routes: render PublicNavbar + content + footer
   return (
     <>
-      {/* Top Navbar (Image 2) present across all routes */}
-      <Navbar />
-
+      <PublicNavbar />
       <main
         id="main-content"
         style={{
@@ -30,12 +39,8 @@ function AppShell() {
       >
         <AppRoutes />
       </main>
-
-      {/* Public Footer & Scroll-To-Top only rendered for visitor pages */}
-      {!isAdmin && <Footer />}
-      {!isAdmin && <ScrollToTop />}
-
-      {/* Gmail modal accessible across application */}
+      <Footer />
+      <ScrollToTop />
       <GmailModal />
     </>
   );

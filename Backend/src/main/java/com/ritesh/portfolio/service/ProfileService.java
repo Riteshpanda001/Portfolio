@@ -15,7 +15,7 @@ public class ProfileService {
 
     private final ProfileRepository profileRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public ProfileResponse getProfile() {
         Profile profile = profileRepository.findFirstByOrderByIdAsc()
                 .orElseGet(this::createDefaultProfile);

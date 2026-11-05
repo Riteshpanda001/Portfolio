@@ -54,13 +54,6 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, roleIndex]);
 
-  const handleScrollClick = () => {
-    const aboutEl = document.getElementById('about-page') || document.getElementById('about');
-    if (aboutEl) {
-      aboutEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="hero" className="hero" aria-label="Hero introduction">
       {/* Animated background orbs */}
@@ -68,10 +61,13 @@ export default function Hero() {
       <div className="hero__orb hero__orb--2" aria-hidden="true" />
       <div className="hero__orb hero__orb--3" aria-hidden="true" />
 
+      {/* Seamless section color mixture */}
+      <div className="hero__color-mixture" aria-hidden="true" />
+
       <div className="container hero__content">
         {/* Main text */}
         <div className="hero__text">
-          <span className="hero__badge badge animate-fadeInUp">AVAILABLE FOR WORK ✨</span>
+          <span className="hero__badge badge animate-fadeInUp">AVAILABLE FOR WORK</span>
 
           <h1 className="hero__heading animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
             Hi, I'm<br />
@@ -148,19 +144,6 @@ export default function Hero() {
           </div>
           <div className="hero__avatar-glow" />
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="hero__scroll-indicator"
-        onClick={handleScrollClick}
-        style={{ cursor: 'pointer' }}
-        role="button"
-        tabIndex={0}
-        aria-label="Scroll to About section"
-      >
-        <div className="hero__scroll-dot" />
-        <span>SCROLL</span>
       </div>
     </section>
   );

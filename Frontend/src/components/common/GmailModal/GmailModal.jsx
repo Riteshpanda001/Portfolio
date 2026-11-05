@@ -4,8 +4,7 @@ import { SITE_EMAIL } from '../../../utils/constants';
 import './GmailModal.css';
 
 export default function GmailModal() {
-  const { gmailModalOpen, closeGmailModal, addToast } = usePortfolio();
-  const [copied, setCopied] = useState(false);
+  const { gmailModalOpen, closeGmailModal } = usePortfolio();
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
@@ -33,26 +32,6 @@ export default function GmailModal() {
   }, [gmailModalOpen]);
 
   if (!gmailModalOpen) return null;
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(SITE_EMAIL);
-      setCopied(true);
-      if (addToast) addToast('Email copied to clipboard!', 'success');
-      setTimeout(() => setCopied(false), 2500);
-    } catch {
-      // Fallback copy
-      const textArea = document.createElement('textarea');
-      textArea.value = SITE_EMAIL;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      setCopied(true);
-      if (addToast) addToast('Email copied to clipboard!', 'success');
-      setTimeout(() => setCopied(false), 2500);
-    }
-  };
 
   const handleOpenGmailWeb = (e) => {
     e.preventDefault();
@@ -118,35 +97,12 @@ export default function GmailModal() {
           </button>
         </div>
 
-        {/* Email display box with copy */}
+        {/* Email display box */}
         <div className="gmail-address-card">
           <div className="gmail-address-info">
             <span className="gmail-address-label">Gmail Address</span>
             <span className="gmail-address-value">{SITE_EMAIL}</span>
           </div>
-          <button
-            type="button"
-            onClick={handleCopyEmail}
-            className={`gmail-copy-btn ${copied ? 'gmail-copy-btn--copied' : ''}`}
-            title="Copy email address"
-          >
-            {copied ? (
-              <>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Copied!
-              </>
-            ) : (
-              <>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                </svg>
-                Copy
-              </>
-            )}
-          </button>
         </div>
 
         {/* Quick Compose Form */}

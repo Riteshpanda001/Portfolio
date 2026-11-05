@@ -1,64 +1,34 @@
 import api from './api';
 
-// ============================================================
-// Authorized Administrator Credentials
-// ============================================================
-export const AUTHORIZED_ADMIN_EMAILS = [
-  'riteshkumarpanda001@gmail.com',
-  'riteshkumarpaanda001@gmail.com',
-];
-export const AUTHORIZED_ADMIN_PASSWORDS = [
-  'Ritesh Kumar Panda001@2005',
-  'Riteshkumar Panda001@2005',
-  'RiteshkumarPanda001@2005',
-];
-
 /**
  * Log in as admin.
- * Only the specific authorized email and password are permitted.
  * @param {{ email: string, password: string }} credentials
- * @returns {Promise<{ token: string, user: object }>}
+ * @returns {Promise<{ token: string, refreshToken: string, user: object }>}
  */
 export const login = async (credentials) => {
-  const emailInput = (credentials?.email || '').trim().toLowerCase();
-  const passInput = (credentials?.password || '').trim();
+  const { data } = await api.post('/auth/login', {
+    email: (credentials?.email || '').trim().toLowerCase(),
+    password: credentials?.password || '',
+  });
 
-  // Strict credential check against allowed admin accounts
-  const isEmailMatch = AUTHORIZED_ADMIN_EMAILS.map((e) => e.toLowerCase()).includes(emailInput);
-  const isPassMatch = AUTHORIZED_ADMIN_PASSWORDS.includes(passInput);
-
-  if (!isEmailMatch || !isPassMatch) {
-    throw new Error('Access denied. Invalid Gmail or password. Only authorized administrator can open this panel.');
+  if (data.token) {
+    localStorage.setItem('auth_token', data.token);
   }
-
-  try {
-    const { data } = await api.post('/auth/login', {
-      email: emailInput,
-      password: passInput,
-    });
-    if (data.token) {
-      localStorage.setItem('auth_token', data.token);
-      localStorage.setItem('auth_user', JSON.stringify(data.user));
-    }
-    return data;
-  } catch {
-    // Standalone fallback when backend server is in offline/mock mode
-    const fallbackData = {
-      token: 'admin-jwt-token-rkp-' + Date.now(),
-      user: {
-        id: 1,
-        name: 'Ritesh Kumar Panda',
-        email: emailInput || 'riteshkumarpanda001@gmail.com',
-        role: 'ADMIN',
-      },
-    };
-    localStorage.setItem('auth_token', fallbackData.token);
-    localStorage.setItem('auth_user', JSON.stringify(fallbackData.user));
-    return fallbackData;
+  if (data.refreshToken) {
+    localStorage.setItem('auth_refresh_token', data.refreshToken);
   }
+  if (data) {
+    localStorage.setItem('auth_user', JSON.stringify({
+      id: data.userId,
+      name: data.name,
+      email: data.email,
+      role: data.role,
+    }));
+  }
+  return data;
 };
 
-/** Log out — clears local storage and optionally hits logout endpoint. */
+/** Log out — clears local storage and hits the logout endpoint. */
 export const logout = async () => {
   try {
     await api.post('/auth/logout');
@@ -66,19 +36,23 @@ export const logout = async () => {
     // Ignore server error on logout
   } finally {
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_refresh_token');
     localStorage.removeItem('auth_user');
   }
 };
 
 /**
- * Refresh the current auth token.
+ * Refresh the current auth token using the stored refresh token.
  * @returns {Promise<{ token: string }>}
  */
-export const refreshToken = () =>
-  api.post('/auth/refresh').then((r) => {
+export const refreshToken = () => {
+  const rt = localStorage.getItem('auth_refresh_token');
+  return api.post('/auth/refresh', { refreshToken: rt }).then((r) => {
     if (r.data.token) localStorage.setItem('auth_token', r.data.token);
+    if (r.data.refreshToken) localStorage.setItem('auth_refresh_token', r.data.refreshToken);
     return r.data;
   });
+};
 
 /**
  * Get the currently stored user from local storage (synchronous).
@@ -103,3 +77,4 @@ export const updateProfile = (payload) =>
 /** Change admin password. */
 export const changePassword = (payload) =>
   api.put('/auth/password', payload).then((r) => r.data);
+

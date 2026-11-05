@@ -1,29 +1,36 @@
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import './Testimonials.css';
 
+// ============================================================
+// Testimonials — Kind words from collaborators & mentors
+// Update these with real testimonials before going live!
+// ============================================================
 const TESTIMONIALS = [
   {
     _id: '1',
-    name: 'Anjali Sharma',
-    role: 'Product Manager, TechCorp',
-    avatar: 'AS',
-    text: 'Ritesh is an exceptional developer. He delivered our platform ahead of schedule with outstanding quality. His communication and problem-solving skills are top-notch.',
+    name: 'Prof. Suresh Kumar',
+    role: 'Faculty Mentor, Computer Science',
+    avatar: 'SK',
+    color: '#6C63FF',
+    text: 'Ritesh consistently demonstrated exceptional analytical thinking and a deep understanding of AI/ML concepts. His final-year project on Data Analyst Job Market Intelligence was outstanding — research-grade quality delivered by an undergraduate.',
     rating: 5,
   },
   {
     _id: '2',
-    name: 'Michael Chen',
-    role: 'CTO, StartupXYZ',
-    avatar: 'MC',
-    text: 'Working with Ritesh was a pleasure. He brought creative solutions to complex problems and always went the extra mile to ensure the best user experience.',
+    name: 'Arjun Verma',
+    role: 'Senior Engineer, AI Startup',
+    avatar: 'AV',
+    color: '#00E5C3',
+    text: 'Ritesh built an end-to-end ML pipeline during our internship collaboration that was clean, well-documented, and production-ready. He\'s the kind of engineer who actually reads the docs and thinks about scalability.',
     rating: 5,
   },
   {
     _id: '3',
-    name: 'Priya Patel',
-    role: 'Founder, Digital Agency Co.',
-    avatar: 'PP',
-    text: 'Ritesh has a rare combination of technical expertise and design sensibility. Our clients loved the end results. Highly recommended!',
+    name: 'Neha Singh',
+    role: 'Team Lead, Data Analytics',
+    avatar: 'NS',
+    color: '#60a5fa',
+    text: 'What impressed me most was Ritesh\'s ability to combine both backend engineering and data science seamlessly. The Customer Churn Prediction system he built is now actively used for client retention decisions.',
     rating: 5,
   },
 ];
@@ -32,16 +39,39 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="section">
       <div className="container">
-        <SectionTitle badge="Testimonials" title="What People Say" subtitle="Kind words from people I've had the privilege of working with." />
+        <SectionTitle
+          badge="Testimonials"
+          title="What People Say"
+          subtitle="Kind words from mentors, collaborators, and peers I've had the privilege of working with."
+        />
         <div className="testimonials__grid stagger">
           {TESTIMONIALS.map((t, i) => (
-            <article key={t._id} className="testimonial-card card animate-fadeInUp" style={{ animationDelay: `${i*0.12}s` }}>
-              <div className="testimonial-card__stars" aria-label={`${t.rating} stars`}>
+            <article
+              key={t._id}
+              className="testimonial-card card animate-fadeInUp"
+              style={{ animationDelay: `${i * 0.12}s`, '--accent': t.color }}
+            >
+              {/* Quote icon */}
+              <div className="testimonial-card__quote" aria-hidden="true">"</div>
+
+              {/* Stars */}
+              <div className="testimonial-card__stars" aria-label={`${t.rating} out of 5 stars`}>
                 {'★'.repeat(t.rating)}
               </div>
-              <blockquote className="testimonial-card__text">"{t.text}"</blockquote>
+
+              {/* Text */}
+              <blockquote className="testimonial-card__text">
+                {t.text}
+              </blockquote>
+
+              {/* Author */}
               <div className="testimonial-card__author">
-                <div className="testimonial-card__avatar">{t.avatar}</div>
+                <div
+                  className="testimonial-card__avatar"
+                  style={{ background: `${t.color}22`, border: `2px solid ${t.color}55`, color: t.color }}
+                >
+                  {t.avatar}
+                </div>
                 <div>
                   <p className="testimonial-card__name">{t.name}</p>
                   <p className="testimonial-card__role">{t.role}</p>

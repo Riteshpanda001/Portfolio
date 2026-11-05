@@ -1,9 +1,3 @@
-import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
-
-// ============================================================
-// AdminHeader — Top Navigation Bar (Replaced with Image 2 Navbar)
-// ============================================================
-export default function AdminHeader() {
-  return <Navbar />;
-}
+// AdminHeader is no longer used — AdminNavbar is embedded directly in AdminLayout.
+// This file is kept for backward compatibility.
+export { default } from '../components/Navbar/AdminNavbar';

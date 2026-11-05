@@ -1,9 +1,10 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 import Loading from '../components/Loading/Loading';
 import { useAuth } from '../context/AuthContext';
 
-// ── Public pages (lazy loaded) ────────────────────────────────
+// ── Public pages (lazy loaded) ──────────────────────────────────
 const Home           = lazy(() => import('../pages/Home/Home'));
 const About          = lazy(() => import('../pages/About/About'));
 const Skills         = lazy(() => import('../pages/Skills/Skills'));
@@ -15,18 +16,18 @@ const Certifications = lazy(() => import('../pages/Certifications/Certifications
 const Contact        = lazy(() => import('../pages/Contact/Contact'));
 const Resume         = lazy(() => import('../pages/Resume/Resume'));
 
-// ── Admin pages (lazy loaded) ─────────────────────────────────
+// ── Admin pages (lazy loaded) ───────────────────────────────────
 const AdminLogin     = lazy(() => import('../pages/Admin/Login'));
 const AdminDashboard = lazy(() => import('../pages/Admin/Dashboard'));
 
-// ── Protected route wrapper ───────────────────────────────────
+// ── Protected route wrapper ─────────────────────────────────────
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
   if (!isAuthenticated) return <Navigate to="/admin/login" replace />;
   return children;
 }
 
-// ── App Routes ────────────────────────────────────────────────
+// ── App Routes ──────────────────────────────────────────────────
 export default function AppRoutes() {
   return (
     <Suspense fallback={<Loading variant="page" />}>
@@ -59,8 +60,8 @@ export default function AppRoutes() {
         {/* Legacy admin sub-routes redirect to single admin route */}
         <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
 
-        {/* 404 fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* 404 Not Found */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

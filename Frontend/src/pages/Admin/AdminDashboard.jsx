@@ -24,6 +24,16 @@ export default function AdminDashboard({ defaultTab }) {
 
   const [activeSection, setActiveSection] = useState(initialSection);
 
+  // Sync activeSection when URL search params change
+  useEffect(() => {
+    const currentSection =
+      searchParams.get('section') ||
+      searchParams.get('tab') ||
+      defaultTab ||
+      'overview';
+    setActiveSection(currentSection);
+  }, [searchParams, defaultTab]);
+
   // Profile data for sidebar
   const [profile, setProfile] = useState({
     name: 'Ritesh Kumar Panda',

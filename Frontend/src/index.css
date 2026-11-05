@@ -16,6 +16,12 @@
   --gradient-mint:       linear-gradient(135deg, #6C63FF, #00E5C3);
   --gradient-card:       linear-gradient(145deg, #141B2D, #0d1424);
   --gradient-glow:       radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.25) 0%, transparent 70%);
+  --gradient-blended-bg: radial-gradient(ellipse 65% 50% at 10% 0%, rgba(0, 229, 195, 0.10) 0%, transparent 55%),
+                         radial-gradient(ellipse 60% 55% at 90% 12%, rgba(108, 99, 255, 0.12) 0%, transparent 55%),
+                         radial-gradient(ellipse 55% 45% at 15% 40%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
+                         radial-gradient(ellipse 60% 50% at 88% 65%, rgba(0, 229, 195, 0.08) 0%, transparent 50%),
+                         radial-gradient(ellipse 50% 45% at 20% 90%, rgba(108, 99, 255, 0.07) 0%, transparent 50%),
+                         linear-gradient(180deg, #11162A 0%, #0B0F1A 35%, #0d1222 70%, #0B0F1A 100%);
 
   /* Typography */
   --font-primary:        'Outfit', 'Inter', sans-serif;
@@ -68,7 +74,11 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg);
+  background-color: #0B0F1A;
+  background-image: var(--gradient-blended-bg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
@@ -77,12 +87,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background global glow */
+/* Background global seamless gradient layer (fixed for continuous smooth scrolling) */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: var(--gradient-glow);
+  background-color: #0B0F1A;
+  background-image: var(--gradient-blended-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
   pointer-events: none;
   z-index: 0;
 }

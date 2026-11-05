@@ -25,6 +25,11 @@ public class SkillController {
         return ResponseEntity.ok(skillService.getAllSkills());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<SkillResponse> getSkillById(@PathVariable Long id) {
+        return ResponseEntity.ok(skillService.getSkillById(id));
+    }
+
     @GetMapping("/grouped")
     public ResponseEntity<Map<String, List<SkillResponse>>> getSkillsGroupedByCategory() {
         return ResponseEntity.ok(skillService.getSkillsGroupedByCategory());

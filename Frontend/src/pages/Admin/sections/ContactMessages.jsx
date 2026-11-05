@@ -106,25 +106,25 @@ export default function ContactMessages({ onNotify, onMessagesUpdated }) {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="admin-filter-bar">
-        <div className="admin-cat-pills">
+      <div className="admin-controls-bar">
+        <div className="admin-filter-tabs">
           <button
             type="button"
-            className={`admin-cat-pill ${filter === 'all' ? 'admin-cat-pill--active' : ''}`}
+            className={`admin-filter-tab ${filter === 'all' ? 'admin-filter-tab--active' : ''}`}
             onClick={() => setFilter('all')}
           >
             All Messages ({messages.length})
           </button>
           <button
             type="button"
-            className={`admin-cat-pill ${filter === 'unread' ? 'admin-cat-pill--active' : ''}`}
+            className={`admin-filter-tab ${filter === 'unread' ? 'admin-filter-tab--active' : ''}`}
             onClick={() => setFilter('unread')}
           >
             Unread ({unreadCount})
           </button>
           <button
             type="button"
-            className={`admin-cat-pill ${filter === 'read' ? 'admin-cat-pill--active' : ''}`}
+            className={`admin-filter-tab ${filter === 'read' ? 'admin-filter-tab--active' : ''}`}
             onClick={() => setFilter('read')}
           >
             Read ({messages.length - unreadCount})
@@ -145,6 +145,7 @@ export default function ContactMessages({ onNotify, onMessagesUpdated }) {
               type="button"
               className="admin-search-clear"
               onClick={() => setSearch('')}
+              title="Clear search"
             >
               ×
             </button>
