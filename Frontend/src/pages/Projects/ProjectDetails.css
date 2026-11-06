@@ -46,6 +46,14 @@
   box-shadow: 0 4px 16px rgba(108, 99, 255, 0.2);
 }
 
+.project-details__back-icon {
+  transition: transform 0.25s ease;
+}
+
+.project-details__back-btn:hover .project-details__back-icon {
+  transform: translateX(-3px);
+}
+
 /* Card Container */
 .project-details__card {
   background: rgba(20, 27, 45, 0.9);
@@ -120,23 +128,77 @@
 
 /* Sections */
 .project-details__section {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
+  background: rgba(11, 15, 26, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 4px solid #6C63FF;
+  border-radius: 14px;
+  padding: 1.4rem 1.6rem;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.project-details__section:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.project-details__section--problem {
+  border-left-color: #F59E0B;
+}
+
+.project-details__section--problem .project-details__section-title {
+  color: #FBBF24;
+}
+
+.project-details__section--solution {
+  border-left-color: #00E5C3;
+}
+
+.project-details__section--solution .project-details__section-title {
+  color: #00E5C3;
+}
+
+.project-details__section--skills {
+  border-left-color: #818cf8;
+}
+
+.project-details__section--skills .project-details__section-title {
+  color: #818cf8;
+}
+
+.project-details__section--learnings {
+  border-left-color: #C084FC;
+}
+
+.project-details__section--learnings .project-details__section-title {
+  color: #C084FC;
+}
+
+.project-details__section--links {
+  border-left-color: #38BDF8;
+}
+
+.project-details__section--links .project-details__section-title {
+  color: #38BDF8;
 }
 
 .project-details__section-title {
-  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #818cf8;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .project-details__section-text {
-  font-size: 0.95rem;
-  color: #8A94A6;
-  line-height: 1.75;
+  font-size: 1rem;
+  color: #CBD5E1;
+  line-height: 1.8;
   margin: 0;
+  font-weight: 400;
 }
 
 @media (max-width: 640px) {

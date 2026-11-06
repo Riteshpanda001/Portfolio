@@ -2,37 +2,105 @@ import { useParams, Link } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import { PROJECTS } from '../../data/projects';
 import { useProject } from '../../hooks/useProjects';
-import { ProjectIcon } from '../../sections/FeaturedProjects/ProjectCard';
 import './ProjectDetails.css';
 
 export default function ProjectDetails() {
   const { id } = useParams();
   const { project: apiProject, loading } = useProject(id);
 
-  // Fallback to local PROJECTS matching id or slug
-  const localProject = PROJECTS.find(
-    (p) =>
-      String(p.id || '').toLowerCase() === String(id || '').toLowerCase() ||
-      String(p._id || '').toLowerCase() === String(id || '').toLowerCase()
-  );
+  // Match local project by slug ID, numeric index, displayOrder, or title
+  const localProject =
+    PROJECTS.find(
+      (p) =>
+        String(p.id || '').toLowerCase() === String(id || '').toLowerCase() ||
+        String(p._id || '').toLowerCase() === String(id || '').toLowerCase() ||
+        String(p.displayOrder || '') === String(id || '') ||
+        (apiProject?.title && p.title?.toLowerCase() === apiProject.title?.toLowerCase())
+    ) ||
+    PROJECTS[Math.max(0, parseInt(id, 10) - 1)] ||
+    PROJECTS[0];
 
-  const data = apiProject || localProject || PROJECTS[0];
+  // Merge API data with rich local case-study data so all sections are always populated
+  const data = {
+    ...localProject,
+    ...(apiProject || {}),
+    title: apiProject?.title || localProject?.title,
+    category: apiProject?.category || localProject?.category,
+    status: apiProject?.status || localProject?.status || 'Incomplete',
+    statusType: apiProject?.statusType || localProject?.statusType || 'incomplete',
+    imageUrl: apiProject?.imageUrl || localProject?.imageUrl,
+    problem:
+      apiProject?.problem ||
+      apiProject?.description ||
+      localProject?.problem ||
+      '',
+    solution:
+      apiProject?.solution ||
+      apiProject?.longDescription ||
+      localProject?.solution ||
+      '',
+    keyLearnings:
+      apiProject?.keyLearnings ||
+      localProject?.keyLearnings ||
+      '',
+    technologies:
+      (apiProject?.technologies && apiProject.technologies.length > 0)
+        ? apiProject.technologies
+        : (apiProject?.tags && apiProject.tags.length > 0)
+        ? apiProject.tags
+        : (localProject?.technologies || []),
+    githubUrl: apiProject?.githubUrl || localProject?.githubUrl,
+    liveUrl: apiProject?.liveUrl || localProject?.liveUrl,
+    iconType: localProject?.iconType || 'code',
+  };
 
   if (loading) return <Loading />;
 
   return (
     <section id="project-details-page" className="section project-details">
       <div className="container project-details__container">
-        {/* Top Back Navigation Control */}
+        {/* Top Back to Home Navigation */}
         <div className="project-details__nav-top">
-          <Link to="/projects" className="project-details__back-btn">
-            ← View All Projects
+          <Link to="/" className="project-details__back-btn" id="back-to-home-btn" title="Back to Home">
+            <svg
+              className="project-details__back-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Back to Home</span>
           </Link>
         </div>
 
         {data && (
           <div className="project-details__card card animate-fadeInUp">
-            {/* 1. PROJECT IMAGE */}
+            {/* Top Status Badge */}
+            <div className="project-details__status-row text-center" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+              <span
+                className={`project-card__status project-card__status--${
+                  data.statusType ||
+                  (data.status === 'Completed'
+                    ? 'completed'
+                    : data.status === 'In Development'
+                    ? 'in-development'
+                    : 'incomplete')
+                }`}
+                style={{ position: 'relative', top: 'auto', right: 'auto', display: 'inline-flex' }}
+              >
+                <span className="project-card__status-dot" />
+                {data.status || 'Incomplete'}
+              </span>
+            </div>
+
+            {/* 1. PROJECT IMAGE BANNER */}
             {data.imageUrl && (
               <div className="project-details__image-wrap">
                 <img
@@ -43,36 +111,10 @@ export default function ProjectDetails() {
               </div>
             )}
 
+            {/* 2. HEADER: TITLE, CATEGORY */}
             <div className="project-details__header-content text-center">
-              {/* 2. STATUS BADGE */}
-              <div className="project-details__status-row">
-                <span
-                  className={`project-card__status project-card__status--${
-                    data.statusType ||
-                    (data.status === 'Completed'
-                      ? 'completed'
-                      : data.status === 'In Development'
-                      ? 'in-development'
-                      : 'incomplete')
-                  }`}
-                  style={{ position: 'relative', top: 'auto', right: 'auto', display: 'inline-flex' }}
-                >
-                  <span className="project-card__status-dot" />
-                  {data.status || 'Incomplete'}
-                </span>
-              </div>
-
-              {/* 3. PROJECT ICON */}
-              <div className="project-details__icon-wrap">
-                <div className="project-card__icon-box">
-                  <ProjectIcon iconType={data.iconType} />
-                </div>
-              </div>
-
-              {/* 4. PROJECT TITLE */}
               <h1 className="project-details__title">{data.title}</h1>
 
-              {/* 5. CATEGORY */}
               <span className="project-card__category project-details__category">
                 {data.category}
               </span>
@@ -80,36 +122,34 @@ export default function ProjectDetails() {
 
             <div className="project-details__divider" />
 
-            {/* 6. PROBLEM */}
+            {/* 3. PROBLEM STATEMENT */}
             {data.problem && (
-              <div className="project-details__section">
-                <h3 className="project-details__section-title">PROBLEM</h3>
+              <div className="project-details__section project-details__section--problem">
+                <h3 className="project-details__section-title">
+                  <span>⚠️</span> Problem
+                </h3>
                 <p className="project-details__section-text">{data.problem}</p>
               </div>
             )}
 
-            {/* 7. SOLUTION */}
+            {/* 4. PROPOSED SOLUTIONS */}
             {data.solution && (
-              <div className="project-details__section">
-                <h3 className="project-details__section-title">SOLUTION</h3>
+              <div className="project-details__section project-details__section--solution">
+                <h3 className="project-details__section-title">
+                  <span>💡</span> Solutions
+                </h3>
                 <p className="project-details__section-text">{data.solution}</p>
               </div>
             )}
 
-            {/* 8. KEY LEARNINGS */}
-            {data.keyLearnings && (
-              <div className="project-details__section">
-                <h3 className="project-details__section-title">KEY LEARNINGS</h3>
-                <p className="project-details__section-text">{data.keyLearnings}</p>
-              </div>
-            )}
-
-            {/* 9. TECHNOLOGIES */}
-            {(data.technologies || data.tags) && (
-              <div className="project-details__section">
-                <h3 className="project-details__section-title">TECHNOLOGIES</h3>
+            {/* 5. SKILLS & TECHNOLOGIES */}
+            {data.technologies && data.technologies.length > 0 && (
+              <div className="project-details__section project-details__section--skills">
+                <h3 className="project-details__section-title">
+                  <span>⚡</span> Skills & Technologies
+                </h3>
                 <div className="project-card__tech-tags">
-                  {(data.technologies || data.tags || []).map((tech) => (
+                  {data.technologies.map((tech) => (
                     <span key={tech} className="project-card__tech-tag">
                       {tech}
                     </span>
@@ -118,10 +158,22 @@ export default function ProjectDetails() {
               </div>
             )}
 
-            {/* 10. PROJECT LINKS */}
-            <div className="project-details__section">
-              <h3 className="project-details__section-title">PROJECT LINKS</h3>
-              <div className="project-card__actions" style={{ borderTop: 'none', paddingTop: 0 }}>
+            {/* 6. KEY LEARNING */}
+            {data.keyLearnings && (
+              <div className="project-details__section project-details__section--learnings">
+                <h3 className="project-details__section-title">
+                  <span>🎯</span> Key Learning
+                </h3>
+                <p className="project-details__section-text">{data.keyLearnings}</p>
+              </div>
+            )}
+
+            {/* 7. PROJECT LINKS */}
+            <div className="project-details__section project-details__section--links">
+              <h3 className="project-details__section-title">
+                <span>🔗</span> Project Links
+              </h3>
+              <div className="project-card__actions" style={{ borderTop: 'none', paddingTop: '0.25rem' }}>
                 {data.githubUrl || data.github ? (
                   <a
                     href={data.githubUrl || data.github}
@@ -159,13 +211,6 @@ export default function ProjectDetails() {
             </div>
           </div>
         )}
-
-        {/* Bottom Back Navigation Control */}
-        <div className="project-details__nav-bottom">
-          <Link to="/projects" className="project-details__back-btn">
-            ← View All Projects
-          </Link>
-        </div>
       </div>
     </section>
   );

@@ -16,6 +16,7 @@ export const PUBLIC_NAV_LINKS = [
   { label: 'Home',       id: 'home',       path: '/' },
   { label: 'About',      id: 'about',      path: '/about' },
   { label: 'Skills',     id: 'skills',     path: '/skills' },
+  { label: 'Projects',   id: 'projects',   path: '/projects' },
   { label: 'Experience', id: 'experience', path: '/experience' },
   { label: 'Contact',    id: 'contact',    path: '/contact' },
 ];

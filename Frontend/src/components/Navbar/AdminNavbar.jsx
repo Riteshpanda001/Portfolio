@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { ADMIN_NAV_LINKS } from '../../utils/constants';
 import './AdminNavbar.css';
 
 export default function AdminNavbar({ activeSection, onSectionChange, onSignOut }) {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleNavClick = (item) => {
     if (item.id === 'dashboard') {
@@ -32,7 +34,12 @@ export default function AdminNavbar({ activeSection, onSectionChange, onSignOut 
       <div className="admin-navbar__inner">
         {/* Back Button */}
         <div className="admin-navbar__brand">
-          <Link to="/" className="admin-navbar__back-btn" title="Back to Portfolio">
+          <Link
+            to="/"
+            onClick={() => logout()}
+            className="admin-navbar__back-btn"
+            title="Back to Portfolio (Sign out)"
+          >
             <svg
               className="admin-navbar__back-icon"
               width="15"

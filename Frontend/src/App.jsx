@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { BrowserRouter, useLocation } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { PortfolioProvider } from './context/PortfolioContext';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import PublicNavbar from './components/Navbar/PublicNavbar';
@@ -14,7 +15,15 @@ import './index.css';
 // ============================================================
 function AppShell() {
   const location = useLocation();
+  const { isAuthenticated, logout } = useAuth();
   const isAdmin = location.pathname.startsWith('/admin');
+
+  // Automatically sign out of the Admin section whenever navigating back to the home page or public pages
+  useEffect(() => {
+    if (!isAdmin && isAuthenticated) {
+      logout();
+    }
+  }, [isAdmin, isAuthenticated, logout]);
 
   if (isAdmin) {
     // Admin routes: render ONLY the routes, no public nav/footer

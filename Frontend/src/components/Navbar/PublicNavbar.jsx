@@ -37,7 +37,7 @@ export default function PublicNavbar() {
       }
 
       // Check sections from bottom to top to identify current section in view
-      const sectionIds = ['contact', 'experience', 'skills', 'about'];
+      const sectionIds = ['contact', 'experience', 'projects', 'skills', 'about'];
       for (const id of sectionIds) {
         const el = document.getElementById(id);
         if (el) {
@@ -86,6 +86,7 @@ export default function PublicNavbar() {
     const sectionMap = {
       About: 'about',
       Skills: 'skills',
+      Projects: 'projects',
       Experience: 'experience',
       Contact: 'contact',
     };
@@ -129,6 +130,7 @@ export default function PublicNavbar() {
         Home: 'home',
         About: 'about',
         Skills: 'skills',
+        Projects: 'projects',
         Experience: 'experience',
         Contact: 'contact',
       };
