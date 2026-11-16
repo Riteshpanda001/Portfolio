@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllMessages, markMessageRead, deleteMessage } from '../../services/contactService';
 import './Admin.css';
@@ -14,7 +14,7 @@ export default function AdminMessages() {
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [search, setSearch] = useState('');
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     setLoading(true);
     try {
       const data = await getAllMessages({ unreadOnly: filterUnread || undefined });
@@ -29,11 +29,11 @@ export default function AdminMessages() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filterUnread]);
 
   useEffect(() => {
     fetchMessages();
-  }, [filterUnread]);
+  }, [fetchMessages]);
 
   const handleMarkAsRead = async (msg) => {
     const id = msg.id || msg._id;

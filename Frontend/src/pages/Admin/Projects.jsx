@@ -16,6 +16,7 @@ import './Admin.css';
 
 export default function AdminProjects() {
   const [projects, setProjects] = useState(DEFAULT_PROJECTS);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [editModal, setEditModal] = useState(null); // null, 'new', or project object
   const [formData, setFormData] = useState({
@@ -207,6 +208,13 @@ export default function AdminProjects() {
           </div>
         </div>
 
+        {loading ? (
+          <div className="admin-loading-state">
+            <div className="admin-spinner" />
+            <p>Loading projects...</p>
+          </div>
+        ) : (
+        <>
         {feedback.message && (
           <div
             className={`card`}
@@ -536,6 +544,8 @@ export default function AdminProjects() {
             </div>
           </div>
         )}
+        </>
+      )}
       </div>
     </div>
   );

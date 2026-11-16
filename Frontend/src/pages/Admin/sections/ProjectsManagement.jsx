@@ -243,6 +243,35 @@ export default function ProjectsManagement({ onNotify, initialModalOpen }) {
         </button>
       </div>
 
+      {/* Search & Category Filter Toolbar */}
+      <div
+        className="admin-toolbar"
+        style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}
+      >
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search projects..."
+          className="admin-input"
+          style={{ flex: '1 1 240px', maxWidth: '340px' }}
+          aria-label="Search projects"
+        />
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="admin-input"
+          style={{ flex: '0 1 200px', maxWidth: '220px' }}
+          aria-label="Filter by category"
+        >
+          {categories.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Projects List — Premium Responsive Card Grid */}
       {loading ? (
         <div className="admin-loading-state">

@@ -153,7 +153,7 @@ export const SKILL_ICONS = {
   ),
 
   // Java & Backend
-  'java (core & advanced)': (
+  'java (spring & backend)': (
     <svg width="32" height="32" viewBox="0 0 24 24">
       <rect width="20" height="20" x="2" y="2" rx="4" fill="#1E293B"/>
       <path fill="#E76F00" d="M12 4c-1.5 1.5-.5 3 .5 4 1 1 1 2.5 0 3.5-.5.5-1 .5-1.5 1s.5 2 2 1c2-1 2.5-3 1-4.5-1-1-1.5-2.5 0-4-1 0-1.5-.5-2-1z"/>

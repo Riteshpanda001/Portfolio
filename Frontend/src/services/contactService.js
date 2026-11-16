@@ -27,7 +27,7 @@ export const sendContactMessage = async (payload) => {
   try {
     const res = await api.post('/contact', payload);
     return res.data;
-  } catch (err) {
+  } catch {
     // Save locally so inquiries persist
     const current = getStoredMessages();
     const newMsg = {

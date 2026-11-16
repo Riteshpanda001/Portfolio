@@ -75,6 +75,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 15%;
 }
 
 .admin-sidebar__avatar-fallback {
@@ -1951,6 +1952,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 15%;
 }
 
 .admin-profile-header__avatar-fallback {
@@ -2324,6 +2326,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 15%;
 }
 
 .admin-modal-avatar-placeholder {

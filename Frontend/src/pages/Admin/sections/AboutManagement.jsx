@@ -4,37 +4,47 @@ import { profileService } from '../../../services/profileService';
 // ============================================================
 // AboutManagement — About Page & Bio Highlights Manager
 // ============================================================
+
+const DEFAULT_ABOUT = {
+  heading: 'About Me — Passionate AI/ML & Software Engineer',
+  intro:
+    'Computer Science Engineering student at NIST University with proven practical exposure in Generative AI, Large Language Models, and modern Full-Stack engineering.',
+  educationSummary:
+    'B.Tech in Computer Science and Engineering @ NIST University (2023 - 2027) with deep focus on algorithms, distributed computing, and artificial intelligence.',
+};
+
+// Read persisted About content once, up front, so the effect only syncs
+// with the external profile API (no synchronous setState inside an effect).
+function loadStoredAbout() {
+  try {
+    const saved = localStorage.getItem('portfolio_about_content');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return {
+        heading: parsed.heading || DEFAULT_ABOUT.heading,
+        intro: parsed.intro || DEFAULT_ABOUT.intro,
+        educationSummary: parsed.educationSummary || DEFAULT_ABOUT.educationSummary,
+      };
+    }
+  } catch {
+    // Ignore malformed storage
+  }
+  return { ...DEFAULT_ABOUT };
+}
+
 export default function AboutManagement({ onNotify }) {
-  const [formData, setFormData] = useState({
-    heading: 'About Me — Passionate AI/ML & Software Engineer',
-    intro:
-      'Computer Science Engineering student at NIST University with proven practical exposure in Generative AI, Large Language Models, and modern Full-Stack engineering.',
-    educationSummary:
-      'B.Tech in Computer Science and Engineering @ NIST University (2023 - 2027) with deep focus on algorithms, distributed computing, and artificial intelligence.',
-  });
+  const [formData, setFormData] = useState(loadStoredAbout);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    // Load existing stored content if available
-    try {
-      const saved = localStorage.getItem('portfolio_about_content');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        setFormData((prev) => ({
-          ...prev,
-          heading: parsed.heading || prev.heading,
-          intro: parsed.intro || prev.intro,
-          educationSummary: parsed.educationSummary || prev.educationSummary,
-        }));
-      }
-    } catch {}
+    let cancelled = false;
 
     profileService
       .getProfile()
       .then((data) => {
-        if (data) {
+        if (!cancelled && data) {
           setFormData((prev) => ({
             ...prev,
             intro: data.bio || prev.intro,
@@ -42,7 +52,13 @@ export default function AboutManagement({ onNotify }) {
         }
       })
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const handleChange = (e) => {

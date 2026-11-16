@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SITE_NAME, SOCIAL_LINKS } from '../../utils/constants';
 import { usePortfolio } from '../../context/PortfolioContext';
-import heroImg from '../../assets/hero.png';
+import profileImg from '../../assets/profile.jpg';
 import './Hero.css';
 
 // ============================================================
@@ -136,13 +136,17 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Avatar */}
-        <div className="hero__avatar-wrap animate-fadeInUp" style={{ animationDelay: '0.2s' }} aria-hidden="true">
-          <div className="hero__avatar-ring" />
-          <div className="hero__avatar animate-float">
-            <img src={profile?.avatarUrl || heroImg} alt={profile?.name || SITE_NAME} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '26px' }} />
+        {/* Profile Avatar */}
+        <div className="hero__avatar-wrap animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <div className="profile-wrapper animate-float">
+            <div className="profile-image-container hero__avatar">
+              <img
+                src={profile?.avatarUrl || profileImg}
+                alt={profile?.name || SITE_NAME}
+                className="hero__avatar-img"
+              />
+            </div>
           </div>
-          <div className="hero__avatar-glow" />
         </div>
       </div>
     </section>

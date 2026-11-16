@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   User,
   Mail,
@@ -555,6 +555,19 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
                   >
                     <LinkedinIcon size={15} />
                     <span>LinkedIn</span>
+                    <ExternalLink size={12} className="admin-social-pill__ext" />
+                  </a>
+                )}
+                {profile.twitterUrl && (
+                  <a
+                    href={profile.twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="admin-social-pill"
+                    title="View Twitter"
+                  >
+                    <TwitterIcon size={15} />
+                    <span>Twitter</span>
                     <ExternalLink size={12} className="admin-social-pill__ext" />
                   </a>
                 )}

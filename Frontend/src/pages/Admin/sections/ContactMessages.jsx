@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   getAllMessages,
   markMessageAsRead,
@@ -16,7 +16,7 @@ export default function ContactMessages({ onNotify, onMessagesUpdated }) {
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     setLoading(true);
     try {
       const data = await getAllMessages();
@@ -29,11 +29,11 @@ export default function ContactMessages({ onNotify, onMessagesUpdated }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [onMessagesUpdated]);
 
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [fetchMessages]);
 
   const handleOpenMessage = async (msg) => {
     setSelectedMessage(msg);
