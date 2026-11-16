@@ -1,10 +1,9 @@
 import { usePortfolio } from '../../context/PortfolioContext';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import Button from '../../components/Button/Button';
 import './Resume.css';
 
 // ============================================================
-// Resume Page — Official PDF Resume Viewer + Actions
+// Resume Page — Official PDF Resume Viewer
 // ============================================================
 
 export default function Resume() {
@@ -19,33 +18,6 @@ export default function Resume() {
           title="Official Resume"
           subtitle="Explore my complete qualifications, AI/ML engineering experience, education, and technical skill matrix."
         />
-
-        <div className="resume-page__actions">
-          <Button
-            href={resumeUrl}
-            target="_blank"
-            download="Ritesh_Kumar_Panda_Resume.pdf"
-            icon="↓"
-            iconPosition="right"
-            size="lg"
-          >
-            Download PDF
-          </Button>
-          <Button
-            href={resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="secondary"
-            size="lg"
-            icon="↗"
-            iconPosition="right"
-          >
-            Open in New Tab
-          </Button>
-          <Button href="/contact" variant="ghost" size="lg">
-            Get in Touch →
-          </Button>
-        </div>
 
         {/* Embedded PDF Document Display */}
         <div className="resume-pdf-card animate-fadeInUp">

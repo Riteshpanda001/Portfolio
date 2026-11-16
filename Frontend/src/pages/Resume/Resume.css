@@ -1,11 +1,3 @@
-.resume-page__actions {
-  display: flex;
-  gap: var(--space-md);
-  justify-content: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
-
 /* ── PDF Container Card ─────────────────────────────────────── */
 .resume-pdf-card {
   max-width: 960px;
