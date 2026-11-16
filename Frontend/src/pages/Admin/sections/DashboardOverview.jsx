@@ -19,11 +19,14 @@ export default function DashboardOverview({
     setLoading(true);
     Promise.allSettled([getAllProjects(), getAllSkills(), getAllMessages()])
       .then(([proj, skill, msg]) => {
-        const projects  = proj.status  === 'fulfilled' ? (proj.value?.length  || 0) : 0;
-        const skills    = skill.status === 'fulfilled' ? (skill.value?.length || 0) : 0;
-        const messages  = msg.status   === 'fulfilled' ? (msg.value?.length   || 0) : 0;
+        const projList  = Array.isArray(proj.value) ? proj.value : (proj.value?.content || []);
+        const skillList = Array.isArray(skill.value) ? skill.value : (skill.value?.content || []);
+        const msgList   = Array.isArray(msg.value) ? msg.value : (msg.value?.content || []);
+        const projects  = proj.status  === 'fulfilled' ? projList.length  : 0;
+        const skills    = skill.status === 'fulfilled' ? skillList.length : 0;
+        const messages  = msg.status   === 'fulfilled' ? msgList.length   : 0;
         const unread    = msg.status   === 'fulfilled'
-          ? msg.value.filter(m => !m.isRead && !m.read).length : 0;
+          ? msgList.filter(m => !m.isRead && !m.read).length : 0;
         setStats({ projects, skills, messages, unread });
       })
       .finally(() => setLoading(false));
