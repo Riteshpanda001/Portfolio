@@ -18,7 +18,7 @@ const Resume         = lazy(() => import('../pages/Resume/Resume'));
 
 // ── Admin pages (lazy loaded) ───────────────────────────────────
 const AdminLogin     = lazy(() => import('../pages/Admin/Login'));
-const AdminDashboard = lazy(() => import('../pages/Admin/Dashboard'));
+const AdminDashboard = lazy(() => import('../pages/Admin/AdminDashboard'));
 
 // ── Protected route wrapper ─────────────────────────────────────
 function ProtectedRoute({ children }) {
