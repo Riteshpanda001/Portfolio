@@ -4,6 +4,7 @@ import com.ritesh.portfolio.entity.*;
 import com.ritesh.portfolio.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -25,25 +26,27 @@ public class DataInitializer implements CommandLineRunner {
     private final CertificationRepository certificationRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Value("${admin.default-email:riteshkumarpanda001@gmail.com}")
+    private String adminEmail;
+
+    @Value("${admin.default-password:Admin@123456}")
+    private String adminPassword;
+
+    @Value("${admin.default-name:Ritesh Kumar Panda}")
+    private String adminName;
+
     @Override
     public void run(String... args) {
         if (userRepository.count() == 0) {
-            log.info("Initializing admin user...");
+            log.info("Initializing primary admin account...");
             User admin = User.builder()
-                    .name("Ritesh Kumar Panda")
-                    .email("riteshkumarpanda001@gmail.com")
-                    .password(passwordEncoder.encode("Ritesh Kumar Panda001@2005"))
+                    .name(adminName)
+                    .email(adminEmail)
+                    .password(passwordEncoder.encode(adminPassword))
                     .role(User.Role.ADMIN)
                     .build();
             userRepository.save(admin);
-
-            User adminAlt = User.builder()
-                    .name("Ritesh Kumar Panda")
-                    .email("riteshkumarpaanda001@gmail.com")
-                    .password(passwordEncoder.encode("Ritesh Kumar Panda001@2005"))
-                    .role(User.Role.ADMIN)
-                    .build();
-            userRepository.save(adminAlt);
+            log.info("Admin account successfully initialized for: {}", adminEmail);
         }
 
         if (profileRepository.count() == 0) {

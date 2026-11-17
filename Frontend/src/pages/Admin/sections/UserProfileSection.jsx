@@ -1201,7 +1201,7 @@ export default function UserProfileSection({ onNotify, onProfileUpdated }) {
                     onChange={(e) =>
                       setResumeForm((prev) => ({ ...prev, resumeUrl: e.target.value }))
                     }
-                    placeholder="/assets/resume/Ritesh_Panda_Resume.pdf"
+                    placeholder="/Ritesh_Kumar_Panda_Resume.pdf"
                     className="admin-input"
                   />
                 </div>

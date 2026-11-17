@@ -1,5 +1,6 @@
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Button        from '../../components/Button/Button';
+import { usePortfolio } from '../../context/PortfolioContext';
 import './About.css';
 
 // ============================================================
@@ -14,6 +15,8 @@ const STATS = [
 ];
 
 export default function About() {
+  const { profile } = usePortfolio();
+  const resumeUrl = profile?.resumeUrl || '/Ritesh_Kumar_Panda_Resume.pdf';
   return (
     <section id="about-page" className="section about-page">
       <div className="container">
@@ -40,7 +43,7 @@ export default function About() {
             </p>
 
             <div className="about-page__actions">
-              <Button href="/resume/Ritesh_Panda_Resume.pdf" icon="↓" iconPosition="right">
+              <Button href={resumeUrl} download="Ritesh_Kumar_Panda_Resume.pdf" icon="↓" iconPosition="right">
                 Download Resume
               </Button>
               <Button variant="secondary" href="#contact">Get in Touch</Button>

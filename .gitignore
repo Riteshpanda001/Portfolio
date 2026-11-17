@@ -1,4 +1,4 @@
-# Logs
+# Logs and debugging
 logs
 *.log
 npm-debug.log*
@@ -8,28 +8,49 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Dependencies
-node_modules
+node_modules/
 **/node_modules/
 
-# Build artifacts
-dist
-dist-ssr
+# Build artifacts and caches
+dist/
+dist-ssr/
 **/dist/
 target/
 **/target/
 build/
 **/build/
-
+.vite/
+.parcel-cache/
 *.local
+
+# Environment variables (preserve .env.example)
+.env
+.env.*
+!.env.example
+Frontend/.env
+Backend/.env
+
+# Local database binaries
+Backend/data/
+*.mv.db
+*.trace.db
+
+# Runtime uploads
+Backend/uploads/
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
+*.iws
+*.iml
+*.ipr
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
+*.bak
+*.tmp
+thumbs.db

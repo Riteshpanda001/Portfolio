@@ -21,7 +21,7 @@ export function PortfolioProvider({ children }) {
     twitterUrl: 'https://twitter.com/riteshpanda',
     websiteUrl: 'https://riteshpanda.dev',
     avatarUrl: '',
-    resumeUrl: '/resume.pdf',
+    resumeUrl: '/Ritesh_Kumar_Panda_Resume.pdf',
     isAvailableForHire: true,
   });
 

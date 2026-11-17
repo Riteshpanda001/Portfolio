@@ -86,3 +86,9 @@ management:
     health:
       show-details: when_authorized
 
+# ── Admin Account Initializer ────────────────────────────────
+admin:
+  default-email: ${ADMIN_EMAIL:riteshkumarpanda001@gmail.com}
+  default-password: ${ADMIN_PASSWORD:Admin@123456}
+  default-name: ${ADMIN_NAME:Ritesh Kumar Panda}
+
