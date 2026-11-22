@@ -14,7 +14,7 @@
   padding: 0.65rem 1.25rem;
   border-radius: 10px;
   background: rgba(108, 99, 255, 0.1);
-  border: 1px solid rgba(108, 99, 255, 0.25);
+  border: none;
   color: #818cf8;
   font-size: 0.95rem;
   font-weight: 600;
@@ -26,7 +26,7 @@
 .resume-page__back-btn:hover {
   background: rgba(108, 99, 255, 0.22);
   color: #ffffff;
-  border-color: rgba(108, 99, 255, 0.5);
+  border: none;
   transform: translateX(-4px);
   box-shadow: 0 4px 16px rgba(108, 99, 255, 0.2);
 }
