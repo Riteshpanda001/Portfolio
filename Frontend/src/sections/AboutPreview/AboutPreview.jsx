@@ -59,7 +59,7 @@ export default function AboutPreview() {
                 <div className="about-preview__do-best-card card">
                   <div className="do-best-icon-wrap do-best-icon--web">🌐</div>
                   <div>
-                    <h5>Web Development</h5>
+                    <h5>Full-Stack Development</h5>
                     <p>Creating responsive, performant web applications with modern tech</p>
                   </div>
                 </div>
