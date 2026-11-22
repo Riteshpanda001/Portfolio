@@ -71,7 +71,7 @@
 
 /* What I Do Best */
 .about-preview__do-best {
-  margin-top: 5rem;
+  margin-top: 0.5rem;
 }
 
 .about-preview__do-best-heading {
@@ -143,7 +143,7 @@
   }
 
   .about-preview__do-best {
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
   }
 
   .about-preview__do-best-grid {
