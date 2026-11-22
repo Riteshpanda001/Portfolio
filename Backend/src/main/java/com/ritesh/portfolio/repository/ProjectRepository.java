@@ -17,4 +17,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     /** All projects sorted by display order. */
     List<Project> findAllByOrderByDisplayOrderAscCreatedAtDesc();
+
+    /** Check if a project with the given title exists. */
+    boolean existsByTitle(String title);
 }

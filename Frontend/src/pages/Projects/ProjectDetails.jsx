@@ -37,6 +37,18 @@ export default function ProjectDetails() {
       (apiProject?.features && apiProject.features.length > 0)
         ? apiProject.features
         : (localProject?.features || []),
+    modelComparison:
+      (apiProject?.modelComparison && apiProject.modelComparison.length > 0)
+        ? apiProject.modelComparison
+        : (localProject?.modelComparison || []),
+    categorizedTech:
+      apiProject?.categorizedTech ||
+      localProject?.categorizedTech ||
+      null,
+    workflow:
+      (apiProject?.workflow && apiProject.workflow.length > 0)
+        ? apiProject.workflow
+        : (localProject?.workflow || []),
     problem:
       apiProject?.problem ||
       apiProject?.description ||
@@ -177,8 +189,61 @@ export default function ProjectDetails() {
               </div>
             )}
 
+            {/* MODEL COMPARISON */}
+            {data.modelComparison && data.modelComparison.length > 0 && (
+              <div className="project-details__section project-details__section--models">
+                <h3 className="project-details__section-title">
+                  <span>🔬</span> Model Comparison & Evaluation
+                </h3>
+                <div className="project-details__table-wrapper">
+                  <table className="project-details__comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Algorithm</th>
+                        <th>Model Type</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.modelComparison.map((m, idx) => (
+                        <tr key={idx}>
+                          <td className="project-details__algo-name">
+                            <strong>{m.algorithm}</strong>
+                          </td>
+                          <td className="project-details__algo-type">
+                            <span className="project-details__type-pill">{m.type}</span>
+                          </td>
+                          <td className="project-details__algo-desc">{m.description}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
             {/* 5. SKILLS & TECHNOLOGIES */}
-            {data.technologies && data.technologies.length > 0 && (
+            {data.categorizedTech ? (
+              <div className="project-details__section project-details__section--skills">
+                <h3 className="project-details__section-title">
+                  <span>⚡</span> Technology Stack
+                </h3>
+                <div className="project-details__tech-groups">
+                  {Object.entries(data.categorizedTech).map(([category, items]) => (
+                    <div key={category} className="project-details__tech-group">
+                      <span className="project-details__tech-group-title">{category}</span>
+                      <div className="project-card__tech-tags">
+                        {items.map((tech) => (
+                          <span key={tech} className="project-card__tech-tag">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : data.technologies && data.technologies.length > 0 ? (
               <div className="project-details__section project-details__section--skills">
                 <h3 className="project-details__section-title">
                   <span>⚡</span> Skills & Technologies
@@ -188,6 +253,26 @@ export default function ProjectDetails() {
                     <span key={tech} className="project-card__tech-tag">
                       {tech}
                     </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {/* SYSTEM WORKFLOW */}
+            {data.workflow && data.workflow.length > 0 && (
+              <div className="project-details__section project-details__section--workflow">
+                <h3 className="project-details__section-title">
+                  <span>🔄</span> System Workflow
+                </h3>
+                <div className="project-details__workflow-timeline">
+                  {data.workflow.map((wf) => (
+                    <div key={wf.step} className="project-details__workflow-step">
+                      <div className="project-details__workflow-step-num">{wf.step}</div>
+                      <div className="project-details__workflow-step-body">
+                        <h4 className="project-details__workflow-step-title">{wf.title}</h4>
+                        <p className="project-details__workflow-step-desc">{wf.description}</p>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>

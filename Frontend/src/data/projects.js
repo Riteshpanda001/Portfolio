@@ -6,6 +6,7 @@ import ecommerceBiImg from '../assets/images/projects/ecommerce-bi-analytics.jpg
 import customerChurnImg from '../assets/images/projects/customer-churn-analytics.jpg';
 import jobMarketIntelligenceImg from '../assets/images/projects/job-market-intelligence.jpg';
 import hotelAiAssistantImg from '../assets/images/projects/hotel-ai-assistant.jpg';
+import handwrittenDigitImg from '../assets/images/projects/handwritten-digit-recognition.jpg';
 
 // ============================================================
 // Real Projects Data
@@ -101,8 +102,84 @@ export const PROJECTS = [
     iconType: 'hotel',
   },
   {
-    id: 'ecommerce-bi-analytics',
+    id: 'handwritten-digit-recognition',
     displayOrder: 5,
+    featured: false,
+    title: 'Handwritten Digit Recognition System',
+    status: 'Completed',
+    statusType: 'completed',
+    category: 'Artificial Intelligence / Machine Learning',
+    overview: 'An interactive machine learning application that recognizes handwritten digits (0–9) using the MNIST dataset. It implements and compares multiple machine learning algorithms, including K-Nearest Neighbors (KNN), Support Vector Machine (SVM), Random Forest, and Convolutional Neural Networks (CNN), to evaluate their classification performance.',
+    problem: 'Recognizing handwritten digits accurately in real-world scenarios is challenging due to immense variations in handwriting styles, stroke thickness, pressure, orientation, and subtle pixel artifacts across different users.',
+    solution: 'An interactive handwritten digit recognition system using the MNIST dataset, comparing KNN, SVM, Random Forest, and CNN models to classify handwritten digits from 0 to 9.',
+    keyLearnings: 'Deepened hands-on expertise in image data preprocessing (28x28 grayscale normalization, centering, stroke enhancement), training and benchmarking classical ML vs. deep learning architectures, constructing clean FastAPI REST endpoints, containerizing full-stack ML workflows with Docker, and designing responsive interactive drawing interfaces in React.',
+    features: [
+      'Handwritten digit recognition for digits 0 through 9',
+      'Integration with benchmark MNIST dataset (70,000 images)',
+      'Side-by-side comparison of KNN, SVM, Random Forest, and CNN models',
+      'Model performance evaluation with comprehensive metrics',
+      'Evaluation metrics including Accuracy, Precision, Recall, and F1-score',
+      'Interactive digit drawing using real-time HTML5 canvas',
+      'Image upload support for custom handwritten digit files',
+      'Real-time prediction confidence and class probabilities display',
+      'Prediction history tracking and session persistence'
+    ],
+    modelComparison: [
+      {
+        algorithm: 'KNN (K-Nearest Neighbors)',
+        description: 'Classifies digits using nearest data points',
+        type: 'Instance-Based Learning'
+      },
+      {
+        algorithm: 'SVM (Support Vector Machine)',
+        description: 'Performs classification using support vector machines',
+        type: 'Kernel Machine'
+      },
+      {
+        algorithm: 'Random Forest',
+        description: 'Uses an ensemble of decision trees',
+        type: 'Ensemble Learning'
+      },
+      {
+        algorithm: 'CNN (Convolutional Neural Network)',
+        description: 'Extracts image features using convolutional layers',
+        type: 'Deep Learning'
+      }
+    ],
+    categorizedTech: {
+      'Programming Language': ['Python', 'JavaScript (ES6+)'],
+      'Machine Learning': ['Scikit-learn', 'Convolutional Neural Networks (CNN)', 'NumPy'],
+      'Backend': ['FastAPI', 'Uvicorn', 'REST APIs'],
+      'Frontend': ['React.js', 'HTML5 Canvas', 'CSS3'],
+      'Deployment & Containerization': ['Docker'],
+      'Dataset': ['MNIST Dataset (0–9 digits)']
+    },
+    workflow: [
+      { step: 1, title: 'Input Acquisition', description: 'User draws a digit on the canvas or uploads an image.' },
+      { step: 2, title: 'Preprocessing', description: 'The input image is processed into the required format.' },
+      { step: 3, title: 'API Transmission', description: 'The backend receives the image through FastAPI.' },
+      { step: 4, title: 'Model Inference', description: 'The selected trained model performs prediction.' },
+      { step: 5, title: 'Prediction Response', description: 'The predicted digit and confidence are returned.' },
+      { step: 6, title: 'Display Results', description: 'The frontend displays the prediction to the user.' }
+    ],
+    technologies: [
+      'Python',
+      'Machine Learning',
+      'Scikit-learn',
+      'Convolutional Neural Networks (CNN)',
+      'FastAPI',
+      'React.js',
+      'Docker',
+      'MNIST Dataset'
+    ],
+    imageUrl: handwrittenDigitImg,
+    githubUrl: 'https://github.com/Riteshpanda001/Handwritten-Digit',
+    liveUrl: null,
+    iconType: 'pen-tool',
+  },
+  {
+    id: 'ecommerce-bi-analytics',
+    displayOrder: 6,
     featured: false,
     title: 'E-Commerce Business Intelligence & Customer Analytics',
     status: 'Incomplete',
@@ -119,7 +196,7 @@ export const PROJECTS = [
   },
   {
     id: 'customer-churn-analytics',
-    displayOrder: 6,
+    displayOrder: 7,
     featured: false,
     title: 'Customer Churn Prediction & Retention Analytics',
     status: 'Incomplete',
@@ -136,7 +213,7 @@ export const PROJECTS = [
   },
   {
     id: 'job-market-intelligence',
-    displayOrder: 7,
+    displayOrder: 8,
     featured: false,
     title: 'Data Analyst Job Market Intelligence',
     status: 'Incomplete',
@@ -153,7 +230,7 @@ export const PROJECTS = [
   },
   {
     id: 'myshope',
-    displayOrder: 8,
+    displayOrder: 9,
     featured: false,
     title: 'Myshope E-Commerce Website',
     status: 'Incomplete',
