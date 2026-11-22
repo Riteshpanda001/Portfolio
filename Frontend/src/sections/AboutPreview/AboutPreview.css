@@ -17,6 +17,7 @@
 
 /* Education Card */
 .about-preview__edu-card {
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -135,6 +136,10 @@
   .about-preview__grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+  }
+
+  .about-preview__edu-card {
+    margin-top: 0;
   }
 
   .about-preview__do-best {
