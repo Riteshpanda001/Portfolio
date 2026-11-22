@@ -1,135 +1,160 @@
-/* ── PDF Container Card ─────────────────────────────────────── */
-.resume-pdf-card {
-  max-width: 960px;
-  margin: 0 auto;
+/* ============================================================
+   Resume Page Styles — Modern Action Card
+   ============================================================ */
+
+.resume-card {
+  max-width: 720px;
+  margin: 2.5rem auto 4rem auto;
   background: var(--color-surface-card, rgba(15, 23, 42, 0.85));
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(108, 99, 255, 0.15);
   backdrop-filter: blur(16px);
+  padding: 3rem 2.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-card:hover {
+  border-color: rgba(108, 99, 255, 0.35);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 50px rgba(108, 99, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.resume-card__content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
 }
 
-/* ── Toolbar ────────────────────────────────────────────────── */
-.resume-pdf-toolbar {
+.resume-card__icon-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.25) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border: 1px solid rgba(108, 99, 255, 0.4);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: center;
+  color: #a5b4fc;
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+  margin-bottom: 0.25rem;
 }
 
-.resume-pdf-doc-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.resume-card__badge-row {
+  margin-bottom: 0.75rem;
 }
 
 .resume-pdf-badge {
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.25rem 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
   background: rgba(108, 99, 255, 0.2);
   border: 1px solid rgba(108, 99, 255, 0.4);
   color: #a5b4fc;
+  display: inline-block;
 }
 
-.resume-pdf-filename {
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  font-weight: 500;
+.resume-card__filename {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.01em;
 }
 
-.resume-pdf-toolbar-btns {
+.resume-card__description {
+  font-size: 0.95rem;
+  color: #94A3B8;
+  max-width: 480px;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* ── Actions Row ────────────────────────────────────────────── */
+.resume-card__actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .resume-pdf-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px;
-  font-size: 0.84rem;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #E2E8F0;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  min-width: 180px;
 }
 
 .resume-pdf-btn:hover {
   background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.resume-pdf-btn--open {
+  background: rgba(108, 99, 255, 0.12);
+  border-color: rgba(108, 99, 255, 0.35);
+  color: #A5B4FC;
+}
+
+.resume-pdf-btn--open:hover {
+  background: rgba(108, 99, 255, 0.22);
+  color: #FFFFFF;
+  border-color: rgba(108, 99, 255, 0.6);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.25);
 }
 
 .resume-pdf-btn--primary {
-  background: linear-gradient(135deg, #6C63FF, #8B5CF6);
+  background: linear-gradient(135deg, #6C63FF 0%, #8B5CF6 100%);
   border-color: transparent;
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+  color: #FFFFFF;
+  box-shadow: 0 6px 22px rgba(108, 99, 255, 0.35);
 }
 
 .resume-pdf-btn--primary:hover {
-  background: linear-gradient(135deg, #7c73ff, #9d6fff);
-  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.45);
-}
-
-/* ── Frame Wrapper ──────────────────────────────────────────── */
-.resume-pdf-frame-wrapper {
-  position: relative;
-  width: 100%;
-  height: 1150px;
-  background: #ffffff;
-}
-
-.resume-pdf-frame {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-  background: #ffffff;
-}
-
-.resume-pdf-fallback {
-  padding: 3rem 1.5rem;
-  text-align: center;
-  color: #0f172a;
-  background: #f8fafc;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  height: 100%;
-}
-
-@media (max-width: 900px) {
-  .resume-pdf-frame-wrapper {
-    height: 850px;
-  }
+  background: linear-gradient(135deg, #7C73FF 0%, #9D6FFF 100%);
+  box-shadow: 0 8px 28px rgba(108, 99, 255, 0.5);
+  color: #FFFFFF;
 }
 
 @media (max-width: 600px) {
-  .resume-pdf-frame-wrapper {
-    height: 650px;
+  .resume-card {
+    padding: 2rem 1.5rem;
+    margin: 1.5rem 1rem 3rem 1rem;
   }
-  .resume-pdf-toolbar {
+
+  .resume-card__actions {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .resume-pdf-btn {
+    width: 100%;
+  }
+
+  .resume-card__filename {
+    font-size: 1.15rem;
+    word-break: break-all;
   }
 }
