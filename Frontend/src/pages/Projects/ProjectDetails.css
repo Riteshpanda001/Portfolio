@@ -25,33 +25,27 @@
 .project-details__back-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
-  border-radius: 10px;
-  background: rgba(108, 99, 255, 0.1);
-  border: 1px solid rgba(108, 99, 255, 0.25);
-  color: #818cf8;
+  gap: 0.45rem;
   font-size: 0.95rem;
   font-weight: 600;
+  color: #818cf8;
   text-decoration: none;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(8px);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.4rem 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .project-details__back-btn:hover {
-  background: rgba(108, 99, 255, 0.22);
+  background: transparent;
   color: #ffffff;
-  border-color: rgba(108, 99, 255, 0.5);
+  border: none;
+  outline: none;
+  box-shadow: none;
   transform: translateX(-4px);
-  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.2);
-}
-
-.project-details__back-icon {
-  transition: transform 0.25s ease;
-}
-
-.project-details__back-btn:hover .project-details__back-icon {
-  transform: translateX(-3px);
 }
 
 /* Card Container */

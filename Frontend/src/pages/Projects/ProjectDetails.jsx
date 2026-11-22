@@ -82,21 +82,7 @@ export default function ProjectDetails() {
         {/* Top Back to Home Navigation */}
         <div className="project-details__nav-top">
           <Link to="/" className="project-details__back-btn" id="back-to-home-btn" title="Back to Home">
-            <svg
-              className="project-details__back-icon"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-            <span>Back to Home</span>
+            ← Back to Home
           </Link>
         </div>
 
