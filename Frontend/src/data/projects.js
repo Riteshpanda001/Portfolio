@@ -5,6 +5,7 @@ import collegeAiAssistantImg from '../assets/images/projects/college-ai-assistan
 import ecommerceBiImg from '../assets/images/projects/ecommerce-bi-analytics.jpg';
 import customerChurnImg from '../assets/images/projects/customer-churn-analytics.jpg';
 import jobMarketIntelligenceImg from '../assets/images/projects/job-market-intelligence.jpg';
+import hotelAiAssistantImg from '../assets/images/projects/hotel-ai-assistant.jpg';
 
 // ============================================================
 // Real Projects Data
@@ -65,8 +66,43 @@ export const PROJECTS = [
     iconType: 'graduation-cap',
   },
   {
-    id: 'ecommerce-bi-analytics',
+    id: 'hotel-ai-assistant',
     displayOrder: 4,
+    featured: false,
+    title: 'Hotel AI Assistant',
+    status: 'In Development',
+    statusType: 'in-development',
+    category: 'Artificial Intelligence / Generative AI / Full-Stack Development',
+    overview: 'An AI-powered hotel assistance platform that helps users explore hotel services, get instant answers to hotel-related queries, and receive personalized assistance through an intelligent conversational interface.',
+    problem: 'Guests and travelers often face long wait times at hotel front desks, difficulty accessing immediate information about amenities, dining hours, room services, and local attractions, while hotel staff spend repetitive hours answering routine inquiries.',
+    solution: 'An AI-powered hotel assistance platform that helps users explore hotel services, get instant answers to hotel-related queries, and receive personalized assistance through an intelligent conversational interface.',
+    keyLearnings: 'Gained hands-on experience designing domain-specific conversational AI workflows, architecting FastAPI microservices with Large Language Models, implementing context retrieval, and creating responsive React interfaces for seamless conversational user experiences.',
+    features: [
+      'AI-powered hotel query assistance for instant responses to guest inquiries',
+      'Natural language conversations with context-aware responses',
+      'Instant answers to hotel-related questions (amenities, dining, policies, check-in/out)',
+      'Intelligent hotel information retrieval powered by Large Language Models',
+      'Personalized assistance and tailored local recommendations for guests',
+      'Responsive, modern user interface optimized for desktop and mobile devices',
+      'Conversation history for seamless multi-turn interactions'
+    ],
+    technologies: [
+      'Python',
+      'FastAPI',
+      'React.js',
+      'Generative AI',
+      'Large Language Models (LLMs)',
+      'REST APIs',
+      'MongoDB'
+    ],
+    imageUrl: hotelAiAssistantImg,
+    githubUrl: 'https://github.com/Riteshpanda001',
+    liveUrl: null,
+    iconType: 'hotel',
+  },
+  {
+    id: 'ecommerce-bi-analytics',
+    displayOrder: 5,
     featured: false,
     title: 'E-Commerce Business Intelligence & Customer Analytics',
     status: 'Incomplete',
@@ -83,7 +119,7 @@ export const PROJECTS = [
   },
   {
     id: 'customer-churn-analytics',
-    displayOrder: 5,
+    displayOrder: 6,
     featured: false,
     title: 'Customer Churn Prediction & Retention Analytics',
     status: 'Incomplete',
@@ -100,7 +136,7 @@ export const PROJECTS = [
   },
   {
     id: 'job-market-intelligence',
-    displayOrder: 6,
+    displayOrder: 7,
     featured: false,
     title: 'Data Analyst Job Market Intelligence',
     status: 'Incomplete',
@@ -117,7 +153,7 @@ export const PROJECTS = [
   },
   {
     id: 'myshope',
-    displayOrder: 7,
+    displayOrder: 8,
     featured: false,
     title: 'Myshope E-Commerce Website',
     status: 'Incomplete',

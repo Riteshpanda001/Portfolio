@@ -29,6 +29,14 @@ export default function ProjectDetails() {
     status: apiProject?.status || localProject?.status || 'Incomplete',
     statusType: apiProject?.statusType || localProject?.statusType || 'incomplete',
     imageUrl: apiProject?.imageUrl || localProject?.imageUrl,
+    overview:
+      apiProject?.overview ||
+      localProject?.overview ||
+      '',
+    features:
+      (apiProject?.features && apiProject.features.length > 0)
+        ? apiProject.features
+        : (localProject?.features || []),
     problem:
       apiProject?.problem ||
       apiProject?.description ||
@@ -121,6 +129,33 @@ export default function ProjectDetails() {
             </div>
 
             <div className="project-details__divider" />
+
+            {/* PROJECT OVERVIEW */}
+            {data.overview && (
+              <div className="project-details__section project-details__section--overview">
+                <h3 className="project-details__section-title">
+                  <span>📋</span> Project Overview
+                </h3>
+                <p className="project-details__section-text">{data.overview}</p>
+              </div>
+            )}
+
+            {/* KEY FEATURES */}
+            {data.features && data.features.length > 0 && (
+              <div className="project-details__section project-details__section--features">
+                <h3 className="project-details__section-title">
+                  <span>✨</span> Key Features
+                </h3>
+                <ul className="project-details__features-list">
+                  {data.features.map((feat, idx) => (
+                    <li key={idx} className="project-details__feature-item">
+                      <span className="project-details__feature-bullet">✓</span>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* 3. PROBLEM STATEMENT */}
             {data.problem && (

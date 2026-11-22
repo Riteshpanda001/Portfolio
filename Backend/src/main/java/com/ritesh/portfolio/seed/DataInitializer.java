@@ -228,6 +228,16 @@ public class DataInitializer implements CommandLineRunner {
                             .displayOrder(3)
                             .build(),
                     Project.builder()
+                            .title("Hotel AI Assistant")
+                            .description("An AI-powered hotel assistance platform that helps users explore hotel services, get instant answers to hotel-related queries, and receive personalized assistance through an intelligent conversational interface.")
+                            .longDescription("An AI-powered hotel assistance platform that helps users explore hotel services, get instant answers to hotel-related queries, and receive personalized assistance through an intelligent conversational interface.")
+                            .category("Artificial Intelligence / Generative AI / Full-Stack Development")
+                            .technologies(List.of("Python", "FastAPI", "React.js", "Generative AI", "Large Language Models (LLMs)", "REST APIs", "MongoDB"))
+                            .githubUrl("https://github.com/Riteshpanda001")
+                            .featured(false)
+                            .displayOrder(4)
+                            .build(),
+                    Project.builder()
                             .title("E-Commerce Business Intelligence & Customer Analytics")
                             .description("E-commerce businesses generate large volumes of customer, order, and product data, but extracting meaningful business insights from this data can be difficult without structured analysis and visualization.")
                             .longDescription("Built an end-to-end business intelligence solution using SQL, Python, Power BI, and Excel to analyze sales performance, customer behavior, product trends, and key business metrics.")
@@ -235,7 +245,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("SQL", "Python", "Power BI", "Excel", "Pandas"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(4)
+                            .displayOrder(5)
                             .build(),
                     Project.builder()
                             .title("Customer Churn Prediction & Retention Analytics")
@@ -245,7 +255,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("Python", "SQL", "Machine Learning", "Scikit-learn", "Power BI", "Pandas"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(5)
+                            .displayOrder(6)
                             .build(),
                     Project.builder()
                             .title("Data Analyst Job Market Intelligence")
@@ -255,7 +265,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("Python", "SQL", "Pandas", "Power BI", "Excel", "Data Visualization"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(6)
+                            .displayOrder(7)
                             .build(),
                     Project.builder()
                             .title("Myshope E-Commerce Website")
@@ -265,7 +275,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("HTML", "CSS", "JavaScript"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(7)
+                            .displayOrder(8)
                             .build()
             ));
         }
