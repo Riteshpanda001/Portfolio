@@ -1,7 +1,6 @@
 import aiRecruitmentImg from '../assets/images/projects/ai-recruitment.jpg';
 import myshopeImg from '../assets/images/projects/myshope-ecommerce.jpg';
 import aiRiskManagerImg from '../assets/images/projects/ai-risk-manager.jpg';
-import collegeAiAssistantImg from '../assets/images/projects/college-ai-assistant.jpg';
 import ecommerceBiImg from '../assets/images/projects/ecommerce-bi-analytics.jpg';
 import customerChurnImg from '../assets/images/projects/customer-churn-analytics.jpg';
 import jobMarketIntelligenceImg from '../assets/images/projects/job-market-intelligence.jpg';
@@ -50,26 +49,9 @@ export const PROJECTS = [
     iconType: 'shield',
   },
   {
-    id: 'college-ai-assistant',
+    id: 'hotel-ai-assistant',
     displayOrder: 3,
     featured: true,
-    title: 'College AI Assistant',
-    status: 'Incomplete',
-    statusType: 'incomplete',
-    category: 'AI / Generative AI / Education',
-    problem: 'Students often need to search through different sources to find information about college resources, academic activities, procedures, and frequently asked questions.',
-    solution: 'Developing an AI-powered college assistant that can help students access relevant college information, answer common questions, and provide a conversational interface for interacting with academic and campus-related information.',
-    keyLearnings: 'Exploring conversational AI, knowledge-based question answering, prompt design, information retrieval, and integrating AI capabilities into a user-friendly web application.',
-    technologies: ['Python', 'AI', 'Generative AI', 'React'],
-    imageUrl: collegeAiAssistantImg,
-    githubUrl: 'https://github.com/Riteshpanda001',
-    liveUrl: null,
-    iconType: 'graduation-cap',
-  },
-  {
-    id: 'hotel-ai-assistant',
-    displayOrder: 4,
-    featured: false,
     title: 'Hotel AI Assistant',
     status: 'In Development',
     statusType: 'in-development',
@@ -103,7 +85,7 @@ export const PROJECTS = [
   },
   {
     id: 'handwritten-digit-recognition',
-    displayOrder: 5,
+    displayOrder: 4,
     featured: false,
     title: 'Handwritten Digit Recognition System',
     status: 'Completed',
@@ -179,7 +161,7 @@ export const PROJECTS = [
   },
   {
     id: 'ecommerce-bi-analytics',
-    displayOrder: 6,
+    displayOrder: 5,
     featured: false,
     title: 'E-Commerce Business Intelligence & Customer Analytics',
     status: 'Incomplete',
@@ -196,7 +178,7 @@ export const PROJECTS = [
   },
   {
     id: 'customer-churn-analytics',
-    displayOrder: 7,
+    displayOrder: 6,
     featured: false,
     title: 'Customer Churn Prediction & Retention Analytics',
     status: 'Incomplete',
@@ -213,7 +195,7 @@ export const PROJECTS = [
   },
   {
     id: 'job-market-intelligence',
-    displayOrder: 8,
+    displayOrder: 7,
     featured: false,
     title: 'Data Analyst Job Market Intelligence',
     status: 'Incomplete',
@@ -230,7 +212,7 @@ export const PROJECTS = [
   },
   {
     id: 'myshope',
-    displayOrder: 9,
+    displayOrder: 8,
     featured: false,
     title: 'Myshope E-Commerce Website',
     status: 'Incomplete',

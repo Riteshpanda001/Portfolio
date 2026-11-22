@@ -218,24 +218,14 @@ public class DataInitializer implements CommandLineRunner {
                             .displayOrder(2)
                             .build(),
                     Project.builder()
-                            .title("College AI Assistant")
-                            .description("Students often need to search through different sources to find information about college resources, academic activities, procedures, and frequently asked questions.")
-                            .longDescription("Developing an AI-powered college assistant that can help students access relevant college information, answer common questions, and provide a conversational interface for interacting with academic and campus-related information.")
-                            .category("AI / Generative AI / Education")
-                            .technologies(List.of("Python", "AI", "Generative AI", "React"))
-                            .githubUrl("https://github.com/Riteshpanda001")
-                            .featured(true)
-                            .displayOrder(3)
-                            .build(),
-                    Project.builder()
                             .title("Hotel AI Assistant")
                             .description("An AI-powered hotel assistance platform that helps users explore hotel services, get instant answers to hotel-related queries, and receive personalized assistance through an intelligent conversational interface.")
                             .longDescription("An AI-powered hotel assistance platform that helps users explore hotel services, get instant answers to hotel-related queries, and receive personalized assistance through an intelligent conversational interface.")
                             .category("Artificial Intelligence / Generative AI / Full-Stack Development")
                             .technologies(List.of("Python", "FastAPI", "React.js", "Generative AI", "Large Language Models (LLMs)", "REST APIs", "MongoDB"))
                             .githubUrl("https://github.com/Riteshpanda001")
-                            .featured(false)
-                            .displayOrder(4)
+                            .featured(true)
+                            .displayOrder(3)
                             .build(),
                     Project.builder()
                             .title("Handwritten Digit Recognition System")
@@ -245,7 +235,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("Python", "Machine Learning", "Scikit-learn", "Convolutional Neural Networks (CNN)", "FastAPI", "React.js", "Docker", "MNIST Dataset"))
                             .githubUrl("https://github.com/Riteshpanda001/Handwritten-Digit")
                             .featured(false)
-                            .displayOrder(5)
+                            .displayOrder(4)
                             .build(),
                     Project.builder()
                             .title("E-Commerce Business Intelligence & Customer Analytics")
@@ -255,7 +245,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("SQL", "Python", "Power BI", "Excel", "Pandas"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(6)
+                            .displayOrder(5)
                             .build(),
                     Project.builder()
                             .title("Customer Churn Prediction & Retention Analytics")
@@ -265,7 +255,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("Python", "SQL", "Machine Learning", "Scikit-learn", "Power BI", "Pandas"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(7)
+                            .displayOrder(6)
                             .build(),
                     Project.builder()
                             .title("Data Analyst Job Market Intelligence")
@@ -275,7 +265,7 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("Python", "SQL", "Pandas", "Power BI", "Excel", "Data Visualization"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(8)
+                            .displayOrder(7)
                             .build(),
                     Project.builder()
                             .title("Myshope E-Commerce Website")
@@ -285,10 +275,15 @@ public class DataInitializer implements CommandLineRunner {
                             .technologies(List.of("HTML", "CSS", "JavaScript"))
                             .githubUrl("https://github.com/Riteshpanda001")
                             .featured(false)
-                            .displayOrder(9)
+                            .displayOrder(8)
                             .build()
             ));
         }
+
+        projectRepository.findByTitle("College AI Assistant").ifPresent(p -> {
+            log.info("Removing College AI Assistant from database...");
+            projectRepository.delete(p);
+        });
 
         if (!projectRepository.existsByTitle("Hotel AI Assistant")) {
             log.info("Seeding Hotel AI Assistant...");
@@ -299,8 +294,8 @@ public class DataInitializer implements CommandLineRunner {
                     .category("Artificial Intelligence / Generative AI / Full-Stack Development")
                     .technologies(List.of("Python", "FastAPI", "React.js", "Generative AI", "Large Language Models (LLMs)", "REST APIs", "MongoDB"))
                     .githubUrl("https://github.com/Riteshpanda001")
-                    .featured(false)
-                    .displayOrder(4)
+                    .featured(true)
+                    .displayOrder(3)
                     .build());
         }
 
@@ -314,7 +309,7 @@ public class DataInitializer implements CommandLineRunner {
                     .technologies(List.of("Python", "Machine Learning", "Scikit-learn", "Convolutional Neural Networks (CNN)", "FastAPI", "React.js", "Docker", "MNIST Dataset"))
                     .githubUrl("https://github.com/Riteshpanda001/Handwritten-Digit")
                     .featured(false)
-                    .displayOrder(5)
+                    .displayOrder(4)
                     .build());
         }
     }
