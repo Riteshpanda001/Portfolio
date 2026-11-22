@@ -2,6 +2,43 @@
    Resume Page Styles — Modern Action Card
    ============================================================ */
 
+/* ── Back to Home Navigation ────────────────────────────────── */
+.resume-page__back-row {
+  margin-bottom: 2rem;
+}
+
+.resume-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  color: #818cf8;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.resume-page__back-btn:hover {
+  background: rgba(108, 99, 255, 0.22);
+  color: #ffffff;
+  border-color: rgba(108, 99, 255, 0.5);
+  transform: translateX(-4px);
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.2);
+}
+
+.resume-page__back-icon {
+  transition: transform 0.25s ease;
+}
+
+.resume-page__back-btn:hover .resume-page__back-icon {
+  transform: translateX(-3px);
+}
+
 .resume-card {
   max-width: 720px;
   margin: 2.5rem auto 4rem auto;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { usePortfolio } from '../../context/PortfolioContext';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import './Resume.css';
@@ -13,6 +14,27 @@ export default function Resume() {
   return (
     <section id="resume-page" className="section">
       <div className="container">
+        {/* Back to Home Navigation */}
+        <div className="resume-page__back-row">
+          <Link to="/" className="resume-page__back-btn" id="back-to-home-btn" title="Back to Home">
+            <svg
+              className="resume-page__back-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Back to Home</span>
+          </Link>
+        </div>
+
         <SectionTitle
           badge="Curriculum Vitae"
           title="Official Resume"
