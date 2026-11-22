@@ -70,7 +70,7 @@
 
 /* What I Do Best */
 .about-preview__do-best {
-  margin-top: 1.75rem;
+  margin-top: 3.5rem;
 }
 
 .about-preview__do-best-heading {
@@ -135,6 +135,10 @@
   .about-preview__grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+  }
+
+  .about-preview__do-best {
+    margin-top: 1.5rem;
   }
 
   .about-preview__do-best-grid {
