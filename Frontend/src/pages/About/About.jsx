@@ -2,6 +2,7 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Button        from '../../components/Button/Button';
 import { usePortfolio } from '../../context/PortfolioContext';
 import './About.css';
+import '../../sections/AboutPreview/AboutPreview.css';
 
 // ============================================================
 // About Page
