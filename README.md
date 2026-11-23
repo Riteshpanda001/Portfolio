@@ -1,114 +1,133 @@
 # 🚀 Ritesh Kumar Panda — Portfolio
 
-A modern, high-performance, full-stack developer portfolio and engineering showcase designed to present software engineering capabilities, AI/ML initiatives, data analytics projects, academic milestones, and verified certifications. The platform features an immersive public interactive experience and a secured administrative dashboard for dynamic content management.
+A full-stack developer portfolio showcasing AI/ML, data analytics, and software engineering work. It combines a responsive **React 19** single-page app with a secure **Spring Boot 3** REST API and a JWT-protected **admin dashboard** for managing content without touching code.
+
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.4-6DB33F?logo=springboot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-supported-4169E1?logo=postgresql&logoColor=white)
 
 ---
 
-## 📌 About the Project
+## 📑 Table of Contents
 
-### What It Is
-This repository contains the complete full-stack codebase for the personal portfolio of **Ritesh Kumar Panda** — an AI/ML Engineer & Full-Stack Developer. It integrates a reactive client interface with a secure, production-ready Spring Boot backend.
+- [About](#-about)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Architecture](#-architecture)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Configuration](#-configuration)
+- [API Reference](#-api-reference)
+- [Security](#-security)
+- [Deployment](#-deployment)
+- [Design System](#-design-system)
+- [Roadmap](#-roadmap)
+- [Contact](#-contact)
 
-### Purpose & Main Goals
-- **Professional Showcase**: Present real-world projects in Machine Learning, Generative AI, Data Science, and Full-Stack Engineering with live links, source code, and comprehensive case studies.
-- **Credential Verification**: Provide direct, verifiable access to educational milestones (B.Tech CSE @ NIST University) and industry certifications (Oracle Agentic AI Foundations Associate, NIST Python Data Science).
-- **Recruiter Engagement**: Enable hiring managers and technical leads to review technical skill proficiencies, examine architectural decisions, download formatted resumes, and send instant inquiries.
-- **Dynamic Content Administration**: Offer an authenticated admin portal to manage portfolio entries, track analytics, and review visitor messages in real time.
+---
 
-### Target Users
-- **Technical Recruiters & Hiring Managers**: Evaluating candidate credentials, skill matrices, and downloadable resumes.
-- **Engineering Leads & Collaborators**: Inspecting architecture patterns, code quality, and project repositories.
-- **Site Administrator**: Managing platform entities, incoming messages, and live profile details.
+## 📌 About
+
+This repository holds the complete source for the personal portfolio of **Ritesh Kumar Panda**, an AI/ML Engineer & Full-Stack Developer and B.Tech CSE student at NIST University.
+
+It is built to:
+
+- **Showcase projects** in machine learning, generative AI, data analytics, and full-stack development, with case-study pages for each.
+- **Present credentials**: education, internship experience, and certifications.
+- **Help recruiters** browse skills, download the resume, and send a message directly.
+- **Keep content editable** through an authenticated admin dashboard backed by a REST API.
 
 ---
 
 ## ✨ Features
 
-### Public Experience
-- **Hero Section**: High-contrast Midnight Aurora aesthetic with dynamic title banners, introduction badges, and one-click access to projects, resume, and contact links.
-- **About Section**: Comprehensive background summary covering academic journey at NIST University, core interests in AI/ML and software engineering, and key highlight badges.
-- **Skills & Technologies**: Interactive, categorized skill matrix (Machine Learning, Data Analytics, Java & Backend, Frontend, DevOps & Tools) with visual proficiency levels and technology badges.
-- **Featured Projects**: Curated project gallery with category filtering (AI/ML, Full-Stack, Data Science, Business Intelligence) and direct GitHub repositories.
-- **Project Details**: Dedicated dynamic project case study pages (`/projects/:id`) displaying extended descriptions, architecture notes, and technology tags.
-- **Professional Journey**: Chronological experience timeline detailing industry internships (Generative AI Intern at Asirudh Software) and hands-on technical roles.
-- **Education**: Detailed academic history outlining B.Tech in Computer Science and Engineering at NIST University and Higher Secondary coursework.
-- **Training & Learning / Certifications**: Dedicated certifications showcase with credential verification links (Oracle Cloud Infrastructure Agentic AI Foundations Associate, NIST Data Science & Data Analysis).
-- **Interactive Resume**: Clean web resume view with options to review experience, education, skills, and download the official PDF.
-- **Contact**: Interactive contact form with real-time field validation, error feedback, and direct backend API integration.
+### Public site
 
-### Admin Suite & Management
-- **Admin Dashboard**: Centralized management hub summarizing system status, project counts, and recent activity.
-- **Authentication**: Stateless JWT authentication with bcrypt-encrypted credentials and route protection.
-- **Profile Management**: Live editing for bio, contact details, social URLs, and headline highlights.
-- **Project Management**: Full CRUD interface for creating, editing, reordering, and deleting project listings.
-- **Contact Message Management**: Dedicated inbox to review, organize, and delete incoming recruiter messages.
-- **Analytics**: Real-time overview of portfolio engagement and interaction statistics.
+| Page | Route | Description |
+|---|---|---|
+| Home | `/` | Hero, about preview, skills preview, featured projects, experience preview, GitHub stats, testimonials, newsletter, contact CTA |
+| About | `/about` | Background, interests, and highlights |
+| Skills | `/skills` | Categorised skills with proficiency levels |
+| Projects | `/projects` | Project gallery with status badges |
+| Project Details | `/projects/:id` | Case study: problem, solution, key learnings, tech stack, workflow |
+| Experience | `/experience` | Professional timeline |
+| Education | `/education` | Academic history |
+| Certifications | `/certifications` | Certificates with credential details |
+| Resume | `/resume` | Resume page with full-page view and PDF download |
+| Contact | `/contact` | Validated contact form sent to the backend (with email notification) |
+
+### Admin dashboard (`/admin`)
+
+A single protected page with in-page section switching:
+
+- **Dashboard** overview and analytics
+- **About Me / Profile** management
+- **Skills & Technologies** CRUD
+- **Projects** CRUD
+- **Experience** and **Training / Certifications** management
+- **Messages** inbox (mark as read, delete)
+- **Settings**
+- File uploads (images and PDFs) served from `/media/**`
+
+### Other
+
+- Visitor analytics tracking (`/api/analytics/visit`)
+- Newsletter subscription endpoint
+- Gmail SMTP email notifications for contact messages
+- Lazy-loaded routes with `Suspense`, an error boundary, and a 404 page
+- SPA rewrite rules for Netlify and Vercel
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **React** (v19) — Component-driven declarative user interface
-- **Vite** — High-speed build tool and development server
-- **React Router** (v7) — Client-side declarative routing and protected route guards
-- **Axios** — HTTP client with interceptors for JWT injection and centralized error handling
-- **Framer Motion** — Smooth fluid animations, micro-interactions, and scroll reveals
-- **Vanilla CSS** — Custom design system built with CSS custom properties and zero unvetted CSS bloat
+**Frontend**
+- React 19, React Router 7 (`react-router-dom`), Vite 8
+- Axios (JWT request interceptor, global 401 handling)
+- Framer Motion, Lucide React
+- Plain CSS with custom properties
+- oxlint for linting
 
-### Backend
-- **Java 17 LTS** — Robust, type-safe programming language
-- **Spring Boot 3.2.4** — Enterprise-grade backend framework
-- **Spring Security 6** — Role-based access control and security filter chain
-- **JWT (jjwt 0.12.5)** — Stateless authentication with secure access tokens
-- **Spring Data JPA / Hibernate** — Object-Relational Mapping (ORM) and data abstraction
-- **Maven** — Dependency management and build lifecycle automation
+**Backend**
+- Java 17, Spring Boot 3.2.4
+- Spring Web, Spring Security 6, Spring Data JPA / Hibernate
+- JWT via jjwt, Bean Validation, Spring Mail
+- Lombok, Maven (with bundled Maven for Windows via `mvnw.cmd`)
+- Spring Boot Actuator (`health`, `info`)
 
-### Database
-- **PostgreSQL** — Production-grade relational database
-- **H2 Database** — In-memory database with automatic schema generation and seeders for development
+**Database**
+- H2 file database by default (zero setup, stored in `Backend/data/`)
+- PostgreSQL supported via environment variables
 
 ---
 
-## 🏗️ Project Architecture
-
-The application adopts a decoupled client-server architecture ensuring high scalability, maintainability, and clean separation of concerns.
+## 🏗️ Architecture
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                    Client (React + Vite)                    │
-│   - Public Views (Home, Projects, Skills, Experience, etc.) │
-│   - Admin Dashboard (Profile, Projects, Messages, etc.)     │
-└──────────────┬───────────────────────────────▲──────────────┘
-               │ HTTPS / JSON                  │ JWT Response
-               ▼                               │
-┌─────────────────────────────────────────────────────────────┐
-│               Spring Boot 3 REST API (Port 5000)            │
-│   - Spring Security Filter Chain (JwtAuthenticationFilter)  │
-│   - Controllers (Project, Skill, Auth, Contact, Admin, etc.)│
-│   - Service Layer (Business Logic & DTO Mapping)            │
-│   - Repository Layer (Spring Data JPA Repositories)         │
-└──────────────┬───────────────────────────────▲──────────────┘
-               │ JPA / Hibernate               │
-               ▼                               │
-┌─────────────────────────────────────────────────────────────┐
-│              Database (PostgreSQL / H2 Memory)               │
-│   Tables: users, profiles, projects, skills,                │
-│           experiences, educations, certifications, messages  │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│          React + Vite SPA (port 5173)         │
+│  Public pages  •  Protected admin dashboard   │
+└───────────────┬──────────────────────────────┘
+                │ HTTPS / JSON  (Bearer JWT)
+                ▼
+┌──────────────────────────────────────────────┐
+│        Spring Boot REST API (port 5000)       │
+│  JwtAuthenticationFilter → Controllers        │
+│  → Services (DTO mapping) → JPA Repositories  │
+└───────────────┬──────────────────────────────┘
+                │ JPA / Hibernate
+                ▼
+┌──────────────────────────────────────────────┐
+│          H2 (file)  /  PostgreSQL             │
+│ users, profiles, projects, skills, experience,│
+│ education, certifications, contact messages,  │
+│ visitors                                      │
+└──────────────────────────────────────────────┘
 ```
 
-### Architectural Layers
-1. **Frontend Presentation**: React components organized into modular sections and lazy-loaded route views.
-2. **Frontend Service Layer**: Encapsulated API client modules (`authService`, `projectService`, `contactService`, etc.) utilizing Axios.
-3. **REST API Controllers**: Expose versioned endpoints, handle HTTP parameters, and delegate requests to service layers.
-4. **Service Layer**: Implements business logic, validation rules, and DTO-to-entity mapping.
-5. **Repository Layer**: Extends `JpaRepository` for data access and custom queries.
-6. **Data Storage**: PostgreSQL in production and H2 in local development.
-
-### Routes Configuration
-- **Public Routes**: `/`, `/about`, `/skills`, `/projects`, `/projects/:id`, `/experience`, `/education`, `/certifications`, `/contact`, `/resume`
-- **Admin Routes (Protected)**: `/admin/login`, `/admin`, `/admin/projects`, `/admin/messages`, `/admin/profile`
+On first startup, `DataInitializer` seeds the admin account, profile, skills, experience, education, certifications, and sample projects.
 
 ---
 
@@ -116,173 +135,240 @@ The application adopts a decoupled client-server architecture ensuring high scal
 
 ```text
 Portfolio/
+├── Backend/
+│   ├── src/main/java/com/ritesh/portfolio/
+│   │   ├── config/        # Security, CORS, Web MVC
+│   │   ├── controller/    # REST controllers
+│   │   ├── dto/           # Request/response objects
+│   │   ├── entity/        # JPA entities
+│   │   ├── exception/     # Custom exceptions + global handler
+│   │   ├── repository/    # Spring Data repositories
+│   │   ├── security/      # JWT service, filter, user details
+│   │   ├── seed/          # DataInitializer
+│   │   ├── service/       # Business logic, email, analytics
+│   │   └── util/          # Validation helpers
+│   ├── src/main/resources/application.yml
+│   ├── Dockerfile         # Multi-stage build (Maven → JRE 17 Alpine)
+│   └── pom.xml
 │
-├── .github/                # GitHub configurations & issue templates
-│
-├── Frontend/               # React 19 Client SPA
-│   ├── public/             # Static assets & public files
+├── Frontend/
+│   ├── public/            # Resume PDF, icons, SPA redirects
 │   ├── src/
-│   │   ├── assets/         # Images, certificates, and logos
-│   │   ├── components/     # Reusable UI components (Navbar, Footer, Loading)
-│   │   ├── config/         # API endpoints & environment constants
-│   │   ├── context/        # React Contexts (AuthContext)
-│   │   ├── data/           # Static fallback datasets
-│   │   ├── hooks/          # Custom hooks (useAuth, useFetch)
-│   │   ├── layouts/        # Layout wrappers
-│   │   ├── pages/          # Public and Admin route view components
-│   │   ├── routes/         # AppRoutes with lazy-loading & ProtectedRoute
-│   │   ├── sections/       # Modular homepage sections
-│   │   ├── services/       # Axios API client modules
-│   │   ├── utils/          # Helpers & icon mappings
-│   │   ├── App.jsx         # Root application component
-│   │   ├── index.css       # Midnight Aurora design tokens & core styling
-│   │   └── main.jsx        # React entry point
-│   ├── package.json        # Frontend scripts and dependencies
-│   └── vite.config.js      # Vite build configuration
+│   │   ├── assets/        # Profile photo, project & certificate images
+│   │   ├── components/    # Navbar, Footer, Button, Modal, Toast, ...
+│   │   ├── context/       # AuthContext, PortfolioContext
+│   │   ├── data/          # Static project data
+│   │   ├── hooks/         # useAuth, useProjects, useSkills, ...
+│   │   ├── layouts/       # Admin layout, sidebar, header
+│   │   ├── pages/         # Public pages + Admin dashboard sections
+│   │   ├── routes/        # AppRoutes, ProtectedRoute
+│   │   ├── sections/      # Homepage sections
+│   │   ├── services/      # Axios API modules
+│   │   └── utils/         # Constants, validators, formatters
+│   ├── netlify.toml       # Netlify build + SPA redirect
+│   ├── vercel.json        # Vercel SPA rewrite
+│   └── vite.config.js
 │
-├── Backend/                # Spring Boot 3 REST API
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/ritesh/portfolio/
-│   │   │   │   ├── config/       # Security, CORS, and Web MVC configs
-│   │   │   │   ├── controller/   # REST Controllers (Auth, Project, Contact, etc.)
-│   │   │   │   ├── dto/          # Data Transfer Objects
-│   │   │   │   ├── entity/       # JPA Entities
-│   │   │   │   ├── exception/    # Custom exceptions & GlobalExceptionHandler
-│   │   │   │   ├── repository/   # Spring Data JPA Repositories
-│   │   │   │   ├── security/     # JWT Token Provider & Filter Chain
-│   │   │   │   ├── seed/         # DataInitializer for database bootstrapping
-│   │   │   │   ├── service/      # Business logic services & interfaces
-│   │   │   │   └── PortfolioApplication.java
-│   │   │   └── resources/
-│   │   │       ├── application.properties
-│   │   │       └── application.yml
-│   │   └── test/                 # Unit and integration tests
-│   └── pom.xml             # Maven build configuration
-│
-├── .gitignore              # Git ignore rules
-└── README.md               # Main repository documentation
+├── run_project.ps1        # Windows helper: starts backend + frontend
+└── README.md
 ```
-
----
-
-## 🔐 Authentication & Security
-
-### Security Architecture
-- **Stateless JWT Flow**: When an administrator logs in at `/api/auth/login`, the backend verifies credentials using `BCryptPasswordEncoder` and returns a signed JSON Web Token (JWT).
-- **Authorization Filter**: `JwtAuthenticationFilter` intercepts incoming requests, validates token integrity and expiry, and populates the Spring Security `SecurityContext`.
-- **Protected Admin Endpoints**: All write and delete endpoints (`/api/admin/**`, `POST /api/projects`, `PUT /api/profile`, etc.) require `ROLE_ADMIN` authority.
-- **Public Endpoints**: Read operations (`GET /api/projects`, `GET /api/skills`, `GET /api/profile`) and inquiry submission (`POST /api/contact`) are publicly accessible without authentication.
-- **CORS Configuration**: Restricts API calls to approved origins (`http://localhost:5173`, `http://localhost:3000`, and production domain).
-- **Environment & Secret Management**: Sensitive credentials, JWT signing secrets, and database credentials are kept out of source code and injected via environment variables.
-- **Input Validation**: All incoming payloads are validated using Jakarta Bean Validation (`@NotBlank`, `@Email`, `@Size`) and sanitized to prevent injection attacks.
-
----
-
-## 🎨 Design System
-
-### Midnight Aurora Theme
-The **Midnight Aurora** design system pairs deep obsidian canvases with luminous electric accents to deliver a sleek, modern developer aesthetic.
-
-| Token | Value | Role |
-|---|---|---|
-| `--color-bg` | `#0B0F1A` | Main page background (Cosmic Obsidian) |
-| `--color-card` | `#141B2D` | Elevated container and card surface |
-| `--color-text` | `#E6EAF2` | Primary high-contrast typography |
-| `--color-muted` | `#8A94A6` | Secondary body text and subtitles |
-| `--color-accent` | `#6C63FF` | Primary electric indigo accent |
-| `--color-accent-mint` | `#00E5C3` | Secondary luminescent mint highlight |
-| `--color-accent-pink` | `#EC4899` | Radiant aurora pink accent |
-
-### Design Tokens & Guidelines
-- **Typography**: Headings styled with `'Outfit', 'Inter', sans-serif`; body text set in `'Inter', sans-serif` for optimal legibility.
-- **Gradients**:
-  - Primary: `linear-gradient(135deg, #6C63FF, #EC4899)`
-  - Mint: `linear-gradient(135deg, #6C63FF, #00E5C3)`
-  - Card: `linear-gradient(145deg, #141B2D, #0d1424)`
-- **Cards & Surfaces**: Semi-transparent border glassmorphism (`1px solid rgba(255,255,255,0.08)`), glowing radial backdrop, and smooth `translateY(-6px)` hover elevations.
-- **Buttons & Badges**: Gradient-filled call-to-actions, subtle outline variants, and glowing drop shadows on focus/hover.
-- **Navigation**: Sticky frosted-glass navbar (`70px` height) with responsive mobile drawer menu.
-- **Animations & Micro-Interactions**: Powered by Framer Motion and cubic-bezier transitions (`0.3s cubic-bezier(0.4, 0, 0.2, 1)`).
-- **Accessibility**: High color contrast ratios, semantic HTML5 elements, and descriptive image alt attributes.
-
----
-
-## 🧠 Development Rules
-
-### Code Quality
-- **Component Reuse**: Reuse existing components in `Frontend/src/components/` rather than recreating ad-hoc elements.
-- **Layer Separation**: Maintain strict `Controller` $\rightarrow$ `Service` $\rightarrow$ `Repository` hierarchy on the backend.
-- **DTO Mapping**: Keep internal JPA entities private; always return structured DTOs from API controllers.
-- **Service Encapsulation**: Keep frontend HTTP requests centralized inside `Frontend/src/services/`.
-
-### Security
-- **Secret Isolation**: Never commit hardcoded secrets, JWT keys, or database credentials.
-- **Endpoint Guarding**: Ensure all data mutation endpoints are guarded with role-based Spring Security rules.
-- **Input Validation**: Validate and sanitize all user-submitted form data.
-
-### Content Accuracy
-- **Fact-Based Profile**: Keep all profile bio information, technical proficiencies, education history, and certifications factually accurate for Ritesh Kumar Panda.
-- **No Fabricated Projects**: Do not invent fake projects or claim unused technologies.
-
-### Development
-- **Responsive Guarantee**: Always verify responsive behavior across mobile (320px+), tablet, and desktop viewports.
-- **Design System Fidelity**: Use predefined CSS custom properties from `index.css`; do not introduce uncoordinated colors.
-- **Route Integrity**: Ensure lazy-loaded route imports are wrapped in Suspense fallbacks.
-
----
-
-## 📋 Current Development Status
-
-### ✅ Completed
-- Initialized Spring Boot 3 REST API with PostgreSQL/H2, JWT security filter chain, and automated data seeding.
-- Built React 19 Single Page Application with Vite, Framer Motion, and React Router DOM v7.
-- Implemented Midnight Aurora design system tokens and responsive layouts.
-- Built complete public pages: Home, About, Skills, Projects, Project Details, Experience, Education, Certifications, Contact, Resume.
-- Developed authenticated Admin Suite: Login, Dashboard, Project CRUD, Message Inbox, Profile Manager.
-
-### 🔄 In Progress
-- Finalizing full repository documentation consolidation and README synchronization.
-
-### 📋 Future Improvements
-- Multi-container Docker deployment configuration (`docker-compose.yml` for Frontend, Backend, and PostgreSQL).
-- End-to-end integration tests for Contact form dispatch and token refresh lifecycles.
-- CI/CD automated build validation and linting with GitHub Actions.
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Node.js** (v18.x or higher) & **npm**
-- **Java Development Kit (JDK)** (version 17 or higher)
-- **Maven** (v3.8+) or included Maven wrapper
-- **PostgreSQL** (optional for production; H2 is pre-configured for instant local development)
 
-### 1. Clone Repository
+- **Node.js** 18+ and npm
+- **JDK 17+**
+- **Maven 3.8+** (or use `mvnw.cmd` on Windows)
+- PostgreSQL *(optional — H2 works out of the box)*
+
+### 1. Clone
+
 ```bash
 git clone https://github.com/Riteshpanda001/Portfolio.git
 cd Portfolio
 ```
 
-### 2. Backend Setup
+### 2. Run the backend
+
 ```bash
 cd Backend
-
-# Build and run the Spring Boot application (default port: 5000)
-mvn clean spring-boot:run
+mvn spring-boot:run          # Windows alternative: .\mvnw.cmd spring-boot:run
 ```
-The backend API will start at `http://localhost:5000`. The H2 database console is accessible at `http://localhost:5000/h2-console`.
 
-### 3. Frontend Setup
+The API starts at **http://localhost:5000**.
+
+### 3. Run the frontend
+
 ```bash
-# Open a new terminal and navigate to Frontend
 cd Frontend
-
-# Install dependencies
 npm install
-
-# Start Vite development server
 npm run dev
 ```
-The frontend application will be live at `http://localhost:5173`.
+
+The app opens at **http://localhost:5173**.
+
+### One-command start (Windows)
+
+```powershell
+.\run_project.ps1
+```
+
+This opens two PowerShell windows, one for the backend and one for the frontend.
+
+### Useful commands
+
+| Where | Command | Purpose |
+|---|---|---|
+| Frontend | `npm run dev` | Start dev server |
+| Frontend | `npm run build` | Production build to `dist/` |
+| Frontend | `npm run preview` | Preview the production build |
+| Frontend | `npm run lint` | Lint with oxlint |
+| Backend | `mvn clean package` | Build the executable JAR |
+
+---
+
+## ⚙️ Configuration
+
+### Backend environment variables
+
+All settings live in `Backend/src/main/resources/application.yml` and can be overridden with environment variables.
+
+| Variable | Purpose | Default |
+|---|---|---|
+| `DB_URL` | JDBC URL | H2 file DB at `./data/portfoliodb` |
+| `DB_USERNAME` / `DB_PASSWORD` | Database credentials | `sa` / *(empty)* |
+| `DB_DRIVER` | JDBC driver class | `org.h2.Driver` |
+| `JWT_SECRET` | JWT signing key (64+ bytes) | development key |
+| `CORS_ALLOWED_ORIGINS` | Comma-separated allowed origins | `localhost:5173`, `5174`, `3000` |
+| `MAIL_USERNAME` / `MAIL_PASSWORD` | Gmail SMTP login (use an **App Password**) | – |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` / `ADMIN_NAME` | Seeded admin account | development defaults |
+
+Other defaults: server port `5000`, JWT lifetime 24 h, refresh token 7 days, max upload size 10 MB.
+
+### Frontend environment variables
+
+Create `Frontend/.env`:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+> ⚠️ **Before deploying:** set `JWT_SECRET` and `ADMIN_PASSWORD` to strong, private values. The built-in defaults are for local development only.
+
+---
+
+## 📡 API Reference
+
+Base URL: `http://localhost:5000/api`
+
+### Public
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/auth/login` | Admin login, returns JWT |
+| `POST` | `/auth/refresh` | Refresh access token |
+| `GET` | `/projects`, `/projects/featured`, `/projects/{id}` | Projects |
+| `GET` | `/skills`, `/skills/grouped`, `/skills/{id}` | Skills |
+| `GET` | `/experience`, `/education`, `/certifications` | Timeline and credentials (also `/{id}`) |
+| `GET` | `/profile` | Public profile |
+| `POST` | `/contact` | Submit a contact message |
+| `POST` | `/newsletter/subscribe` | Newsletter signup |
+| `POST` | `/analytics/visit` | Record a visit |
+| `GET` | `/actuator/health` | Health check (served at the server root, not under `/api`) |
+
+### Admin (requires `ROLE_ADMIN`)
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/admin/dashboard` | Dashboard summary |
+| `POST` `PUT` `DELETE` | `/projects`, `/skills`, `/experience`, `/education`, `/certifications` | Create / update / delete entries |
+| `PUT` | `/profile` | Update profile |
+| `GET` | `/contact` or `/contact/messages` | List messages |
+| `PATCH` | `/contact/{id}/read` | Mark message as read |
+| `DELETE` | `/contact/{id}` | Delete message |
+| `GET` | `/analytics/stats` | Visitor statistics |
+| `POST` | `/upload` | Upload a file (served from `/media/**`) |
+| `PUT` | `/auth/profile`, `/auth/password` | Update admin account / password |
+
+---
+
+## 🔐 Security
+
+- Stateless **JWT** authentication with BCrypt-hashed passwords
+- `JwtAuthenticationFilter` validates tokens on every request
+- Role-based access with `@PreAuthorize("hasRole('ADMIN')")` on all write endpoints
+- Frontend `ProtectedRoute` guards `/admin`; the Axios interceptor clears the session and redirects to login on `401`
+- Configurable **CORS** allow-list
+- Bean Validation on request payloads; uploads are renamed with a random prefix and sanitised filenames
+- H2 web console is **disabled** in configuration
+- Secrets and database files are excluded from Git via `.gitignore`
+
+---
+
+## ☁️ Deployment
+
+**Frontend** (Netlify or Vercel)
+- Build command: `npm run build`, publish directory: `dist`
+- Set `VITE_API_URL` to your deployed API URL
+- SPA fallback routing is already configured in `netlify.toml`, `vercel.json`, and `public/_redirects`
+
+**Backend** (Docker)
+
+```bash
+cd Backend
+docker build -t portfolio-backend .
+docker run -p 5000:5000 \
+  -e JWT_SECRET=<your-secret> \
+  -e ADMIN_PASSWORD=<your-password> \
+  -e CORS_ALLOWED_ORIGINS=https://your-frontend-domain \
+  portfolio-backend
+```
+
+For production, point `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_DRIVER=org.postgresql.Driver` at a PostgreSQL instance, and mount a volume for `uploads/`.
+
+---
+
+## 🎨 Design System
+
+The **Midnight Aurora** theme uses a dark obsidian base with indigo, mint, and pink accents, glass-style cards, and Framer Motion transitions. Tokens are defined as CSS custom properties in `Frontend/src/index.css`.
+
+| Token | Value | Role |
+|---|---|---|
+| `--color-bg` | `#0B0F1A` | Page background |
+| `--color-card` | `#141B2D` | Card surface |
+| `--color-text` | `#E6EAF2` | Primary text |
+| `--color-muted` | `#8A94A6` | Secondary text |
+| `--color-accent` | `#6C63FF` | Primary accent (indigo) |
+| `--color-accent-mint` | `#00E5C3` | Secondary accent |
+| `--color-accent-pink` | `#EC4899` | Tertiary accent |
+
+Typography: **Outfit** for headings, **Inter** for body text.
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Spring Boot REST API with JWT security and data seeding
+- [x] React SPA with all public pages and responsive design
+- [x] Admin dashboard (profile, skills, projects, experience, messages)
+- [x] Dockerfile for the backend
+- [ ] `docker-compose.yml` for frontend, backend, and PostgreSQL
+- [ ] Automated unit and integration tests (backend)
+- [ ] CI/CD with GitHub Actions (build and lint)
+- [ ] Move the remaining static project data to the API
+
+---
+
+## 📬 Contact
+
+**Ritesh Kumar Panda**
+- 📧 riteshkumarpanda001@gmail.com
+- 💻 [GitHub](https://github.com/Riteshpanda001)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/ritesh-kumar-panda-9b55b135a)
+
+---
+
+<p align="center">Built with ☕, React, and Spring Boot.</p>
