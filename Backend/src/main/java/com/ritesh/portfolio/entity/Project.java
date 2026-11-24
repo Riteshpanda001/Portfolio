@@ -66,7 +66,7 @@ public class Project {
     @Column(name = "feature", length = 200)
     private List<String> features;
 
-    @Column(length = 50)
+    @Column(length = 200)
     private String category;
 
     @Column(name = "is_featured")
