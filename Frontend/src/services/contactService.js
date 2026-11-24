@@ -89,6 +89,28 @@ export const markMessageRead = async (id) => {
 };
 export const markMessageAsRead = markMessageRead;
 
+/** Admin: Mark a message as unread. */
+export const markMessageAsUnread = async (id) => {
+  try {
+    return await api.patch(`/contact/messages/${id}/unread`).then((r) => r.data);
+  } catch {
+    const list = getStoredMessages().map((m) =>
+      m.id === id || m._id === id ? { ...m, isRead: false, read: false } : m
+    );
+    saveStoredMessages(list);
+    return { success: true };
+  }
+};
+
+/** Admin: Mark all unread messages as read. */
+export const markAllMessagesAsRead = async (messages = []) => {
+  const unread = messages.filter((m) => !m.isRead && !m.read);
+  await Promise.allSettled(
+    unread.map((m) => markMessageAsRead(m.id || m._id))
+  );
+  return { success: true };
+};
+
 /** Admin: Delete a message. */
 export const deleteMessage = async (id) => {
   try {
