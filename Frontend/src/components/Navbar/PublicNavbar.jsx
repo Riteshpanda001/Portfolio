@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PUBLIC_NAV_LINKS } from '../../utils/constants';
 import { useScroll } from '../../hooks/useScroll';
 import { usePortfolio } from '../../context/PortfolioContext';
-import './PublicNavbar.css';
+import './Navbar.css';
 
 // ============================================================
 // PublicNavbar — Public Portfolio Navigation Bar
