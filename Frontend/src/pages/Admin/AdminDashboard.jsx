@@ -75,9 +75,8 @@ export default function AdminDashboard({ defaultTab }) {
 
     getAllMessages()
       .then((msgs) => {
-        if (Array.isArray(msgs)) {
-          setUnreadCount(msgs.filter((m) => !m.isRead && !m.read).length);
-        }
+        const list = Array.isArray(msgs) ? msgs : (msgs?.content || []);
+        setUnreadCount(list.filter((m) => !m.isRead && !m.read).length);
       })
       .catch(() => {});
   }, []);

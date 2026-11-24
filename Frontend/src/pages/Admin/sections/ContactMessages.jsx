@@ -20,10 +20,9 @@ export default function ContactMessages({ onNotify, onMessagesUpdated }) {
     setLoading(true);
     try {
       const data = await getAllMessages();
-      if (Array.isArray(data)) {
-        setMessages(data);
-        onMessagesUpdated?.(data);
-      }
+      const list = Array.isArray(data) ? data : (data?.content || []);
+      setMessages(list);
+      onMessagesUpdated?.(list);
     } catch {
       // Keep local state
     } finally {

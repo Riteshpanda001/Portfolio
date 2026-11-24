@@ -46,16 +46,33 @@ export const sendContactMessage = async (payload) => {
 
 /** Admin: Fetch all received messages. */
 export const getAllMessages = async (params = {}) => {
+  let backendList = [];
   try {
     const res = await api.get('/contact/messages', { params });
-    return res.data;
-  } catch {
-    let list = getStoredMessages();
-    if (params.unreadOnly) {
-      list = list.filter((m) => !m.isRead);
+    if (res.data && Array.isArray(res.data.content)) {
+      backendList = res.data.content;
+    } else if (Array.isArray(res.data)) {
+      backendList = res.data;
     }
-    return list;
+  } catch {
+    // API not reachable or unauthenticated
   }
+
+  // Merge any inquiries stored locally in offline mode
+  const localList = getStoredMessages();
+  const existingIds = new Set(backendList.map((m) => String(m.id || m._id)));
+  const merged = [...backendList];
+
+  for (const item of localList) {
+    if (!existingIds.has(String(item.id || item._id))) {
+      merged.push(item);
+    }
+  }
+
+  if (params.unreadOnly) {
+    return merged.filter((m) => !m.isRead && !m.read);
+  }
+  return merged;
 };
 
 /** Admin: Mark a message as read. */
