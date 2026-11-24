@@ -35,9 +35,25 @@ public class DataInitializer implements CommandLineRunner {
     @Value("${admin.default-name:Ritesh Kumar Panda}")
     private String adminName;
 
+    @Value("${spring.profiles.active:dev}")
+    private String activeProfile;
+
     @Override
     public void run(String... args) {
         if (userRepository.count() == 0) {
+            boolean isProd = "prod".equalsIgnoreCase(activeProfile) || "production".equalsIgnoreCase(activeProfile);
+            if (isProd) {
+                if (adminPassword == null || adminPassword.trim().isEmpty()) {
+                    throw new IllegalStateException("CRITICAL SECURITY ERROR: ADMIN_PASSWORD environment variable must be set in production to initialize the admin account!");
+                }
+                if ("Admin@123456".equals(adminPassword)) {
+                    throw new IllegalStateException("CRITICAL SECURITY ERROR: Default password 'Admin@123456' is strictly forbidden in production! Set a unique ADMIN_PASSWORD in environment variables.");
+                }
+            } else if (adminPassword == null || adminPassword.trim().isEmpty()) {
+                adminPassword = "DevAdmin@" + java.util.UUID.randomUUID().toString().substring(0, 8);
+                log.warn("Generated temporary development admin password: {}", adminPassword);
+            }
+
             log.info("Initializing primary admin account...");
             User admin = User.builder()
                     .name(adminName)

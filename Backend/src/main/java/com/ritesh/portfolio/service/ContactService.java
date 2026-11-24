@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ContactService {
 
     private final ContactRepository contactRepository;
+    private final EmailService emailService;
 
     @Transactional
     public ContactResponse submitContactMessage(ContactRequest request) {
@@ -28,7 +29,21 @@ public class ContactService {
                 .isRead(false)
                 .build();
 
-        return ContactResponse.fromEntity(contactRepository.save(msg));
+        ContactResponse response = ContactResponse.fromEntity(contactRepository.save(msg));
+
+        // Dispatch email notification non-blockingly (fails gracefully if SMTP is not configured)
+        try {
+            emailService.sendContactNotification(
+                    request.name(),
+                    request.email(),
+                    request.subject(),
+                    request.message()
+            );
+        } catch (Exception ignored) {
+            // EmailService handles logging; request must not fail
+        }
+
+        return response;
     }
 
     @Transactional(readOnly = true)

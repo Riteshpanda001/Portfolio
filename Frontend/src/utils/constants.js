@@ -12,6 +12,31 @@ export const SITE_TWITTER = 'https://twitter.com/riteshpanda';
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+/**
+ * Resolves a media or image URL to ensure compatibility across local dev and production.
+ * Handles relative /media/* paths, absolute URLs, and transforms legacy localhost URLs in production.
+ */
+export const getMediaUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('data:') || url.startsWith('blob:')) return url;
+  if (url.startsWith('https://')) return url;
+
+  const backendOrigin = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/api\/?$/, '');
+
+  if (url.startsWith('http://localhost:5000') || url.startsWith('http://127.0.0.1:5000')) {
+    if (import.meta.env.PROD && import.meta.env.VITE_API_URL) {
+      return url.replace(/^http:\/\/(localhost|127\.0\.0\.1):5000/, backendOrigin);
+    }
+    return url;
+  }
+
+  if (url.startsWith('/media/')) {
+    return `${backendOrigin}${url}`;
+  }
+
+  return url;
+};
+
 export const PUBLIC_NAV_LINKS = [
   { label: 'Home',       id: 'home',       path: '/' },
   { label: 'About',      id: 'about',      path: '/about' },

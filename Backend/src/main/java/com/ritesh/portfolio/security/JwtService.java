@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import jakarta.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +32,25 @@ public class JwtService {
 
     @Value("${jwt.refresh-expiration-ms}")
     private long refreshExpirationMs;
+
+    @Value("${spring.profiles.active:dev}")
+    private String activeProfile;
+
+    private static final String DEV_FALLBACK_MARKER = "R1t3shP0rtf0l10S3cr3tK3y";
+
+    @PostConstruct
+    public void validateSecret() {
+        boolean isProd = "prod".equalsIgnoreCase(activeProfile) || "production".equalsIgnoreCase(activeProfile);
+        if (isProd) {
+            if (secretKey == null || secretKey.trim().isEmpty() || secretKey.contains(DEV_FALLBACK_MARKER)) {
+                throw new IllegalStateException("CRITICAL SECURITY ERROR: A secure, unique JWT_SECRET environment variable is required in production and cannot use development fallback keys!");
+            }
+        }
+        if (secretKey == null || secretKey.getBytes(StandardCharsets.UTF_8).length < 64) {
+            throw new IllegalStateException("CRITICAL SECURITY ERROR: JWT secret key must be at least 64 bytes (512 bits) long for HMAC-SHA512 algorithm!");
+        }
+        log.info("JWT service initialized successfully with strong key (Profile: {})", activeProfile);
+    }
 
     // ── Token generation ─────────────────────────────────────
 
